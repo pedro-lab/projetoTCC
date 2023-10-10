@@ -1,0 +1,47 @@
+header{
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    background: #fefefe;
+}
+
+.nav{
+    padding: 20px 0;
+}
+
+.nav-item{
+    text-transform: uppercase;
+}
+
+.navbar{
+    padding: .5rem 0rem;
+}
+
+.navbar-light .navbar-nav .nav-item .nav-link:hover,
+.navbar-light .navbar-nav nav-item.active .nav-link {
+    background: rgb(123, 220, 255);
+    color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-item .nav-link{
+    background: #fff;
+    color: #262626;
+}
+
+.navbar-light .navbar-toggler{
+    border: none;
+    color: #fff;
+    border: 2px solid #f7f7f7;
+    border-radius: 0;
+    outline: none;
+}
+
+.navbar-collapse{
+    background: #fafafa;
+}
+
+.icone:hover{
+    font-size: 24px;
+    color: #f1b0b7;
+    transition: 2s;
+}
