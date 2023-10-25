@@ -43,28 +43,28 @@ public class GerenciarLente extends HttpServlet {
             } else if (acao.equals("alterar")) {
 
                 l = ldao.getCarregarPorId(Integer.parseInt(idLente));
-                if (c.getIdCliente() > 0) {
+                if (l.getIdLente()> 0) {
                     RequestDispatcher dispatcher
                             = getServletContext().getRequestDispatcher("/cadastrarLente.jsp");
-                    request.setAttribute("cliente", c);
+                    request.setAttribute("lente", l);
                     dispatcher.forward(request, response);
                 } else {
-                    mensagem = "Cliente não encontrado na base de dados!";
+                    mensagem = "Lente não encontrado na base de dados!";
                 }
 
             } else if (acao.equals("ativar")) {
-                c.setIdCliente(Integer.parseInt(idCliente));
-                if (cdao.ativar(c)) {
-                    mensagem = "Cliente ativado com sucesso!";
+                l.setIdLente(Integer.parseInt(idLente));
+                if (ldao.ativar(l)) {
+                    mensagem = "Lente ativado com sucesso!";
                 } else {
-                    mensagem = "Falha ao ativar o cliente!";
+                    mensagem = "Falha ao ativar a lente!";
                 }
             } else if (acao.equals("desativar")) {
-                c.setIdCliente(Integer.parseInt(idCliente));
-                if (cdao.desativar(c)) {
-                    mensagem = "Cliente desativado com sucesso!";
+                l.setIdLente(Integer.parseInt(idLente));
+                if (ldao.desativar(l)) {
+                    mensagem = "Lente desativado com sucesso!";
                 } else {
-                    mensagem = "Falha ao desativar o cliente!";
+                    mensagem = "Falha ao desativar a lente!";
                 }
             } else {
                 response.sendRedirect("index.jsp");
@@ -78,7 +78,7 @@ public class GerenciarLente extends HttpServlet {
         out.println(
                 "<script type='text/javascript'>"
                 + "alert('" + mensagem + "');"
-                + "location.href='gerenciarCliente?acao=listar';"
+                + "location.href='gerenciarLente?acao=listar';"
                 + "</script>"
         );
     }
@@ -90,4 +90,4 @@ public class GerenciarLente extends HttpServlet {
 //            throws ServletException, IOException {
 //        processRequest(request, response);
 //    }
-}
+//}

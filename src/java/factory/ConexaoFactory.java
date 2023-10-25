@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConexaoFactory {
     
-    private static final String URL = "jdbc:mysql://localhost:3306/projetoetb2023seg?useTimeZone=true&severTimeZone=UTC&useSSL=false";
+    private static final String URL = "jdbc:mysql://localhost:3306/otica?useTimeZone=true&severTimeZone=UTC&useSSL=false";
     private static final String USUARIO = "root";
     private static final String SENHA = "1998Harou";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
