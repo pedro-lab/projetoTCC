@@ -17,5 +17,7 @@ public class Lente {
     private String nome;
     private String modelo;
     private Double preco;
+    private String fabricante;
+    private int status;
     
 }

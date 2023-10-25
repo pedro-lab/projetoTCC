@@ -30,7 +30,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Ver ordem de serviço</h5>
                             <p class="card-text">Ver a ordem de serviços dos laboratórios</p>
-                            <a href="filtroServicos.jsp" class="btn btn-primary">Ver servicos</a>
+                            <a href="gerenciarOS?acao=listar" class="btn btn-primary">Ver servicos</a>
                         </div>
                     </div>
                     <div class="card mt-4 ml-lg-5" id="card" style="width: 18rem;display: inline-flex">
