@@ -18,10 +18,6 @@
     </head>
     <body>
         <div id="container">
-            <div id="header">
-                <jsp:include page="template/banner.jsp"></jsp:include>
-                </div><!-- Fim da div header -->
-
                 <div id="menu">
                 <jsp:include page="template/menu.jsp"></jsp:include>
                 </div><!-- Fim da div menu -->
@@ -29,7 +25,7 @@
                 <div id="conteudo" class="bg-background">
                     <div class="container">
                         <h3 class="text-center">Listagem de Lentes</h3>
-                        <a href="cadastrarCliente.jsp" class="btn-sm btn-primary " 
+                        <a href="cadastrarLente.jsp" class="btn-sm btn-primary " 
                            style="text-decoration: none">Cadastrar Lente</a>
                         <table class="table table-hover table-striped table-bordered mt-3" id="asd">
                             <thead>

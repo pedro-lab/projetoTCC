@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-lg-auto">
                 <li class="nav-item">
-                    <a class="btn btn-outline-success btn-nav mr-xl-5" href="servicos.jsp"
+                    <a class="btn btn-outline-success btn-nav mr-xl-5" href="opcoes.jsp"
                     >Menu</a>
                 </li>
 
