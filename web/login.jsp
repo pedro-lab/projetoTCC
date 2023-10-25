@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="container-fluid  row mt-5">
-                            <a href="servicos.jsp" class="btn btn-primary mr-3 offset-5" role="button">Logar</a>
+                            <a href="opcoes.jsp" class="btn btn-primary mr-3 offset-5" role="button">Logar</a>
                             <a href="index.jsp" 
                                class="btn  btn-warning" role="button">Voltar
                             </a>
