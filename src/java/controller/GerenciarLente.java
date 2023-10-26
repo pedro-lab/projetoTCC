@@ -130,12 +130,13 @@ public class GerenciarLente extends HttpServlet {
             sessao.setAttribute("msg", "Informe o fabricante da lente!");
             exibirMensagem(request, response);
         } else {
-            preco = preco.replaceAll(",", ".");
-            try {
+            if (podeConverterParaDouble(preco)) {
+                preco = preco.replaceAll(",", ".");
+                System.out.println(preco);
                 l.setPreco(Double.valueOf(preco));
-            } catch (NumberFormatException e) {
-                mensagem = "Error" + e.getMessage();
-                
+            }else{
+                sessao.setAttribute("msg", "Formato de preco invalido");
+                exibirMensagem(request, response);
             }
         }
 
@@ -168,8 +169,36 @@ public class GerenciarLente extends HttpServlet {
     private void exibirMensagem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         RequestDispatcher dispatcher = getServletContext().
-                getRequestDispatcher("/cadastrarCliente.jsp");
+                getRequestDispatcher("/cadastrarLente.jsp");
         dispatcher.forward(request, response);
+    }
+
+    private boolean podeConverterParaDouble(String s) {
+
+        //Verifica se o texto tem so uma virgula ou so um ponto
+        int ponto = 0;
+        int virgula = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '.') {
+                ponto += 1;
+            } else if (s.charAt(i) == ',') {
+                virgula += 1;
+            }
+        }
+
+        //Verifica se o texto pode ser convertido para numero
+        boolean ehDouble = false;
+        if (virgula == 0 && ponto == 0 || virgula == 1 && ponto == 0 || virgula == 0 && ponto == 1) {
+            s.replaceAll(".", "");
+            s.replaceAll(",", "");
+            for (int i = 0; i < s.length(); i++) {
+                if (Character.isDigit(s.charAt(i))) {
+                    ehDouble = true;
+                }
+            }
+        }
+        return ehDouble;
     }
 
 }
