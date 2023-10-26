@@ -74,52 +74,52 @@ public class LaboratorioDAO {
         return true;
     }
 
-    public Lente getCarregarPorId(int idLente) throws SQLException {
+    public Laboratorio getCarregarPorId(int idLaboratorio) throws SQLException {
 
-        Lente lente = new Lente();
+        Laboratorio lab = new Laboratorio();
 
-        sql = "SELECT idLente, nome, modelo, preco,status,fabricante "
-                + "FROM Lente WHERE idLente = ? ";
+        sql = "SELECT idLaboratorio, nome, endereco, telefone, email, status "
+                + "FROM laboratorio WHERE idLaboratorio = ?";
 
         con = ConexaoFactory.conectar();
 
         ps = con.prepareStatement(sql);
-        ps.setInt(1, idLente);
+        ps.setInt(1, idLaboratorio);
         rs = ps.executeQuery();
 
         if (rs.next()) {
-            lente.setIdLente(rs.getInt("idLente"));
-            lente.setModelo(rs.getString("modelo"));
-            lente.setNome(rs.getString("nome"));
-            lente.setPreco(rs.getDouble("preco"));
-            lente.setStatus(rs.getInt("status"));
-            lente.setFabricante(rs.getString("fabricante"));
+            lab.setIdLaboratorio(rs.getInt("idLaboratorio"));
+            lab.setNome(rs.getString("nome"));
+            lab.setEndereco(rs.getString("endereco"));
+            lab.setTelefone(rs.getString("telefone"));
+            lab.setEmail(rs.getString("email"));
+            lab.setStatus(rs.getInt("status"));
 
         }
 
         ConexaoFactory.close(con);
-        return lente;
+        return lab;
 
     }
 
-    public boolean ativar(Lente l) throws SQLException {
+    public boolean ativar(Laboratorio lab) throws SQLException {
 
-        sql = "UPDATE lente SET status = 1 WHERE idLente = ?";
+        sql = "UPDATE laboratorio SET status = 1 WHERE idLaboratorio = ?";
         con = ConexaoFactory.conectar();
         ps = con.prepareStatement(sql);
-        ps.setInt(1, l.getIdLente());
+        ps.setInt(1, lab.getIdLaboratorio());
         ps.executeUpdate();
         ConexaoFactory.close(con);
         return true;
 
     }
 
-    public boolean desativar(Lente l) throws SQLException {
+    public boolean desativar(Laboratorio lab) throws SQLException {
 
-        sql = "UPDATE lente SET status = 0 WHERE idLente = ?";
+        sql = "UPDATE laboratorio SET status = 0 WHERE idLaboratorio = ?";
         con = ConexaoFactory.conectar();
         ps = con.prepareStatement(sql);
-        ps.setInt(1, l.getIdLente());
+        ps.setInt(1, lab.getIdLaboratorio());
         ps.executeUpdate();
         ConexaoFactory.close(con);
         return true;
