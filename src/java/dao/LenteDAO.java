@@ -65,8 +65,8 @@ public class LenteDAO {
             ps.setString(2, l.getModelo());
             ps.setString(3, l.getFabricante());
             ps.setDouble(4, l.getPreco());
-            ps.setInt(6, l.getStatus());
-            ps.setInt(5, l.getIdLente());
+            ps.setInt(5, l.getStatus());
+            ps.setInt(6, l.getIdLente());
         }
         ps.executeUpdate();
         ConexaoFactory.close(con);

@@ -47,7 +47,7 @@
                 
                 %>
                 <div class="container">
-                    <form action="gerenciarCliente?acao=cadastrar" method="post" class="form-group">
+                    <form action="gerenciarLente?acao=cadastrar" method="post" class="form-group">
                         <h3 class="text-center">Cadastro de Lente</h3>
                         <input type="hidden" name="idLente" value="${lente.idLente}">
                         

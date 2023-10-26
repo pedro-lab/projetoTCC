@@ -47,6 +47,7 @@
                                     <td>${l.modelo}</td>
                                     <td>${l.fabricante}</td>
                                     <td>${l.preco}</td>
+                                    <td>
                                     <c:choose>
                                         <c:when test="${l.status == 1}">
                                             Ativado
@@ -81,11 +82,11 @@
                                        <c:choose>
                                            <c:when test="${l.status == 1}">
                                                <a class="btn btn-sm btn-danger " style="text-decoration: none"
-                                                  onclick="confirmDesativar('${l.idCliente}','${l.nome}')">Desativar</a>
+                                                  onclick="confirmDesativar('${l.idLente}','${l.nome}')">Desativar</a>
                                            </c:when>
                                            <c:otherwise>
                                                <a class="btn btn-success btn-sm" 
-                                                  onclick="confirmAtivar('${l.idCliente}','${l.nome}')">Ativar</a>
+                                                  onclick="confirmAtivar('${l.idLente}','${l.nome}')">Ativar</a>
                                            </c:otherwise>
                                        </c:choose>
                                     </td>
