@@ -84,11 +84,11 @@
                                 <select class="form-control-sm" name="status">
                                     <option value="">Escolha uma opção</option>
                                     <option value="1"
-                                    <c:if test="${cliente.status == 1}">
+                                    <c:if test="${lente.status == 1}">
                                         selected
                                     </c:if>>Ativado</option>
                                     <option value="0"
-                                    <c:if test="${cliente.status == 0}">
+                                    <c:if test="${lente.status == 0}">
                                         selected
                                     </c:if>>Desativado</option>
                                 </select>
