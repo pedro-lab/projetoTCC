@@ -41,7 +41,14 @@
                             <a href="gerenciarLente?acao=listar" class="btn btn-primary">Ver lentes</a>
                         </div>
                     </div>
-                    
+                    <div class="card mt-4 ml-lg-5" id="card" style="width: 18rem;display: inline-flex">
+                        <img src="imagens/clipcardLab.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Consultar Laboratórios</h5>
+                            <p class="card-text">Consulte e registre laboratórios na nossa base de dados</p>
+                            <a href="gerenciarLaboratorio?acao=listar" class="btn btn-primary">Ver laboratórios</a>
+                        </div>
+                    </div>
 
                 </div><!-- Fim da div conteudo -->
             </main><!-- Fim da div conteudo -->
