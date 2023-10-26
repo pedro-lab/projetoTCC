@@ -49,7 +49,14 @@
                             <a href="gerenciarLaboratorio?acao=listar" class="btn btn-primary">Ver laboratórios</a>
                         </div>
                     </div>
-
+                    <div class="card mt-4 ml-lg-5" id="card" style="width: 18rem;display: inline-flex">
+                        <img src="imagens/clipcardRetirada.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Consultar Clientes</h5>
+                            <p class="card-text">Consulte e registre clientes na nossa base de dados</p>
+                            <a href="gerenciarLaboratorio?acao=listar" class="btn btn-primary">Ver Clientes</a>
+                        </div>
+                    </div>
                 </div><!-- Fim da div conteudo -->
             </main><!-- Fim da div conteudo -->
         </div><!-- Fim da div container -->
