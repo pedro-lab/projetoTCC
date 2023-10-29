@@ -82,7 +82,7 @@
                             <div class="form-group row offset-md-2">
                                 <label class="col-md-3">Data de Nascimento<sup class="text-danger">*</sup></label>
                                 <div class="col-md-5">
-                                    <input type="date" name="dataNasc" 
+                                    <input type="date" name="dataNasc" id="dataNasc" 
                                            class="form-control" value="${cliente.dataNasc}">
                                 </div>
                             </div>
@@ -144,6 +144,9 @@
             tel.value = valor // Insere o(s) valor(es) no campo
         }
 
+        //calculo de idade automatica
+        
+        const dataNasc = document.querySelector("dataNasc")
 
     </script>
 </html>

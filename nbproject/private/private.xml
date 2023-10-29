@@ -3,45 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/opcoes.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/src/java/factory/ConexaoFactory.java</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/src/java/controller/GerenciarMenuPerfil.java</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/cadastrarLaboratorio.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/cadastrarMenuPerfil.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/src/java/dao/OrdemServicoDAO.java</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/src/java/controller/GerenciarOrdemServico.java</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/css/menu.css</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/cadastrarPerfil.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/src/java/controller/GerenciarUsuario.java</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/template/clipcards.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/cadastrarMenu.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/src/java/controller/GerenciarLogin.java</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/src/java/dao/PerfilDAO.java</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/cadastrarOS.jsp</file>
             <file>file:/D:/NetBeansProject/projetoTCC/web/cadastrarCliente.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/listarUsuarios.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/filtroEstatistica.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/filtro.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/src/java/dao/MenuDAO.java</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/css/styles.css</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/login.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/listarMenus.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/src/java/model/Perfil.java</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/listarPerfis.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/estatistica.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/listarLaboratorios.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/src/java/controller/GerenciarPerfil.java</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/src/java/dao/UsuarioDAO.java</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/index.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/cadastrarUsuario.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/listarOrdemServicos.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/cadastrarLente.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/src/java/model/Usuario.java</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/listarClientes.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/listarLentes.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/src/java/model/OrdemServico.java</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/template/menu.jsp</file>
-            <file>file:/D:/NetBeansProject/projetoTCC/web/template/menuInicial.jsp</file>
         </group>
     </open-files>
 </project-private>

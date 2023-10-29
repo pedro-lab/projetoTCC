@@ -82,7 +82,7 @@
                             <div class="form-group row offset-md-2">
                                 <label class="col-md-3">Data de Nascimento<sup class="text-danger">*</sup></label>
                                 <div class="col-md-5">
-                                    <input type="date" name="dataNasc" 
+                                    <input type="date" name="dataNasc" id="dataNasc" 
                                            class="form-control" value="${cliente.dataNasc}">
                                 </div>
                             </div>
@@ -144,6 +144,17 @@
             tel.value = valor // Insere o(s) valor(es) no campo
         }
 
+        //calculo de idade pela data de nascimento
+        
+        const dataNasc = document.querySelector("#dataNasc")
+        const data = new Date; //data Atual
+        const dia = data.getDate()
+        const mes = data.getMonth()
+        const ano = data.getFullYear()
+
+        var idade
+        alert(dataNasc.value)
+        
 
     </script>
 </html>
