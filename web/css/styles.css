@@ -8,7 +8,6 @@
 
 body{
     margin: 0 auto;
-    background: #fafafa;
     height: 100%;
     font-family: Helvetica, Arial, sans-serif;
     line-height: 1.4em;
@@ -57,8 +56,12 @@ html{
 
 }
 
+html, body {
+     min-height: 100%;
+}
+
 body{
-    height: 100%;
+    min-height: 100vh;
     background:linear-gradient(180deg, #fefefe, rgb(200, 243, 237), rgb(123, 220, 250));
     background-repeat: no-repeat;
 }

@@ -35,7 +35,7 @@ public class GerenciarLaboratorio extends HttpServlet {
                 ArrayList<Laboratorio> laboratorios = new ArrayList<>();
                 laboratorios = ldao.getLista();
                 RequestDispatcher dispatcher = 
-                        getServletContext().getRequestDispatcher("/listarLaboratorio.jsp");
+                        getServletContext().getRequestDispatcher("/listarLaboratorios.jsp");
                 
                 request.setAttribute("laboratorios", laboratorios);
                 dispatcher.forward(request, response);

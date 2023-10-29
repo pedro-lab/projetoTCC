@@ -1,0 +1,1 @@
+<img src="<%= request.getContextPath()%>" width="100%" height="180px" alt="imagem do Banner"/>
