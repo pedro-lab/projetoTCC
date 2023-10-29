@@ -54,7 +54,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Consultar Clientes</h5>
                             <p class="card-text">Consulte e registre clientes na nossa base de dados</p>
-                            <a href="gerenciarLaboratorio?acao=listar" class="btn btn-primary">Ver Clientes</a>
+                            <a href="gerenciarCliente?acao=listar" class="btn btn-primary">Ver Clientes</a>
                         </div>
                     </div>
                 </div><!-- Fim da div conteudo -->
