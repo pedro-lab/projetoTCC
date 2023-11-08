@@ -27,7 +27,7 @@
                         <h3 class="text-center">Listagem de Laboratorios</h3>
                         <a href="cadastrarLaboratorio.jsp" class="btn-sm btn-primary " 
                            style="text-decoration: none">Cadastrar Laboratorios</a>
-                        <table class="table table-hover table-striped table-bordered mt-3" id="asd">
+                        <table class="table table-hover table-striped table-bordered mt-3">
                             <thead>
                                 <tr class="thead-dark">
                                     <th scope="col">Código</th>
@@ -40,16 +40,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${laboratorios}" var="l">
+                            <c:forEach items="${laboratorios}" var="lab">
                                 <tr>
-                                    <td>${l.idLente}</td>
-                                    <td>${l.nome}</td>
-                                    <td>${l.endereco}</td>
-                                    <td>${l.telefone}</td>
-                                    <td>${l.email}</td>
+                                    <td>${lab.idLaboratorio}</td>
+                                    <td>${lab.nome}</td>
+                                    <td>${lab.endereco}</td>
+                                    <td>${lab.telefone}</td>
+                                    <td>${lab.email}</td>
                                     <td>
                                     <c:choose>
-                                        <c:when test="${l.status == 1}">
+                                        <c:when test="${lab.status == 1}">
                                             Ativado
                                         </c:when>
                                         <c:otherwise>
@@ -77,16 +77,16 @@
                                                 }
                                             }
                                         </script>
-                                        <a href="gerenciarLaboratorio?acao=alterar&idLaboratorio=${l.idLaboratorio}" 
+                                        <a href="gerenciarLaboratorio?acao=alterar&idLaboratorio=${lab.idLaboratorio}" 
                                        class="btn btn-warning btn-sm" role="button">Alterar</a>
                                        <c:choose>
-                                           <c:when test="${l.status == 1}">
+                                           <c:when test="${lab.status == 1}">
                                                <a class="btn btn-sm btn-danger " style="text-decoration: none"
-                                                  onclick="confirmDesativar('${l.idLaboratorio}','${l.nome}')">Desativar</a>
+                                                  onclick="confirmDesativar('${lab.idLaboratorio}','${lab.nome}')">Desativar</a>
                                            </c:when>
                                            <c:otherwise>
                                                <a class="btn btn-success btn-sm" 
-                                                  onclick="confirmAtivar('${l.idLaboratorio}','${l.nome}')">Ativar</a>
+                                                  onclick="confirmAtivar('${lab.idLaboratorio}','${lab.nome}')">Ativar</a>
                                            </c:otherwise>
                                        </c:choose>
                                     </td>
