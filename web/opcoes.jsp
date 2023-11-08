@@ -58,10 +58,10 @@
                         </div>
                     </div>
                     <div class="card mt-4 ml-lg-5" id="card" style="width: 18rem;display: inline-flex;">
-                        <img src="./imagens/clipcardRegistrar.jpg" class="card-img-top" alt="...">
+                        <img src="./imagens/clipcardMenu.png" class="card-img-top" alt="..." style="height: 190.7px">
                         <div class="card-body">
                             <h5 class="card-title">Ver Menus</h5>
-                            <p class="card-text">VConsulte e registre menus na nosaa base de dados</p>
+                            <p class="card-text">Consulte e registre menus na nossa base de dados</p>
                             <a href="gerenciarOS?acao=listar" class="btn btn-primary">Ver Menus</a>
                         </div>
                     </div>
