@@ -70,7 +70,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Consultar Perfil</h5>
                             <p class="card-text">Consulte e registre perfis na nossa base de dados</p>
-                            <a href="gerenciarMenu?acao=listar" class="btn btn-primary">Ver Perfil</a>
+                            <a href="gerenciarPerfil?acao=listar" class="btn btn-primary">Ver Perfil</a>
                         </div>
                     </div>
                 </div><!-- Fim da div conteudo -->

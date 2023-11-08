@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,9 +15,11 @@ import lombok.ToString;
 @ToString
 
 public class Perfil {
+    
     private int idPerfil;
     private String nome;
     private Date dataCadastro;
     private int status;
-    
+    private ArrayList<Menu> menus;
+    private ArrayList<Menu> naoMenus;
 }
