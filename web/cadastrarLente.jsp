@@ -52,20 +52,20 @@
                         <input type="hidden" name="idLente" value="${lente.idLente}">
                         
                         <div class="form-group row mt-5 offset-md-2">
-                            <label class="col-md-3">Nome</label>
+                            <label class="col-md-3">Nome<sup class="text-danger">*</sup></label>
                             <div class="col-md-5">
                                 <input type="text" name="nome" value="${lente.nome}" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row offset-md-2">
-                            <label class="col-md-3">Modelo</label>
+                            <label class="col-md-3">Modelo<sup class="text-danger">*</sup></label>
                             <div class="col-md-5">
                                 <input type="text" name="modelo" 
                                        class="form-control" value="${lente.modelo}">
                             </div>
                         </div>
                         <div class="form-group row offset-md-2">
-                            <label class="col-md-3">Fabricante</label>
+                            <label class="col-md-3">Fabricante<sup class="text-danger">*</sup></label>
                             <div class="col-md-5">
                                 <input type="text" name="fabricante" 
                                        class="form-control" value="${lente.fabricante}">
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <div class="form-group row offset-md-2">
-                            <label class="col-md-3">Status</label>
+                            <label class="col-md-3">Status<sup class="text-danger">*</sup></label>
                             <div class="col-md-5">
                                 <select class="form-control-sm" name="status">
                                     <option value="">Escolha uma opção</option>

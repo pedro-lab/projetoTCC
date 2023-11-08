@@ -127,8 +127,8 @@ public class GerenciarLente extends HttpServlet {
         }
 
         if (preco.isEmpty() || preco.equals("")) {
-            sessao.setAttribute("msg", "Informe o fabricante da lente!");
-            exibirMensagem(request, response);
+            preco = "0.0";
+            l.setPreco(Double.valueOf(preco));
         } else {
             if (podeConverterParaDouble(preco)) {
                 preco = preco.replaceAll(",", ".");
