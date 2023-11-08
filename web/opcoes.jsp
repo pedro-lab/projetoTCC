@@ -74,6 +74,14 @@
                             <a href="gerenciarPerfil?acao=listar" class="btn btn-primary">Ver Perfil</a>
                         </div>
                     </div>
+                    <div class="card mt-4 ml-lg-5" id="card" style="width: 18rem;display: inline-flex;">
+                        <img src="./imagens/clipcardPerfil.png" class="card-img-top" alt="..." style="height: 190.7px">
+                        <div class="card-body">
+                            <h5 class="card-title">Consultar Usuário</h5>
+                            <p class="card-text">Consulte e registre usuários na nossa base de dados</p>
+                            <a href="gerenciarPerfil?acao=listar" class="btn btn-primary">Ver Usuário</a>
+                        </div>
+                    </div>
                 </div><!-- Fim da div conteudo -->
             </main><!-- Fim da div conteudo -->
         </div><!-- Fim da div container -->
