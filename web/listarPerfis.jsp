@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="css/styles.css" type="text/css"/>
         <link rel="stylesheet" href="datatables/dataTables.bootstrap4.min.css" type="text/css"/>
         <link rel="stylesheet" href="datatables/jquery.dataTables.min.css" type="text/css"/>
+        <link rel="shortcut icon" href="./imagens/logo.png">
         <title>Projeto ETB</title>
 
     </head>

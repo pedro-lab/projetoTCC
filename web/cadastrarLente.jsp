@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="bootstrap/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="css/menu.css" type="text/css">
         <link rel="stylesheet" href="css/styles.css" type="text/css"/>
+        <link rel="shortcut icon" href="./imagens/logo.png">
         <title>Otica Nova</title>
 
     </head>
