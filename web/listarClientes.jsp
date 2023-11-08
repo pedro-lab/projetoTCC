@@ -25,7 +25,7 @@
                 <div id="conteudo" class="bg-background">
                     <div class="container">
                         <h3 class="text-center">Listagem de Clientes</h3>
-                        <a href="cadastrarLaboratorio.jsp" class="btn-sm btn-primary " 
+                        <a href="cadastrarCliente.jsp" class="btn-sm btn-primary " 
                            style="text-decoration: none">Cadastrar Cliente</a>
                         <table class="table table-hover table-striped table-bordered mt-3" id="asd">
                             <thead>
