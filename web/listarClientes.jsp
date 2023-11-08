@@ -30,7 +30,7 @@
                         <table class="table table-hover table-striped table-bordered mt-3" id="asd">
                             <thead>
                                 <tr class="thead-dark">
-                                    <th scope="col">Có</th>
+                                    <th scope="col">Código</th>
                                     <th scope="col">Nome</th>
                                     <th scope="col">Endereco</th>
                                     <th scope="col">Telefone</th>
