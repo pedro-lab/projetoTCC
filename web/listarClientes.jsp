@@ -24,17 +24,18 @@
 
                 <div id="conteudo" class="bg-background">
                     <div class="container">
-                        <h3 class="text-center">Listagem de Laboratorios</h3>
+                        <h3 class="text-center">Listagem de Clientes</h3>
                         <a href="cadastrarLaboratorio.jsp" class="btn-sm btn-primary " 
-                           style="text-decoration: none">Cadastrar Laboratorios</a>
+                           style="text-decoration: none">Cadastrar Cliente</a>
                         <table class="table table-hover table-striped table-bordered mt-3" id="asd">
                             <thead>
                                 <tr class="thead-dark">
                                     <th scope="col">Código</th>
                                     <th scope="col">Nome</th>
-                                    <th scope="col">Endereco</th>
+                                    <th scope="col">CPF</th>
                                     <th scope="col">Telefone</th>
-                                    <th scope="col">Email</th>
+                                    <th scope="col">Idade</th>
+                                    <th scope="col">Data de Nasc</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Ação</th>
                                 </tr>
@@ -42,14 +43,15 @@
                             <tbody>
                             <c:forEach items="${clientes}" var="c">
                                 <tr>
-                                    <td>${l.idLente}</td>
-                                    <td>${l.nome}</td>
-                                    <td>${l.endereco}</td>
-                                    <td>${l.telefone}</td>
-                                    <td>${l.email}</td>
+                                    <td>${c.idCliente}</td>
+                                    <td>${c.nome}</td>
+                                    <td>${c.cpf}</td>
+                                    <td>${c.telefone}</td>
+                                    <td>${c.idade}</td>
+                                    <td>${c.dataNasc}</td>
                                     <td>
                                     <c:choose>
-                                        <c:when test="${l.status == 1}">
+                                        <c:when test="${c.status == 1}">
                                             Ativado
                                         </c:when>
                                         <c:otherwise>
@@ -60,9 +62,9 @@
                                     <td>
                                         <script type="text/javascript">
                                             function confirmDesativar(id,nome) {
-                                                if (confirm("Deseja desativar o Laboratorio " +  
+                                                if (confirm("Deseja desativar o Cliente " +  
                                                     nome + "?")){
-                                                    location.href="gerenciarLaboratorio?acao=desativar&idLaboratorio="+id;
+                                                    location.href="gerenciarCliente?acao=desativar&idCliente="+id;
                                                          
                                                 }
                                                 
@@ -70,9 +72,9 @@
                                             
                                             function confirmAtivar(id,nome) {
 
-                                                if (confirm("Deseja ativar a Lente " +  
+                                                if (confirm("Deseja ativar o Cliente " +  
                                                     nome + "?")){
-                                                    location.href="gerenciarLaboratorio?acao=ativar&idLaboratorio="+id;
+                                                    location.href="gerenciarCliente?acao=ativar&idCliente="+id;
                                                          
                                                 }
                                             }
@@ -80,13 +82,13 @@
                                         <a href="gerenciarLaboratorio?acao=alterar&idLaboratorio=${l.idLaboratorio}" 
                                        class="btn btn-warning btn-sm" role="button">Alterar</a>
                                        <c:choose>
-                                           <c:when test="${l.status == 1}">
+                                           <c:when test="${c.status == 1}">
                                                <a class="btn btn-sm btn-danger " style="text-decoration: none"
-                                                  onclick="confirmDesativar('${l.idLaboratorio}','${l.nome}')">Desativar</a>
+                                                  onclick="confirmDesativar('${c.idCliente}','${c.nome}')">Desativar</a>
                                            </c:when>
                                            <c:otherwise>
                                                <a class="btn btn-success btn-sm" 
-                                                  onclick="confirmAtivar('${l.idLaboratorio}','${l.nome}')">Ativar</a>
+                                                  onclick="confirmAtivar('${c.idLaboratorio}','${c.nome}')">Ativar</a>
                                            </c:otherwise>
                                        </c:choose>
                                     </td>
