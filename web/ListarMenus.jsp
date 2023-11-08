@@ -19,9 +19,6 @@
     </head>
     <body>
         <div id="container">
-            <div id="header">
-                <jsp:include page="template/banner.jsp"></jsp:include>
-                </div><!-- Fim da div header -->
 
                 <div id="menu">
                 <jsp:include page="template/menu.jsp"></jsp:include>

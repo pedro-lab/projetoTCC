@@ -62,7 +62,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Ver Menus</h5>
                             <p class="card-text">Consulte e registre menus na nossa base de dados</p>
-                            <a href="gerenciarOS?acao=listar" class="btn btn-primary">Ver Menus</a>
+                            <a href="gerenciarMenu?acao=listar" class="btn btn-primary">Ver Menus</a>
                         </div>
                     </div>
                 </div><!-- Fim da div conteudo -->
