@@ -75,7 +75,7 @@
                             <label class="col-md-3">Email<sup class="text-danger">*</sup></label>
                             <div class="col-md-5">
                                 <input type="email" name="email" 
-                                       class="form-control" value="${laboratorio.email}">
+                                       class="form-control" value="${laboratorio.preco}">
                             </div>
                         </div>
                         <div class="form-group row offset-md-2">

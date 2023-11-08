@@ -48,7 +48,7 @@
                                     <td>${c.cpf}</td>
                                     <td>${c.telefone}</td>
                                     <td>${c.idade}</td>
-                                    <td>${c.dataNasc}</td>
+                                    <td><fmt:formatDate pattern="dd/MM/yyyy" value="${c.dataNasc}"></fmt:formatDate></td>
                                     <td>
                                     <c:choose>
                                         <c:when test="${c.status == 1}">
