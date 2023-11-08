@@ -28,7 +28,7 @@
                         <h3 class="text-center">Listagem de Menus</h3>
                         <a href="cadastrarMenu.jsp" class="btn-sm btn-primary mb-5" 
                            role="button" style="text-decoration: none;display:inline-block;">Cadastrar Menus</a>
-                        <table class="table table-hover table-striped table-bordered mt-3" id="listarUsuarios">
+                        <table class="table table-hover table-striped table-bordered mt-3" id="mytable">
                             <thead>
                                 <tr class="thead-dark">
                                     <th scope="col">Código</th>
@@ -103,7 +103,7 @@
                         </tbody>
                     </table>
                     <div class="d-md-flex justify-content-md-end mt-5 mr-5">
-                        <a href="gerenciarLente?acao=listar" 
+                        <a href="opcoes.jsp" 
                            class="btn  btn-warning" role="button">Voltar
                         </a>
                     </div>
@@ -123,7 +123,7 @@
         <!-- Configuracao da tabela com JQuery -->
         <script>
                                                        $(document).ready(function () {
-                                                           $('#listarUsuarios').dataTable({
+                                                           $('#mytable').dataTable({
                                                                "bJQueryUI": true,
                                                                "lengthMenu": [[5, 10, 20, 25, -1], [5, 10, 20, 25, "Todos"]],
                                                                "oLanguage": {

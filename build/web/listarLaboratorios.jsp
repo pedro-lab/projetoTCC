@@ -1,4 +1,3 @@
-
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -13,7 +12,9 @@
         <link rel="stylesheet" href="bootstrap/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="css/menu.css" type="text/css">
         <link rel="stylesheet" href="css/styles.css" type="text/css"/>
-        <title>Otica Nova</title>
+        <link rel="stylesheet" href="datatables/dataTables.bootstrap4.min.css" type="text/css"/>
+        <link rel="stylesheet" href="datatables/jquery.dataTables.min.css" type="text/css"/>
+        <title>Projeto ETB</title>
 
     </head>
     <body>
@@ -24,10 +25,10 @@
 
                 <div id="conteudo" class="bg-background">
                     <div class="container">
-                        <h3 class="text-center">Listagem de Laboratorios</h3>
-                        <a href="cadastrarLaboratorio.jsp" class="btn-sm btn-primary " 
-                           style="text-decoration: none">Cadastrar Laboratorios</a>
-                        <table class="table table-hover table-striped table-bordered mt-3">
+                        <h3 class="text-center">Listagem de Laboratorio</h3>
+                        <a href="cadastrarLaboratorio.jsp" class="btn-sm btn-primary mb-5" 
+                           role="button" style="text-decoration: none;display:inline-block;">Cadastrar Laboratorio</a>
+                        <table class="table table-hover table-striped table-bordered mt-3" id="mytable">
                             <thead>
                                 <tr class="thead-dark">
                                     <th scope="col">Código</th>
@@ -94,25 +95,28 @@
                             </c:forEach>
                         </tbody>
                     </table>
+                    <div class="d-md-flex justify-content-md-end mt-5 mr-5">
+                        <a href="opcoes.jsp" 
+                           class="btn  btn-warning" role="button">Voltar
+                        </a>
+                    </div>
 
                 </div>
 
             </div><!-- Fim da div conteudo -->
         </div><!-- Fim da div container -->
-
-    </body>
-    <!-- JQuery -->
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <!-- JQuery.Datatables -->
-    <script src="datatables/jquery.dataTables.min.js"></script>
-    <!-- Bootstrap.min -->
-    <script src="bootstrap/bootstrap.min.js"></script>
-    <!-- Datables.Bootstrap.min -->
-    <script src="datatables/dataTables.bootstrap4.min.js"></script>
-    <!-- Configuracao da tabela com JQuery -->
-    <script>
+        <!-- JQuery -->
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <!-- JQuery.Datatables -->
+        <script src="datatables/jquery.dataTables.min.js"></script>
+        <!-- Bootstrap.min -->
+        <script src="bootstrap/bootstrap.min.js"></script>
+        <!-- Datables.Bootstrap.min -->
+        <script src="datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Configuracao da tabela com JQuery -->
+        <script>
                                                        $(document).ready(function () {
-                                                           $('#listarUsuarios').dataTable({
+                                                           $('#mytable').dataTable({
                                                                "bJQueryUI": true,
                                                                "lengthMenu": [[5, 10, 20, 25, -1], [5, 10, 20, 25, "Todos"]],
                                                                "oLanguage": {
@@ -135,5 +139,8 @@
                                                                }
                                                            });
                                                        });
-    </script>
+        </script>
+    </body>
+
+
 </html>

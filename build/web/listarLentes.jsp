@@ -1,4 +1,3 @@
-
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -13,7 +12,9 @@
         <link rel="stylesheet" href="bootstrap/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="css/menu.css" type="text/css">
         <link rel="stylesheet" href="css/styles.css" type="text/css"/>
-        <title>Otica Nova</title>
+        <link rel="stylesheet" href="datatables/dataTables.bootstrap4.min.css" type="text/css"/>
+        <link rel="stylesheet" href="datatables/jquery.dataTables.min.css" type="text/css"/>
+        <title>Projeto ETB</title>
 
     </head>
     <body>
@@ -25,9 +26,9 @@
                 <div id="conteudo" class="bg-background">
                     <div class="container">
                         <h3 class="text-center">Listagem de Lentes</h3>
-                        <a href="cadastrarLente.jsp" class="btn-sm btn-primary " 
-                           style="text-decoration: none">Cadastrar Lente</a>
-                        <table class="table table-hover table-striped table-bordered mt-3" id="asd">
+                        <a href="cadastrarLente.jsp" class="btn-sm btn-primary mb-5" 
+                           role="button" style="text-decoration: none;display:inline-block;">Cadastrar Lente</a>
+                        <table class="table table-hover table-striped table-bordered mt-3" id="mytable">
                             <thead>
                                 <tr class="thead-dark">
                                     <th scope="col">Código</th>
@@ -48,71 +49,74 @@
                                     <td>${l.fabricante}</td>
                                     <td>${l.preco}</td>
                                     <td>
-                                    <c:choose>
-                                        <c:when test="${l.status == 1}">
-                                            Ativado
-                                        </c:when>
-                                        <c:otherwise>
-                                            Desativado
-                                        </c:otherwise>
-                                    </c:choose>
+                                        <c:choose>
+                                            <c:when test="${l.status == 1}">
+                                                Ativado
+                                            </c:when>
+                                            <c:otherwise>
+                                                Desativado
+                                            </c:otherwise>
+                                        </c:choose>
                                     </td>
                                     <td>
                                         <script type="text/javascript">
-                                            function confirmDesativar(id,nome) {
-                                                if (confirm("Deseja desativar a Lente " +  
-                                                    nome + "?")){
-                                                    location.href="gerenciarLente?acao=desativar&idLente="+id;
-                                                         
-                                                }
-                                                
-                                            }
-                                            
-                                            function confirmAtivar(id,nome) {
+                                            function confirmDesativar(id, nome) {
+                                                if (confirm("Deseja desativar a Lente " +
+                                                        nome + "?")) {
+                                                    location.href = "gerenciarLente?acao=desativar&idLente=" + id;
 
-                                                if (confirm("Deseja ativar a Lente " +  
-                                                    nome + "?")){
-                                                    location.href="gerenciarLente?acao=ativar&idLente="+id;
-                                                         
+                                                }
+
+                                            }
+
+                                            function confirmAtivar(id, nome) {
+
+                                                if (confirm("Deseja ativar a Lente " +
+                                                        nome + "?")) {
+                                                    location.href = "gerenciarLente?acao=ativar&idLente=" + id;
+
                                                 }
                                             }
                                         </script>
                                         <a href="gerenciarLente?acao=alterar&idLente=${l.idLente}" 
-                                       class="btn btn-warning btn-sm" role="button">Alterar</a>
-                                       <c:choose>
-                                           <c:when test="${l.status == 1}">
-                                               <a class="btn btn-sm btn-danger " style="text-decoration: none"
-                                                  onclick="confirmDesativar('${l.idLente}','${l.nome}')">Desativar</a>
-                                           </c:when>
-                                           <c:otherwise>
-                                               <a class="btn btn-success btn-sm" 
-                                                  onclick="confirmAtivar('${l.idLente}','${l.nome}')">Ativar</a>
-                                           </c:otherwise>
-                                       </c:choose>
+                                           class="btn btn-warning btn-sm" role="button">Alterar</a>
+                                        <c:choose>
+                                            <c:when test="${l.status == 1}">
+                                                <a class="btn btn-sm btn-danger " style="text-decoration: none"
+                                                   onclick="confirmDesativar('${l.idLente}', '${l.nome}')">Desativar</a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a class="btn btn-success btn-sm" 
+                                                   onclick="confirmAtivar('${l.idLente}', '${l.nome}')">Ativar</a>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </td>
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
+                    <div class="d-md-flex justify-content-md-end mt-5 mr-5">
+                        <a href="opcoes.jsp" 
+                           class="btn  btn-warning" role="button">Voltar
+                        </a>
+                    </div>
 
                 </div>
 
             </div><!-- Fim da div conteudo -->
         </div><!-- Fim da div container -->
-
-    </body>
-    <!-- JQuery -->
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <!-- JQuery.Datatables -->
-    <script src="datatables/jquery.dataTables.min.js"></script>
-    <!-- Bootstrap.min -->
-    <script src="bootstrap/bootstrap.min.js"></script>
-    <!-- Datables.Bootstrap.min -->
-    <script src="datatables/dataTables.bootstrap4.min.js"></script>
-    <!-- Configuracao da tabela com JQuery -->
-    <script>
+        <!-- JQuery -->
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <!-- JQuery.Datatables -->
+        <script src="datatables/jquery.dataTables.min.js"></script>
+        <!-- Bootstrap.min -->
+        <script src="bootstrap/bootstrap.min.js"></script>
+        <!-- Datables.Bootstrap.min -->
+        <script src="datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Configuracao da tabela com JQuery -->
+        <script>
                                                        $(document).ready(function () {
-                                                           $('#listarUsuarios').dataTable({
+                                                           $('#mytable').dataTable({
                                                                "bJQueryUI": true,
                                                                "lengthMenu": [[5, 10, 20, 25, -1], [5, 10, 20, 25, "Todos"]],
                                                                "oLanguage": {
@@ -135,5 +139,8 @@
                                                                }
                                                            });
                                                        });
-    </script>
+        </script>
+    </body>
+
+
 </html>
