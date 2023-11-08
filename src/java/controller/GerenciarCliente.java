@@ -4,6 +4,8 @@ import dao.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Cliente;
 
 @WebServlet(name = "GerenciarCliente", urlPatterns = {"/gerenciarCliente"})
@@ -43,7 +46,7 @@ public class GerenciarCliente extends HttpServlet {
             } else if (acao.equals("alterar")) {
 
                 c = cdao.getCarregarPorId(Integer.parseInt(idCliente));
-                if (c.getIdCliente()> 0) {
+                if (c.getIdCliente() > 0) {
                     RequestDispatcher dispatcher
                             = getServletContext().getRequestDispatcher("/cadastrarCliente.jsp");
                     request.setAttribute("cliente", c);
@@ -80,6 +83,88 @@ public class GerenciarCliente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        String idCliente = request.getParameter("idCliente");
+        String nome = request.getParameter("nome");
+        String cpf = request.getParameter("cpf");
+        String telefone = request.getParameter("telefone");
+        String idade = request.getParameter("idade");
+        String dataNasc = request.getParameter("dataNasc");
+        String status = request.getParameter("status");
+        Cliente c = new Cliente();
+        ClienteDAO cdao = new ClienteDAO();
+        String mensagem = "";
+        HttpSession sessao = request.getSession();
+        
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        if (!idCliente.isEmpty()) {
+            c.setIdCliente(Integer.parseInt(idCliente));
+        }
+
+        if (nome.isEmpty() || nome.equals("")) {
+            sessao.setAttribute("msg", "Informe o nome do Cliente!");
+            exibirMensagem(request, response);
+        } else {
+            c.setNome(nome);
+        }
+
+        //Valores que podem ser nulos
+        c.setCpf(cpf);
+        c.setIdade(Integer.parseInt(idade));
+        
+        if (telefone.isEmpty() || telefone.equals("")) {
+            sessao.setAttribute("msg", "Informe o telefone do Cliente!");
+            exibirMensagem(request, response);
+        } else {
+            c.setTelefone(telefone);
+        }
+
+        if (dataNasc.isEmpty() || dataNasc.equals("")) {
+            sessao.setAttribute("msg", "Informe a data de nascimento do Cliente!");
+            exibirMensagem(request, response);
+        }else{
+            try {
+                c.setDataNasc(df.parse(dataNasc));
+            } catch (ParseException e) {
+                mensagem = "Error: " + e.getMessage();
+                e.printStackTrace();
+            }
+            
+        }
+        
+        if (status.isEmpty() || status.equals("")) {
+            sessao.setAttribute("msg", "Informe o status do Cliente!");
+            exibirMensagem(request, response);
+        } else {
+            c.setStatus(Integer.parseInt(status));
+        }
+
+        try {
+            if (cdao.gravar(c)) {
+                mensagem = "Cliente salvo na base de dados!";
+            } else {
+                mensagem = "Falha ao salvar o cliente na base de dados!";
+            }
+        } catch (SQLException e) {
+            mensagem = "Error: " + e.getMessage();
+            e.printStackTrace();
+        }
+
+        out.println(
+                "<script type='text/javascript'>"
+                + "alert('" + mensagem + "');"
+                + "location.href='gerenciarCliente?acao=listar';"
+                + "</script>"
+        );
+    }
+
+    private void exibirMensagem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        RequestDispatcher dispatcher = getServletContext().
+                getRequestDispatcher("/cadastrarCliente.jsp");
+        dispatcher.forward(request, response);
     }
 
 }
