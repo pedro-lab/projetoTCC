@@ -60,9 +60,17 @@
                     <div class="card mt-4 ml-lg-5" id="card" style="width: 18rem;display: inline-flex;">
                         <img src="./imagens/clipcardMenu.png" class="card-img-top" alt="..." style="height: 190.7px">
                         <div class="card-body">
-                            <h5 class="card-title">Ver Menus</h5>
+                            <h5 class="card-title">Consultar Menus</h5>
                             <p class="card-text">Consulte e registre menus na nossa base de dados</p>
                             <a href="gerenciarMenu?acao=listar" class="btn btn-primary">Ver Menus</a>
+                        </div>
+                    </div>
+                    <div class="card mt-4 ml-lg-5" id="card" style="width: 18rem;display: inline-flex;">
+                        <img src="./imagens/clipcardPerfil.png" class="card-img-top" alt="..." style="height: 190.7px">
+                        <div class="card-body">
+                            <h5 class="card-title">Consultar Perfil</h5>
+                            <p class="card-text">Consulte e registre perfis na nossa base de dados</p>
+                            <a href="gerenciarMenu?acao=listar" class="btn btn-primary">Ver Perfil</a>
                         </div>
                     </div>
                 </div><!-- Fim da div conteudo -->
