@@ -57,6 +57,14 @@
                             <a href="gerenciarCliente?acao=listar" class="btn btn-primary">Ver Clientes</a>
                         </div>
                     </div>
+                    <div class="card mt-4 ml-lg-5" id="card" style="width: 18rem;display: inline-flex;">
+                        <img src="./imagens/clipcardRegistrar.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Ver Menus</h5>
+                            <p class="card-text">VConsulte e registre menus na nosaa base de dados</p>
+                            <a href="gerenciarOS?acao=listar" class="btn btn-primary">Ver Menus</a>
+                        </div>
+                    </div>
                 </div><!-- Fim da div conteudo -->
             </main><!-- Fim da div conteudo -->
         </div><!-- Fim da div container -->
