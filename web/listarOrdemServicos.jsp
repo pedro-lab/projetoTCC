@@ -28,7 +28,7 @@
                     <div class="container">
                         <h3 class="text-center">Listagem de Ordem de Servico</h3>
                         <a href="cadastrarOS.jsp" class="btn-sm btn-primary mb-5" 
-                           role="button" style="text-decoration: none;display:inline-block;">Cadastrar Clientes</a>
+                           role="button" style="text-decoration: none;display:inline-block;">Cadastrar OS</a>
                         <table class="table table-hover table-striped table-bordered mt-3" id="mytable">
                             <thead>
                                 <tr class="thead-dark">
@@ -45,14 +45,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${clientes}" var="c">
+                            <c:forEach items="${ordemServicos}" var="os">
                                 <tr>
-                                    <td>${c.idCliente}</td>
-                                    <td>${c.nome}</td>
-                                    <td>${c.cpf}</td>
-                                    <td>${c.telefone}</td>
-                                    <td>${c.idade}</td>
-                                    <td><fmt:formatDate pattern="dd/MM/yyyy" value="${c.dataNasc}"></fmt:formatDate></td>
+                                    <td>${os.idOs}</td>
+                                    <td>${os.cliente.nome}</td>
+                                    <td>${os.lente.nome}</td>
+                                    <td>${os.laboratorio.nome}</td>
+                                    <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataVenda}"></fmt:formatDate></td>
+                                    <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.vencimento}"></fmt:formatDate></td>
+                                    <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataEntrega}"></fmt:formatDate></td>
+                                    <td>${os.statusEntrega}</td>
                                         <td>
                                         <c:choose>
                                             <c:when test="${c.status == 1}">
