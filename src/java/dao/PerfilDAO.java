@@ -124,7 +124,7 @@ public class PerfilDAO {
         
         ArrayList<Menu> menus = new ArrayList<>();
         sql = "SELECT m.idMenu, m.nome, m.link, m.exibir, m.status "+
-              "FROM menu_perfil as mp, menu as m  " +
+              "FROM menuperfil as mp, menu as m  " +
               "WHERE mp.idMenu = m.idMenu "
                 + "AND mp.idPerfil = ?"; 
         
@@ -157,7 +157,7 @@ public class PerfilDAO {
         sql = "SELECT m.idMenu, m.nome, m.link, m.exibir, m.status " + 
               "FROM menu as m "+
               "WHERE m.idMenu " + 
-              "NOT IN(SELECT mp.idMenu FROM menu_perfil as mp WHERE mp.idPerfil = ?)";
+              "NOT IN(SELECT mp.idMenu FROM menuperfil as mp WHERE mp.idPerfil = ?)";
         
         con = ConexaoFactory.conectar();
         ps = con.prepareStatement(sql);
@@ -182,7 +182,7 @@ public class PerfilDAO {
     public boolean vincular(int idMenu, int idPerfil)
     throws SQLException{
         
-        sql = "INSERT INTO menu_perfil (idMenu, idPerfil) "+
+        sql = "INSERT INTO menuperfil (idMenu, idPerfil) "+
               "VALUES (?, ?)";  
                 
         con = ConexaoFactory.conectar();
@@ -197,7 +197,7 @@ public class PerfilDAO {
     public boolean desvincular(int idMenu ,int idPerfil)
     throws SQLException{
         
-        sql = "DELETE FROM menu_perfil " + 
+        sql = "DELETE FROM menuperfil " + 
                 "WHERE idMenu = ? AND idPerfil = ? ";
         con = ConexaoFactory.conectar();
         ps = con.prepareStatement(sql);
