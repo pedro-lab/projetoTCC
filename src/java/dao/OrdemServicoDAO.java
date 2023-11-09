@@ -18,7 +18,7 @@ public class OrdemServicoDAO {
     public ArrayList<OrdemServico> getLista() throws SQLException{
 
         ArrayList<OrdemServico> ordemServicos = new ArrayList<>();
-        sql = "SELECT os.idOs, os.dataSolicitacao, os.dataEntrega, os.vencimento "+
+        sql = "SELECT os.idOs, os.dataSolicitacao, os.dataEntrega, os.vencimento, "+
                 "os.statusEntrega, c.idCliente, l.idLente, lab.idLaboratorio, c.idCliente "
                 +"FROM ordemservico os INNER JOIN cliente c "+
                 " ON os.idCliente = c.idCliente INNER JOIN lente l ON "
