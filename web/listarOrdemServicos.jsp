@@ -27,7 +27,7 @@
                 <div id="conteudo" class="bg-background">
                     <div class="container">
                         <h3 class="text-center">Listagem de Ordem de Servico</h3>
-                        <a href="cadastrarCliente.jsp" class="btn-sm btn-primary mb-5" 
+                        <a href="cadastrarOS.jsp" class="btn-sm btn-primary mb-5" 
                            role="button" style="text-decoration: none;display:inline-block;">Cadastrar Clientes</a>
                         <table class="table table-hover table-striped table-bordered mt-3" id="mytable">
                             <thead>
