@@ -56,17 +56,9 @@
                                     <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataSolicitacao}"></fmt:formatDate></td>
                                     <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.vencimento}"></fmt:formatDate></td>
                                     <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataEntrega}"></fmt:formatDate></td>
-                                    <td>
+                                        <td>
                                         <jsp:useBean class="dao.OrdemServicoDAO" id="osdao"/>
                                         <c:if test="${os.dataSolicitacao <=  os.vencimento}">
-
-                                            <%
-                                                OrdemServicoDAO osdao = new OrdemServicoDAO();
-                                                OrdemServico os = new OrdemServico();
-                                                
-                                                os.setIdOs(os.idOs);
-                                                osdao.atualizaEntrega(os);
-                                            %>
                                             No Prazo
                                         </c:if>
                                         <c:if test="${os.dataSolicitacao >  os.vencimento}" >
@@ -75,7 +67,7 @@
                                     </td>
                                     <td>
                                         <c:choose>
-                                            <c:when test="${c.status == 1}">
+                                            <c:when test="${os.status == 1}">
                                                 Ativado
                                             </c:when>
                                             <c:otherwise>
@@ -85,36 +77,38 @@
                                     </td>
                                     <td>
                                         <script type="text/javascript">
-                                            function confirmDesativar(id, nome) {
-                                                if (confirm("Deseja desativar o Cliente " +
-                                                        nome + "?")) {
-                                                    location.href = "gerenciarCliente?acao=desativar&idCliente=" + id;
+                                            function confirmDesativar(id) {
+                                                if (confirm("Deseja desativar a ordem de servico de numero " +
+                                                        id + "?")) {
+                                                    location.href = "gerenciarOrdemServico?acao=desativar&idOs=" + id;
 
                                                 }
 
                                             }
 
-                                            function confirmAtivar(id, nome) {
+                                            function confirmAtivar(id) {
 
-                                                if (confirm("Deseja ativar o Cliente " +
-                                                        nome + "?")) {
-                                                    location.href = "gerenciarCliente?acao=ativar&idCliente=" + id;
+                                                if (confirm("Deseja a ordem de servico de numero " +
+                                                        id + "?")) {
+                                                    location.href = "gerenciarOrdemServico?acao=ativar&idOs=" + id;
 
                                                 }
                                             }
                                         </script>
-                                        <a href="gerenciarLaboratorio?acao=alterar&idLaboratorio=${l.idLaboratorio}" 
+                                        <a href="gerenciarOrdemServico?acao=alterar&idOrdemServico=${os.idOs}" 
                                            class="btn btn-warning btn-sm" role="button">Alterar</a>
                                         <c:choose>
-                                            <c:when test="${c.status == 1}">
+                                            <c:when test="${os.status == 1}">
                                                 <a class="btn btn-sm btn-danger " style="text-decoration: none"
-                                                   onclick="confirmDesativar('${c.idCliente}', '${c.nome}')">Desativar</a>
+                                                   onclick="confirmDesativar('${os.idOs}')">Desativar</a>
                                             </c:when>
                                             <c:otherwise>
                                                 <a class="btn btn-success btn-sm" 
-                                                   onclick="confirmAtivar('${c.idLaboratorio}', '${c.nome}')">Ativar</a>
+                                                   onclick="confirmAtivar('${os.idOs}')">Ativar</a>
                                             </c:otherwise>
                                         </c:choose>
+                                        <a href="gerenciarOrdemServico?acao=atualizarEntregaidOrdemServico=${os.idOs}" 
+                                           class="btn btn-dark btn-sm" role="button">Confirmar</a>
                                     </td>
                                 </tr>
                             </c:forEach>

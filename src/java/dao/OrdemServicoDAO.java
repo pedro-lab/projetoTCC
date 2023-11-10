@@ -18,7 +18,7 @@ public class OrdemServicoDAO {
     public ArrayList<OrdemServico> getLista() throws SQLException{
 
         ArrayList<OrdemServico> ordemServicos = new ArrayList<>();
-        sql = "SELECT os.idOs, os.dataSolicitacao, os.dataEntrega, os.vencimento, "+
+        sql = "SELECT os.idOs, os.dataSolicitacao, os.dataEntrega, os.vencimento, os.status, "+
                 "os.statusEntrega, c.idCliente, l.idLente, lab.idLaboratorio, c.idCliente "
                 +"FROM ordemservico os INNER JOIN cliente c "+
                 " ON os.idCliente = c.idCliente INNER JOIN lente l ON "
@@ -39,6 +39,7 @@ public class OrdemServicoDAO {
             os.setDataSolicitacao(rs.getDate("os.dataSolicitacao"));
             os.setDataEntrega(rs.getDate("os.dataEntrega"));
             os.setVencimento(rs.getDate("os.vencimento"));
+            os.setStatus(rs.getInt("os.status"));
             os.setStatusEntrega(rs.getString("os.statusEntrega"));
             os.setCliente(cdao.getCarregarPorId(rs.getInt("c.idCliente")));
             os.setLente(ldao.getCarregarPorId(rs.getInt("l.idLente")));
