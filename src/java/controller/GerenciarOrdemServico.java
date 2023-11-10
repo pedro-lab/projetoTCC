@@ -4,6 +4,8 @@ import dao.OrdemServicoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +13,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Cliente;
+import model.Laboratorio;
+import model.Lente;
 import model.OrdemServico;
+import model.Usuario;
 
 @WebServlet(name = "GerenciarOrdemServico", urlPatterns = {"/gerenciarOrdemServico"})
 public class GerenciarOrdemServico extends HttpServlet {
@@ -43,7 +50,7 @@ public class GerenciarOrdemServico extends HttpServlet {
             } else if (acao.equals("alterar")) {
 
                 os = osdao.getCarregarPorId(Integer.parseInt(idOs));
-                if (os.getIdOs()> 0) {
+                if (os.getIdOs() > 0) {
                     RequestDispatcher dispatcher
                             = getServletContext().getRequestDispatcher("/cadastrarOS.jsp");
                     request.setAttribute("ordemServico", os);
@@ -86,6 +93,137 @@ public class GerenciarOrdemServico extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String aos;
+        PrintWriter out = response.getWriter();
+        String idOs = request.getParameter("idOs");
+        String idUsuario = request.getParameter("idUsuario");
+        String dataSolicitacao = request.getParameter("dataSolicitacao");
+        String vencimento = request.getParameter("vencimento");
+        String idCliente = request.getParameter("idCliente");
+        String idLente = request.getParameter("idLente");
+        String idLaboratorio = request.getParameter("idLaboratorio");
+        String status = request.getParameter("status");
+        String mensagem = "";
+        HttpSession sessao = request.getSession();
+        
+        OrdemServico os = new OrdemServico();
+        OrdemServicoDAO osdao = new OrdemServicoDAO();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        
+        if (!idOs.isEmpty()) {
+            try {
+                os.setIdOs(Integer.parseInt(idOs));
+            } catch (NumberFormatException e) {
+                mensagem = "Error" + e.getMessage();
+            }
+        }
+
+        if (idUsuario.isEmpty() || idUsuario.equals("")) {
+            sessao.setAttribute("msg", "Informe o nome do Usuario!");
+            exibirMensagem(request, response);
+        } else {
+            Usuario usuario = new Usuario();
+            try {
+                usuario.setIdUsuario(Integer.parseInt(idUsuario));
+                os.setUsuario(usuario);
+            } catch (NumberFormatException e) {
+                mensagem = "Error" + e.getMessage();
+            }
+
+        }
+        
+        if (dataSolicitacao.isEmpty() || dataSolicitacao.equals("")) {
+            sessao.setAttribute("msg", "Informe a data de Venda!");
+            exibirMensagem(request, response);
+        }else{
+            try {
+                os.setDataSolicitacao(df.parse(dataSolicitacao));
+            } catch (ParseException e) {
+                mensagem = "Error: " + e.getMessage();
+                e.printStackTrace();
+            }
+            
+        }
+
+        //Para atributos em que o valor pode ser nulo
+        try {
+            String dataEntrega = "0000-00-00";
+            os.setVencimento(df.parse(vencimento));
+            os.setDataEntrega(df.parse(dataEntrega));
+        } catch (ParseException e) {
+            mensagem = "Error: " + e.getMessage();
+            e.printStackTrace();
+        }
+
+        if (idCliente.isEmpty() || idCliente.equals("")) {
+            sessao.setAttribute("msg", "Informe o nome do Cliente!");
+            exibirMensagem(request, response);
+        } else {
+            Cliente cliente = new Cliente();
+            try {
+                cliente.setIdCliente(Integer.parseInt(idCliente));
+                os.setCliente(cliente);
+            } catch (NumberFormatException e) {
+                mensagem = "Error" + e.getMessage();
+            }
+        }
+
+        if (idLente.isEmpty() || idLente.equals("")) {
+            sessao.setAttribute("msg", "Informe o nome da Lente!");
+            exibirMensagem(request, response);
+        } else {
+            Lente lente = new Lente();
+            try {
+                lente.setIdLente(Integer.parseInt(idLente));
+                os.setLente(lente);
+            } catch (NumberFormatException e) {
+                mensagem = "Error" + e.getMessage();
+            }
+        }
+
+        if (idLaboratorio.isEmpty() || idLaboratorio.equals("")) {
+            sessao.setAttribute("msg", "Informe o nome do Laboratorio!");
+            exibirMensagem(request, response);
+        } else {
+            Laboratorio laboratorio = new Laboratorio();
+            try {
+                laboratorio.setIdLaboratorio(Integer.parseInt(idLaboratorio));
+                os.setLaboratorio(laboratorio);
+            } catch (NumberFormatException e) {
+                mensagem = "Error" + e.getMessage();
+            }
+        }
+
+        if (status.isEmpty() || status.equals("")) {
+            sessao.setAttribute("msg", "Informe o status do Usuário!");
+            exibirMensagem(request, response);
+        } else {
+            os.setStatus(Integer.parseInt(status));
+        }
+
+        try {
+            if (osdao.gravar(os)) {
+                mensagem = "Ordem de servico salvo na base de dados!";
+            } else {
+                mensagem = "Falha ao salvar o ordem de servico na base de dados!";
+            }
+        } catch (SQLException e) {
+            mensagem = "Error: " + e.getMessage();
+            e.printStackTrace();
+        }
+
+        out.println(
+                "<script type='text/javascript'>"
+                + "alert('" + mensagem + "');"
+                + "location.href='gerenciarOrdemServico?acao=listar';"
+                + "</script>"
+        );
+
+    }
+
+    private void exibirMensagem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        RequestDispatcher dispatcher = getServletContext().
+                getRequestDispatcher("/cadastrarOS.jsp");
+        dispatcher.forward(request, response);
     }
 }

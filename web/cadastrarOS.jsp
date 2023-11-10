@@ -53,7 +53,7 @@
                         <input type="hidden" name="idUsuario" value="2">
 
                         <div class="form-group row offset-md-2">
-                            <label class="col-md-3">Data de Venda</label>
+                            <label class="col-md-3">Data de Venda<sup class="text-danger">*</sup></label>
                             <div class="col-md-5">
                                 <input type="date" name="dataSolicitacao" 
                                        class="form-control" value="${ordemServico.dataSolicitacao}">
@@ -67,7 +67,7 @@
                             </div>
                         </div>
                         <div class="form-group row offset-md-2">
-                            <label class="col-md-3">Nome do Cliente</label>
+                            <label class="col-md-3">Nome do Cliente<sup class="text-danger">*</sup></label>
                             <div class="col-md-5">
                                 <select class="form-control-sm" name="idCliente">
                                     <option value="">Escolha uma opção</option>
@@ -83,7 +83,7 @@
                             </div>
                         </div>
                         <div class="form-group row offset-md-2">
-                            <label class="col-md-3">Nome da Lente</label>
+                            <label class="col-md-3">Nome da Lente<sup class="text-danger">*</sup></label>
                             <div class="col-md-5">
                                 <select class="form-control-sm" name="idLente">
                                     <option value="">Escolha uma opção</option>
@@ -99,7 +99,7 @@
                             </div>
                         </div>
                         <div class="form-group row offset-md-2">
-                            <label class="col-md-3">Nome da Laboratório</label>
+                            <label class="col-md-3">Nome da Laboratório<sup class="text-danger">*</sup></label>
                             <div class="col-md-5">
                                 <select class="form-control-sm" name="idLaboratorio">
                                     <option value="">Escolha uma opção</option>

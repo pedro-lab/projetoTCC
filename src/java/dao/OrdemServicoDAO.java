@@ -89,9 +89,9 @@ public class OrdemServicoDAO {
         con = ConexaoFactory.conectar();
         
         if (os.getIdOs()== 0) {
-            sql = "INSERT INTO ordemservico (idOs,dataSolicitacao,dataEntrega,vencimento,statusEntrega,"
+            sql = "INSERT INTO ordemservico (dataSolicitacao,dataEntrega,vencimento,statusEntrega,"
                     + "idUsuario,idLaboratorio,idLente,idCliente,status) "+
-                  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                  "VALUES (? , ?, ?, ?, ?, ?, ?, ?, ?)";
             ps = con.prepareStatement(sql);
 
             ps.setDate(1, new Date(os.getDataSolicitacao().getTime()));
