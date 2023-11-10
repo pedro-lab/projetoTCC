@@ -147,4 +147,16 @@ public class OrdemServicoDAO {
         ConexaoFactory.close(con);
         return true;
     }
+    
+    public boolean atualizaEntrega(int idOS,String statusEntrega) throws SQLException {
+       
+        sql = "UPDATE ordemservico SET statusEntrega = ? WHERE idOs = ?";
+        con = ConexaoFactory.conectar();
+        ps = con.prepareStatement(sql);
+        ps.setString(1, statusEntrega);
+        ps.setInt(2, idOS);
+        ps.executeUpdate();
+        ConexaoFactory.close(con);
+        return true;
+    }
 }

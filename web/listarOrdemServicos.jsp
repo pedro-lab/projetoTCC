@@ -1,3 +1,5 @@
+<%@page import="model.OrdemServico"%>
+<%@page import="dao.OrdemServicoDAO"%>
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -20,7 +22,7 @@
     </head>
     <body>
         <div id="container">
-                <div id="menu">
+            <div id="menu">
                 <jsp:include page="template/menu.jsp"></jsp:include>
                 </div><!-- Fim da div menu -->
 
@@ -51,11 +53,27 @@
                                     <td>${os.cliente.nome}</td>
                                     <td>${os.lente.nome}</td>
                                     <td>${os.laboratorio.nome}</td>
-                                    <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataVenda}"></fmt:formatDate></td>
+                                    <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataSolicitacao}"></fmt:formatDate></td>
                                     <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.vencimento}"></fmt:formatDate></td>
                                     <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataEntrega}"></fmt:formatDate></td>
-                                    <td>${os.statusEntrega}</td>
-                                        <td>
+                                    <td>
+                                        <jsp:useBean class="dao.OrdemServicoDAO" id="osdao"/>
+                                        <c:if test="${os.dataSolicitacao <=  os.vencimento}">
+
+                                            <%
+                                                OrdemServicoDAO osdao = new OrdemServicoDAO();
+                                                OrdemServico os = new OrdemServico();
+                                                
+                                                os.setIdOs(os.idOs);
+                                                osdao.atualizaEntrega(os);
+                                            %>
+                                            No Prazo
+                                        </c:if>
+                                        <c:if test="${os.dataSolicitacao >  os.vencimento}" >
+                                            Atrasado
+                                        </c:if>
+                                    </td>
+                                    <td>
                                         <c:choose>
                                             <c:when test="${c.status == 1}">
                                                 Ativado
