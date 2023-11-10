@@ -55,62 +55,80 @@
                                     <td>${os.laboratorio.nome}</td>
                                     <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataSolicitacao}"></fmt:formatDate></td>
                                     <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.vencimento}"></fmt:formatDate></td>
-                                    <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataEntrega}"></fmt:formatDate></td>
                                         <td>
+                                        <c:choose>
+                                            <c:when test="${empty os.dataEntrega}">
+                                                Sem entrada
+                                            </c:when>
+                                            <c:otherwise>
+                                                <fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataEntrega}"></fmt:formatDate>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+
+                                    <td>
                                         <jsp:useBean class="dao.OrdemServicoDAO" id="osdao"/>
-                                        <c:if test="${os.dataSolicitacao <=  os.vencimento}">
-                                            No Prazo
-                                        </c:if>
-                                        <c:if test="${os.dataSolicitacao >  os.vencimento}" >
-                                            Atrasado
-                                        </c:if>
-                                    </td>
-                                    <td>
                                         <c:choose>
-                                            <c:when test="${os.status == 1}">
-                                                Ativado
+                                            <c:when test="${os.statusEntrega == 'Na Loja'}">
+                                                Na Loja
                                             </c:when>
                                             <c:otherwise>
-                                                Desativado
+                                                <c:if test="">
+                                                    No Prazo
+                                                </c:if>
+                                                <c:if test="${os.dataSolicitacao >  os.vencimento}" >
+                                                    Atrasado
+                                                </c:if>
                                             </c:otherwise>
                                         </c:choose>
-                                    </td>
-                                    <td>
-                                        <script type="text/javascript">
-                                            function confirmDesativar(id) {
-                                                if (confirm("Deseja desativar a ordem de servico de numero " +
-                                                        id + "?")) {
-                                                    location.href = "gerenciarOrdemServico?acao=desativar&idOs=" + id;
+
+                                        </td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${os.status == 1}">
+                                                    Ativado
+                                                </c:when>
+                                                <c:otherwise>
+                                                    Desativado
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td>
+                                            <script type="text/javascript">
+                                                function confirmDesativar(id) {
+                                                    if (confirm("Deseja desativar a ordem de servico de numero " +
+                                                            id + "?")) {
+                                                        location.href = "gerenciarOrdemServico?acao=desativar&idOs=" + id;
+
+                                                    }
 
                                                 }
 
-                                            }
+                                                function confirmAtivar(id) {
 
-                                            function confirmAtivar(id) {
+                                                    if (confirm("Deseja a ordem de servico de numero " +
+                                                            id + "?")) {
+                                                        location.href = "gerenciarOrdemServico?acao=ativar&idOs=" + id;
 
-                                                if (confirm("Deseja a ordem de servico de numero " +
-                                                        id + "?")) {
-                                                    location.href = "gerenciarOrdemServico?acao=ativar&idOs=" + id;
-
+                                                    }
                                                 }
-                                            }
-                                        </script>
-                                        <a href="gerenciarOrdemServico?acao=alterar&idOrdemServico=${os.idOs}" 
-                                           class="btn btn-warning btn-sm" role="button">Alterar</a>
-                                        <c:choose>
-                                            <c:when test="${os.status == 1}">
-                                                <a class="btn btn-sm btn-danger " style="text-decoration: none"
-                                                   onclick="confirmDesativar('${os.idOs}')">Desativar</a>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <a class="btn btn-success btn-sm" 
-                                                   onclick="confirmAtivar('${os.idOs}')">Ativar</a>
-                                            </c:otherwise>
-                                        </c:choose>
-                                        <a href="gerenciarOrdemServico?acao=atualizarEntregaidOrdemServico=${os.idOs}" 
-                                           class="btn btn-dark btn-sm" role="button">Confirmar</a>
-                                    </td>
-                                </tr>
+                                            </script>
+                                            <a href="gerenciarOrdemServico?acao=alterar&idOrdemServico=${os.idOs}" 
+                                               class="btn btn-warning btn-sm" role="button">Alterar</a>
+                                            <c:choose>
+                                                <c:when test="${os.status == 1}">
+                                                    <a class="btn btn-sm btn-danger " style="text-decoration: none"
+                                                       onclick="confirmDesativar('${os.idOs}')">Desativar</a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a class="btn btn-success btn-sm" 
+                                                       onclick="confirmAtivar('${os.idOs}')">Ativar</a>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <a href="gerenciarOrdemServico?acao=atualizarEntrega&idOrdemServico=${os.idOs}" 
+                                               class="btn btn-dark btn-sm" role="button">Confirmar</a>
+                                        </td>
+                                    </tr>
                             </c:forEach>
                         </tbody>
                     </table>

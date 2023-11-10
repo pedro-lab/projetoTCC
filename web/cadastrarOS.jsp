@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css/menu.css" type="text/css">
         <link rel="stylesheet" href="css/styles.css" type="text/css"/>
         <link rel="shortcut icon" href="./imagens/logo.png">
-        <title>Projeto ETB</title>
+        <title>Otica</title>
 
     </head>
     <body>
@@ -92,7 +92,7 @@
                                         <option value="${l.idLente}"
                                                 <c:if test="${l.idLente == ordemServico.lente.idLente}">
                                                     selected</c:if>>
-                                                ${l.nome}</option>
+                                                ${l.nome}/${l.modelo}</option>
                                         </c:forEach>
                                 </select>
 
@@ -106,7 +106,7 @@
                                     <jsp:useBean class="dao.LaboratorioDAO" id="labdao"/>
                                     <c:forEach items="${labdao.lista}" var="lab">
                                         <option value="${lab.idLaboratorio}"
-                                                <c:if test="${lab.idLaboratorio == ordemServico.lente.idLaboratorio}">
+                                                <c:if test="${lab.idLaboratorio == ordemServico.laboratorio.idLaboratorio}">
                                                     selected</c:if>>
                                                 ${lab.nome}</option>
                                         </c:forEach>

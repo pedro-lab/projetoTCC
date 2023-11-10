@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +32,7 @@ public class GerenciarOrdemServico extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("utf-8");
         String acao = request.getParameter("acao");
-        String idOs = request.getParameter("idOs");
+        String idOs = request.getParameter("idOrdemServico");
         String mensagem = "";
 
         OrdemServicoDAO osdao = new OrdemServicoDAO();
@@ -72,6 +73,12 @@ public class GerenciarOrdemServico extends HttpServlet {
                     mensagem = "Ordem de Servico desativado com sucesso!";
                 } else {
                     mensagem = "Falha ao desativar a Ordem de Servico!";
+                }
+            }else if(acao.equals("atualizarEntrega")){
+                if(osdao.atualizaEntrega(Integer.parseInt(idOs))){
+                    mensagem = "Ordem de Servico concluido!";
+                }else{
+                    mensagem = "Falha a atualizar o status de entrega";
                 }
             } else {
                 response.sendRedirect("index.jsp");
@@ -144,11 +151,12 @@ public class GerenciarOrdemServico extends HttpServlet {
             
         }
 
+        System.out.println(dataSolicitacao);
         //Para atributos em que o valor pode ser nulo
         try {
-            String dataEntrega = "0000-00-00";
+            Date dataEntrega = null;
             os.setVencimento(df.parse(vencimento));
-            os.setDataEntrega(df.parse(dataEntrega));
+            os.setDataEntrega(dataEntrega);
         } catch (ParseException e) {
             mensagem = "Error: " + e.getMessage();
             e.printStackTrace();
