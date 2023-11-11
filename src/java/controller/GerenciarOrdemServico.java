@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import jdk.nashorn.internal.objects.Global;
 import model.Cliente;
 import model.Laboratorio;
 import model.Lente;
@@ -33,6 +34,7 @@ public class GerenciarOrdemServico extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         String acao = request.getParameter("acao");
         String idOs = request.getParameter("idOrdemServico");
+
         String mensagem = "";
 
         OrdemServicoDAO osdao = new OrdemServicoDAO();
@@ -42,6 +44,7 @@ public class GerenciarOrdemServico extends HttpServlet {
             if (acao.equals("listar")) {
                 ArrayList<OrdemServico> ordemServicos = new ArrayList<>();
                 ordemServicos = osdao.getLista();
+                System.out.println(ordemServicos.get(1).getStatusVencimento());
                 RequestDispatcher dispatcher
                         = getServletContext().getRequestDispatcher("/listarOrdemServicos.jsp");
 
@@ -74,10 +77,10 @@ public class GerenciarOrdemServico extends HttpServlet {
                 } else {
                     mensagem = "Falha ao desativar a Ordem de Servico!";
                 }
-            }else if(acao.equals("atualizarEntrega")){
-                if(osdao.atualizaEntrega(Integer.parseInt(idOs))){
+            } else if (acao.equals("atualizarEntrega")) {
+                if (osdao.atualizaEntrega(Integer.parseInt(idOs))) {
                     mensagem = "Ordem de Servico concluido!";
-                }else{
+                } else {
                     mensagem = "Falha a atualizar o status de entrega";
                 }
             } else {
@@ -111,11 +114,13 @@ public class GerenciarOrdemServico extends HttpServlet {
         String status = request.getParameter("status");
         String mensagem = "";
         HttpSession sessao = request.getSession();
-        
+
         OrdemServico os = new OrdemServico();
         OrdemServicoDAO osdao = new OrdemServicoDAO();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        
+
+        System.out.println(dataSolicitacao);
+
         if (!idOs.isEmpty()) {
             try {
                 os.setIdOs(Integer.parseInt(idOs));
@@ -137,18 +142,18 @@ public class GerenciarOrdemServico extends HttpServlet {
             }
 
         }
-        
+
         if (dataSolicitacao.isEmpty() || dataSolicitacao.equals("")) {
             sessao.setAttribute("msg", "Informe a data de Venda!");
             exibirMensagem(request, response);
-        }else{
+        } else {
             try {
                 os.setDataSolicitacao(df.parse(dataSolicitacao));
             } catch (ParseException e) {
                 mensagem = "Error: " + e.getMessage();
                 e.printStackTrace();
             }
-            
+
         }
 
         System.out.println(dataSolicitacao);

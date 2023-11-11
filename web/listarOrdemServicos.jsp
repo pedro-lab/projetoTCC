@@ -69,66 +69,61 @@
                                     <td>
                                         <jsp:useBean class="dao.OrdemServicoDAO" id="osdao"/>
                                         <c:choose>
-                                            <c:when test="${os.statusEntrega == 'Na Loja'}">
-                                                Na Loja
+                                            <c:when test="${os.statusVencimento == 'No prazo'}">
+                                                No prazo
                                             </c:when>
                                             <c:otherwise>
-                                                <c:if test="">
-                                                    No Prazo
-                                                </c:if>
-                                                <c:if test="${os.dataSolicitacao >  os.vencimento}" >
-                                                    Atrasado
-                                                </c:if>
+                                                Atrasado
                                             </c:otherwise>
                                         </c:choose>
 
-                                        </td>
-                                        <td>
-                                            <c:choose>
-                                                <c:when test="${os.status == 1}">
-                                                    Ativado
-                                                </c:when>
-                                                <c:otherwise>
-                                                    Desativado
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </td>
-                                        <td>
-                                            <script type="text/javascript">
-                                                function confirmDesativar(id) {
-                                                    if (confirm("Deseja desativar a ordem de servico de numero " +
-                                                            id + "?")) {
-                                                        location.href = "gerenciarOrdemServico?acao=desativar&idOs=" + id;
-
-                                                    }
+                                    </td>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${os.status == 1}">
+                                                Ativado
+                                            </c:when>
+                                            <c:otherwise>
+                                                Desativado
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                    <td>
+                                        <script type="text/javascript">
+                                            function confirmDesativar(id) {
+                                                if (confirm("Deseja desativar a ordem de servico de numero " +
+                                                        id + "?")) {
+                                                    location.href = "gerenciarOrdemServico?acao=desativar&idOrdemServico=" + id;
 
                                                 }
 
-                                                function confirmAtivar(id) {
+                                            }
 
-                                                    if (confirm("Deseja a ordem de servico de numero " +
-                                                            id + "?")) {
-                                                        location.href = "gerenciarOrdemServico?acao=ativar&idOs=" + id;
+                                            function confirmAtivar(id) {
 
-                                                    }
+                                                if (confirm("Deseja a ordem de servico de numero " +
+                                                        id + "?")) {
+                                                    location.href = "gerenciarOrdemServico?acao=ativar&idOrdemServico=" + id;
+
                                                 }
-                                            </script>
-                                            <a href="gerenciarOrdemServico?acao=alterar&idOrdemServico=${os.idOs}" 
-                                               class="btn btn-warning btn-sm" role="button">Alterar</a>
-                                            <c:choose>
-                                                <c:when test="${os.status == 1}">
-                                                    <a class="btn btn-sm btn-danger " style="text-decoration: none"
-                                                       onclick="confirmDesativar('${os.idOs}')">Desativar</a>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <a class="btn btn-success btn-sm" 
-                                                       onclick="confirmAtivar('${os.idOs}')">Ativar</a>
-                                                </c:otherwise>
-                                            </c:choose>
-                                            <a href="gerenciarOrdemServico?acao=atualizarEntrega&idOrdemServico=${os.idOs}" 
-                                               class="btn btn-dark btn-sm" role="button">Confirmar</a>
-                                        </td>
-                                    </tr>
+                                            }
+                                        </script>
+                                        <a href="gerenciarOrdemServico?acao=alterar&idOrdemServico=${os.idOs}" 
+                                           class="btn btn-warning btn-sm" role="button">Alterar</a>
+                                        <c:choose>
+                                            <c:when test="${os.status == 1}">
+                                                <a class="btn btn-sm btn-danger " style="text-decoration: none"
+                                                   onclick="confirmDesativar('${os.idOs}')">Desativar</a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a class="btn btn-success btn-sm" 
+                                                   onclick="confirmAtivar('${os.idOs}')">Ativar</a>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <a href="gerenciarOrdemServico?acao=atualizarEntrega&idOrdemServico=${os.idOs}" 
+                                           class="btn btn-dark btn-sm" role="button">Confirmar</a>
+                                    </td>
+                                </tr>
                             </c:forEach>
                         </tbody>
                     </table>
@@ -152,30 +147,30 @@
         <script src="datatables/dataTables.bootstrap4.min.js"></script>
         <!-- Configuracao da tabela com JQuery -->
         <script>
-                                                       $(document).ready(function () {
-                                                           $('#mytable').dataTable({
-                                                               "bJQueryUI": true,
-                                                               "lengthMenu": [[5, 10, 20, 25, -1], [5, 10, 20, 25, "Todos"]],
-                                                               "oLanguage": {
-                                                                   "sProcessing": "Processando",
-                                                                   "sLenghtMenu": "Montrar _MENU_ registros",
-                                                                   "sZeroRecords": "Não foram encontrados resultados",
-                                                                   "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                                                                   "sInfoEmpty": "Monstrado de 0 até 0 de 0 registros",
-                                                                   "sInfoFiltered": "",
-                                                                   "sInfoPostFix": "",
-                                                                   "sSearch": "Pesquisar",
-                                                                   "sUrl": "",
-                                                                   "oPaginate": {
-                                                                       "sFirst": "Primeiro",
-                                                                       "sPrevious": "Anterior",
-                                                                       "sNext": "Próximo",
-                                                                       "sLast": "Último"
-                                                                   }
+                                                           $(document).ready(function () {
+                                                               $('#mytable').dataTable({
+                                                                   "bJQueryUI": true,
+                                                                   "lengthMenu": [[5, 10, 20, 25, -1], [5, 10, 20, 25, "Todos"]],
+                                                                   "oLanguage": {
+                                                                       "sProcessing": "Processando",
+                                                                       "sLenghtMenu": "Montrar _MENU_ registros",
+                                                                       "sZeroRecords": "Não foram encontrados resultados",
+                                                                       "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                                                                       "sInfoEmpty": "Monstrado de 0 até 0 de 0 registros",
+                                                                       "sInfoFiltered": "",
+                                                                       "sInfoPostFix": "",
+                                                                       "sSearch": "Pesquisar",
+                                                                       "sUrl": "",
+                                                                       "oPaginate": {
+                                                                           "sFirst": "Primeiro",
+                                                                           "sPrevious": "Anterior",
+                                                                           "sNext": "Próximo",
+                                                                           "sLast": "Último"
+                                                                       }
 
-                                                               }
+                                                                   }
+                                                               });
                                                            });
-                                                       });
         </script>
     </body>
 
