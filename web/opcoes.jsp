@@ -1,3 +1,5 @@
+<%@page import="controller.GerenciarLogin"%>
+<%@page import="model.Usuario"%>
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -17,14 +19,12 @@
 
     </head>
     <body>
-        <div id="container">
-
-
             <div id="menu">
                 <jsp:include page="template/menu.jsp"></jsp:include>
             </div><!-- Fim da div menu -->
 
             <main>
+                
                 <div id="conteudo" class="container mr-auto ml-auto">
                     <div class="card mt-4 ml-lg-5" id="card" style="width: 18rem;display: inline-flex;">
                         <img src="./imagens/clipcardRegistrar.jpg" class="card-img-top" alt="...">

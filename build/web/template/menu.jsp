@@ -21,6 +21,12 @@
 
             </ul>
         </div>
+        <div class="circulo">
+            <p class="nickname">${ulogado.nome}</p>
+        </div>
     </nav>
+        <script>
+            var circulo =  document.querySelector("");
+        </script>
                 
 </header>

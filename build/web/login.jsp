@@ -12,13 +12,15 @@
         <link rel="stylesheet" href="bootstrap/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="css/menu.css" type="text/css">
         <link rel="stylesheet" href="css/styles.css" type="text/css"/>
-        <link rel="shortcut icon" href="./imagens/logo.png">
-        <title>Otica Nova</title>
+        <title>Projeto ETB</title>
 
     </head>
     <body>
         <div id="container">
-
+            
+                <div id="menu">
+                <jsp:include page="template/menu.jsp"></jsp:include>
+            </div><!-- Fim da div menu -->
 
             <div id="conteudo" class="bg-background">
                 <%
@@ -31,8 +33,7 @@
                     %>
                     <div class="alert alert-danger" role="alert">
                         <%= msg %>
-                        <button type="button" class="close" data-dismiss="alert"
-                                >
+                        <button type="button" class="close" data-dismiss="alert">
                             <span>&times;</span>
                         </button>
                     </div>
@@ -40,30 +41,30 @@
                     <%
                         
                     }
-                        
+                    sessao.removeAttribute("msg");
                 }
                 
                 %>
                 <div class="container">
-                    <form action="" method="post" class="form-group">
-                        <h3 class="text-center mt-5">Página de login</h3>
+                    <form action="gerenciarLogin" method="post" class="form-group">
+                        <h3 class="text-center">Página de Login</h3>
                         
                         <div class="form-group row mt-5 offset-md-2">
-                            <label class="col-md-3">Login</label>
+                            <label class="col-md-3">Usuário</label>
                             <div class="col-md-5">
-                                <input type="text" name="login" class="form-control">
+                                <input type="text" name="login" value="" class="form-control">
                             </div>
                         </div>
-                        <div class="form-group row offset-md-2">
+                        <div class="form-group row mt-5 offset-md-2">
                             <label class="col-md-3">Senha</label>
                             <div class="col-md-5">
-                                <input type="text" name="senha" 
-                                       class="form-control">
+                                <input type="password" name="senha" value="" class="form-control">
                             </div>
                         </div>
-                        <div class="container-fluid  row mt-5">
-                            <a href="opcoes.jsp" class="btn btn-primary mr-3 offset-5" role="button">Logar</a>
-                            <a href="index.jsp" 
+                        
+                        <div class="d-md-flex justify-content-md-center mt-5 mr-5">
+                            <button class="btn btn-primary mr-3">Logar</button>
+                            <a href="gerenciarMenu?acao=listar" 
                                class="btn  btn-warning" role="button">Voltar
                             </a>
                         </div>
