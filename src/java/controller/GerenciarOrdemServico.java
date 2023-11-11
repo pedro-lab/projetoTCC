@@ -217,12 +217,13 @@ public class GerenciarOrdemServico extends HttpServlet {
             os.setStatus(Integer.parseInt(status));
         }
 
-        if (os.getStatusVencimento() == null) {
+        if (os.getStatusEntrega()== null) {
             os.setStatusEntrega("");
         }
         
         try {
             if (osdao.gravar(os)) {
+                System.out.println(os);
                 mensagem = "Ordem de servico salvo na base de dados!";
             } else {
                 mensagem = "Falha ao salvar o ordem de servico na base de dados!";
