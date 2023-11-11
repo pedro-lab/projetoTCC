@@ -29,7 +29,7 @@ public class GerenciarLogin extends HttpServlet {
         if (sessao.getAttribute("ulogado") != null) {
             sessao.removeAttribute("ulogado");
             sessao.invalidate();
-            response.sendRedirect("opcoes.jsp");
+            response.sendRedirect("index.jsp");
         }
     }
 
