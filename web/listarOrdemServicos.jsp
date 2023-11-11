@@ -126,7 +126,7 @@
                                                    onclick="confirmAtivar('${os.idOs}')">Ativar</a>
                                             </c:otherwise>
                                         </c:choose>
-                                        <a href="gerenciarOrdemServico?acao=atualizarEntrega&idOrdemServico=${os.idOs}" 
+                                        <a href="gerenciarOrdemServico?acao=atualizarEntrega&idOrdemServico=${os.idOs}&statusEntrega=Na loja" 
                                            class="btn btn-dark btn-sm" role="button">Confirmar</a>
                                     </td>
                                 </tr>

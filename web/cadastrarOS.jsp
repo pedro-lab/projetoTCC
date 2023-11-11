@@ -50,6 +50,7 @@
                     <form action="gerenciarOrdemServico?acao=cadastrar" method="post" class="form-group">
                         <h3 class="text-center mb-5">Cadastro de Ordem de Servico</h3>
                         <input type="hidden" name="idOs" value="${ordemServico.idOs}">
+                        <input type="hidden" name="statusEntrega" value="${ordemServico.statusEntrega}">
                         <input type="hidden" name="idUsuario" value="2">
 
                         <div class="form-group row offset-md-2">

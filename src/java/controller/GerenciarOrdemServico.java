@@ -34,6 +34,7 @@ public class GerenciarOrdemServico extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         String acao = request.getParameter("acao");
         String idOs = request.getParameter("idOrdemServico");
+        String statusEntrega = request.getParameter("statusEntrega");
 
         String mensagem = "";
 
@@ -78,7 +79,7 @@ public class GerenciarOrdemServico extends HttpServlet {
                     mensagem = "Falha ao desativar a Ordem de Servico!";
                 }
             } else if (acao.equals("atualizarEntrega")) {
-                if (osdao.atualizaEntrega(Integer.parseInt(idOs))) {
+                if (osdao.atualizaEntrega(Integer.parseInt(idOs),statusEntrega)) {
                     mensagem = "Ordem de Servico concluido!";
                 } else {
                     mensagem = "Falha a atualizar o status de entrega";
@@ -107,6 +108,7 @@ public class GerenciarOrdemServico extends HttpServlet {
         String idOs = request.getParameter("idOs");
         String idUsuario = request.getParameter("idUsuario");
         String dataSolicitacao = request.getParameter("dataSolicitacao");
+        String statusEntrega = request.getParameter("statusEntrega");
         String vencimento = request.getParameter("vencimento");
         String idCliente = request.getParameter("idCliente");
         String idLente = request.getParameter("idLente");
@@ -206,6 +208,8 @@ public class GerenciarOrdemServico extends HttpServlet {
             }
         }
 
+        os.setStatusEntrega(statusEntrega);
+        
         if (status.isEmpty() || status.equals("")) {
             sessao.setAttribute("msg", "Informe o status do Usuário!");
             exibirMensagem(request, response);

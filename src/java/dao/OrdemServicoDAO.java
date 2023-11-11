@@ -98,7 +98,7 @@ public class OrdemServicoDAO {
             ps = con.prepareStatement(sql);
 
             ps.setDate(1, new Date(os.getDataSolicitacao().getTime()));
-            if (os.getStatusEntrega() == null) {
+            if (os.getDataEntrega()== null) {
                 ps.setString(2, null);
             } else {
                 ps.setDate(2, new Date(os.getDataEntrega().getTime()));
@@ -122,7 +122,7 @@ public class OrdemServicoDAO {
             ps = con.prepareStatement(sql);
 
             ps.setDate(1, new Date(os.getDataSolicitacao().getTime()));
-            if (os.getStatusEntrega() == null) {
+            if (os.getDataEntrega() == null) {
                 ps.setString(2, null);
             } else {
                 ps.setDate(2, new Date(os.getDataEntrega().getTime()));
@@ -168,12 +168,12 @@ public class OrdemServicoDAO {
         return true;
     }
 
-    public boolean atualizaEntrega(int idOS) throws SQLException {
+    public boolean atualizaEntrega(int idOS,String status) throws SQLException {
 
         sql = "UPDATE ordemservico SET statusEntrega = ?, dataEntrega = ? WHERE idOs = ?";
         con = ConexaoFactory.conectar();
         ps = con.prepareStatement(sql);
-        ps.setString(1, "Na Loja");
+        ps.setString(1, status);
         ps.setDate(2,new Date(OrdemServico.dataAtual.getTime()));
         ps.setInt(3, idOS);
         ps.executeUpdate();
