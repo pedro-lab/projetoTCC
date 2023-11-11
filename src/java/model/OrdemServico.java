@@ -29,13 +29,12 @@ public class OrdemServico {
     private int status;
 
     //Esse atribruto nao vai para o banco de dados
-    private Date dataAtual;
+    public static Date dataAtual = new Date();
     private String statusVencimento;
     private Date dataVencimento;
 
     public String verificaVencimento(Date data) {
-
-        dataAtual = new Date();
+        
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String mensagem = "";
         String data1 = df.format(data);

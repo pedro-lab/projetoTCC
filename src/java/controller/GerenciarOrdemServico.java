@@ -213,6 +213,10 @@ public class GerenciarOrdemServico extends HttpServlet {
             os.setStatus(Integer.parseInt(status));
         }
 
+        if (os.getStatusVencimento() == null) {
+            os.setStatusEntrega("");
+        }
+        
         try {
             if (osdao.gravar(os)) {
                 mensagem = "Ordem de servico salvo na base de dados!";

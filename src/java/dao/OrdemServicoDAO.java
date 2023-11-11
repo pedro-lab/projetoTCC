@@ -170,11 +170,12 @@ public class OrdemServicoDAO {
 
     public boolean atualizaEntrega(int idOS) throws SQLException {
 
-        sql = "UPDATE ordemservico SET statusEntrega = ? WHERE idOs = ?";
+        sql = "UPDATE ordemservico SET statusEntrega = ?, dataEntrega = ? WHERE idOs = ?";
         con = ConexaoFactory.conectar();
         ps = con.prepareStatement(sql);
         ps.setString(1, "Na Loja");
-        ps.setInt(2, idOS);
+        ps.setDate(2,new Date(OrdemServico.dataAtual.getTime()));
+        ps.setInt(3, idOS);
         ps.executeUpdate();
         ConexaoFactory.close(con);
         return true;
