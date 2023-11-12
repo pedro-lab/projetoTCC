@@ -94,7 +94,11 @@
                             </c:forEach>
                         </tbody>
                     </table>
-
+                    <div class="d-md-flex justify-content-md-end mt-5 mr-5">
+                        <a href="opcoes.jsp" 
+                           class="btn  btn-warning" role="button">Voltar
+                        </a>
+                    </div>
                 </div>
 
             </div><!-- Fim da div conteudo -->
