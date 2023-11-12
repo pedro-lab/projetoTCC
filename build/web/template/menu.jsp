@@ -23,8 +23,14 @@
         </div>
         <a href="gerenciarLogin?">
             <div class="circulo">
-                <p class="nickname">${ulogado.login}</p>
+                <p class="nickname" id="nomeLogin">${ulogado.login}</p>
             </div>
         </a>
     </nav>
 </header>
+            
+<script>
+    var p = document.getElementById("nomeLogin");
+    var primeiraLetra = p.innerHTML.charAt(0).toUpperCase();
+    p.innerHTML = primeiraLetra;
+</script>
