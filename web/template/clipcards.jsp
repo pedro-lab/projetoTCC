@@ -12,12 +12,12 @@
 <c:if test="${ulogado != null && ulogado.perfil != null}">
     <c:forEach var="menu" items="${ulogado.perfil.menus}">
         <c:if test="${menu.exibir == 1 && menu.status == 1}">
-            <div class="card mt-4 ml-lg-2" id="card" style="width: 16rem;display: inline-flex;">
+            <div class="card mt-4 ml-lg-2" id="card" style="width: 16rem;height: 359px;display: inline-flex;">
                 <img src="<%= request.getContextPath()%>/imagens/clipcard${menu.nome}.png" class="card-img-top" alt="${menu.nome}"
                      style="height: 190.7px">
                 <div class="card-body">
-                    <h5 class="card-title">Consultar ${menu.nome}</h5>
-                    <p class="card-text">Consulte e registre ${menu.nome} na nossa base de dados</p>
+                    <h5 class="card-title">Ver ${menu.nome}</h5>
+                    <p class="card-text">Consulte ${menu.nome} na nossa base de dados</p>
                     <a href="${menu.link}" class="btn btn-primary">Ver ${menu.nome}</a>
                 </div>
             </div>
