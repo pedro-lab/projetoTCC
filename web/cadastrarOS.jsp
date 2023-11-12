@@ -51,7 +51,7 @@
                         <h3 class="text-center mb-5">Cadastro de Ordem de Servico</h3>
                         <input type="hidden" name="idOs" value="${ordemServico.idOs}">
                         <input type="hidden" name="statusEntrega" value="${ordemServico.statusEntrega}">
-                        <input type="hidden" name="idUsuario" value="2">
+                        <input type="hidden" name="idUsuario" value="${ulogado.idUsuario}">
 
                         <div class="form-group row offset-md-2">
                             <label class="col-md-3">Data de Venda<sup class="text-danger">*</sup></label>

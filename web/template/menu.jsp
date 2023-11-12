@@ -23,7 +23,7 @@
         </div>
         <a href="gerenciarLogin?">
             <div class="circulo">
-                <p>${ulogado.nome}</p>
+                <p class="nickname">${ulogado.login}</p>
             </div>
         </a>
     </nav>

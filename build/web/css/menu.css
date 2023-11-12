@@ -55,7 +55,7 @@ header{
 }
 
 .nickname{
-    margin-top: 25px;
+    padding-top: 15px;
     position: relative;
     text-align: center;
     text-height: auto;
