@@ -21,93 +21,94 @@
 
             <div id="menu">
                 <jsp:include page="template/menu.jsp"></jsp:include>
-            </div><!-- Fim da div menu -->
+                </div><!-- Fim da div menu -->
+                <main>
+                    <div id="conteudo" class="bg-background">
+                    <%
+                        HttpSession sessao = request.getSession();
+                        if (sessao.getAttribute("msg") != null) {
 
-            <div id="conteudo" class="bg-background">
-                <%
-                HttpSession sessao = request.getSession();
-                if(sessao.getAttribute("msg") != null){
-                    
-                    String msg = (String) sessao.getAttribute("msg");
-                    if (msg != null) {
-                           
+                            String msg = (String) sessao.getAttribute("msg");
+                            if (msg != null) {
+
                     %>
                     <div class="alert alert-danger" role="alert">
-                        <%= msg %>
+                        <%= msg%>
                         <button type="button" class="close" data-dismiss="alert"
                                 >
                             <span>&times;</span>
                         </button>
                     </div>
-                    
+
                     <%
-                        
-                    }
-                    sessao.removeAttribute("msg");
-                }
-                
-                %>
-                <div class="container">
-                    <form action="gerenciarLaboratorio?acao=cadastrar" method="post" class="form-group">
-                        <h3 class="text-center">Cadastro de Laboratorio</h3>
-                        <input type="hidden" name="idLaboratorio" value="${laboratorio.idLaboratorio}">
-                        
-                        <div class="form-group row mt-5 offset-md-2">
-                            <label class="col-md-3">Nome<sup class="text-danger">*</sup></label>
-                            <div class="col-md-5">
-                                <input type="text" name="nome" value="${laboratorio.nome}" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group row offset-md-2">
-                            <label class="col-md-3">Endereco<sup class="text-danger">*</sup></label>
-                            <div class="col-md-5">
-                                <input type="text" name="endereco" 
-                                       class="form-control" value="${laboratorio.endereco}">
-                            </div>
-                        </div>
-                        <div class="form-group row offset-md-2">
-                            <label class="col-md-3">Telefone<sup class="text-danger">*</sup></label>
-                            <div class="col-md-5">
-                                <input type="tel" name="telefone" 
-                                       class="form-control" value="${laboratorio.telefone}">
-                            </div>
-                        </div>
-                        <div class="form-group row offset-md-2">
-                            <label class="col-md-3">Email<sup class="text-danger">*</sup></label>
-                            <div class="col-md-5">
-                                <input type="email" name="email" 
-                                       class="form-control" value="${laboratorio.preco}">
-                            </div>
-                        </div>
-                        <div class="form-group row offset-md-2">
-                            <label class="col-md-3">Status<sup class="text-danger">*</sup></label>
-                            <div class="col-md-5">
-                                <select class="form-control-sm" name="status">
-                                    <option value="">Escolha uma opção</option>
-                                    <option value="1"
-                                    <c:if test="${laboratorio.status == 1}">
-                                        selected
-                                    </c:if>>Ativado</option>
-                                    <option value="0"
-                                    <c:if test="${laboratorio.status == 0}">
-                                        selected
-                                    </c:if>>Desativado</option>
-                                </select>
 
+                            }
+                            sessao.removeAttribute("msg");
+                        }
+
+                    %>
+                    <div class="container">
+                        <form action="gerenciarLaboratorio?acao=cadastrar" method="post" class="form-group">
+                            <h3 class="text-center">Cadastro de Laboratorio</h3>
+                            <input type="hidden" name="idLaboratorio" value="${laboratorio.idLaboratorio}">
+
+                            <div class="form-group row mt-5 offset-md-2">
+                                <label class="col-md-3">Nome<sup class="text-danger">*</sup></label>
+                                <div class="col-md-5">
+                                    <input type="text" name="nome" value="${laboratorio.nome}" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <div class="d-md-flex justify-content-md-end mt-5 mr-5">
-                            <button class="btn btn-primary mr-3">Gravar</button>
-                            <a href="gerenciarLaboratorio?acao=listar" 
-                               class="btn  btn-warning" role="button">Voltar
-                            </a>
-                        </div>
-                        
-                    </form>
+                            <div class="form-group row offset-md-2">
+                                <label class="col-md-3">Endereco<sup class="text-danger">*</sup></label>
+                                <div class="col-md-5">
+                                    <input type="text" name="endereco" 
+                                           class="form-control" value="${laboratorio.endereco}">
+                                </div>
+                            </div>
+                            <div class="form-group row offset-md-2">
+                                <label class="col-md-3">Telefone<sup class="text-danger">*</sup></label>
+                                <div class="col-md-5">
+                                    <input type="tel" name="telefone" 
+                                           class="form-control" value="${laboratorio.telefone}">
+                                </div>
+                            </div>
+                            <div class="form-group row offset-md-2">
+                                <label class="col-md-3">Email<sup class="text-danger">*</sup></label>
+                                <div class="col-md-5">
+                                    <input type="email" name="email" 
+                                           class="form-control" value="${laboratorio.preco}">
+                                </div>
+                            </div>
+                            <div class="form-group row offset-md-2">
+                                <label class="col-md-3">Status<sup class="text-danger">*</sup></label>
+                                <div class="col-md-5">
+                                    <select class="form-control-sm" name="status">
+                                        <option value="">Escolha uma opção</option>
+                                        <option value="1"
+                                                <c:if test="${laboratorio.status == 1}">
+                                                    selected
+                                                </c:if>>Ativado</option>
+                                        <option value="0"
+                                                <c:if test="${laboratorio.status == 0}">
+                                                    selected
+                                                </c:if>>Desativado</option>
+                                    </select>
 
-                </div>
+                                </div>
+                            </div>
+                            <div class="d-md-flex justify-content-md-end mt-5 mr-5">
+                                <button class="btn btn-primary mr-3">Gravar</button>
+                                <a href="gerenciarLaboratorio?acao=listar" 
+                                   class="btn  btn-warning" role="button">Voltar
+                                </a>
+                            </div>
 
-            </div><!-- Fim da div conteudo -->
+                        </form>
+
+                    </div>
+
+                </div><!-- Fim da div conteudo -->
+            </main>
         </div><!-- Fim da div container -->
 
     </body>

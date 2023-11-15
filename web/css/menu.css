@@ -1,8 +1,8 @@
 header{
-    position: absolute;
-    z-index: 10;
+
     width: 100%;
     background: #fefefe;
+    margin-bottom: 15px;
 }
 
 .nav{

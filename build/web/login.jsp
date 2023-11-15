@@ -21,7 +21,7 @@
                 <div id="menu">
                 <jsp:include page="template/menu.jsp"></jsp:include>
             </div><!-- Fim da div menu -->
-
+            <main style="height: 100%">
             <div id="conteudo" class="bg-background">
                 <%
                 HttpSession sessao = request.getSession();
@@ -74,6 +74,7 @@
                 </div>
 
             </div><!-- Fim da div conteudo -->
+            </main>
         </div><!-- Fim da div container -->
 
     </body>

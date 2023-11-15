@@ -30,7 +30,7 @@ body{
 #container{
     margin: 0 auto;
     width: 100%;
-    height: 100px;
+    height: 100%;
 }
 
 #header {
@@ -40,29 +40,30 @@ body{
 
 #menu{
     width: 100%;
-    height: 100px;
+    height: auto;
 }
 
 html{
-    min-height: 100%;
+    height: auto;
 }
 
 #conteudo,main{
     width: 100%;
-    height: 100%;
     padding: 10px;
-    height: 100%;
-
 }
 
 html, body {
-     min-height: 100%;
      height: 100%;
 }
 
 body{
     
-    min-height: 100vh;
-    background:linear-gradient(180deg, #fefefe, rgb(200, 243, 237), rgb(123, 220, 250));
+    min-height: 100%;
     background-repeat: no-repeat;
+}
+
+main{
+    background:linear-gradient(180deg, #fefefe, rgb(200, 243, 237), rgb(123, 220, 250));
+    min-height: 100%;
+    height: auto;
 }

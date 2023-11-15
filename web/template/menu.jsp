@@ -2,10 +2,10 @@
 
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="d-flex">
-            <a class="navbar-brand icone" href="index.jsp" style="color: inherit;">
-                <img src="./imagens/logo1.png" alt="Logo" width="36" height="30" 
+            <a class="navbar-brand icone" href="index.jsp" style="color: inherit;line-height: normal">
+                <img src="./imagens/logo.png" alt="Logo" width="50" height="50" 
                      class="d-inline-block align-text-top logo">
-                Registrex
+                Otica Nova
             </a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
