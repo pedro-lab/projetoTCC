@@ -34,7 +34,7 @@
                             <table class="table table-hover table-striped table-bordered mt-3" id="mytable">
                                 <thead>
                                     <tr class="thead-dark">
-                                        <th scope="col">Código</th>
+                                        <th scope="col">OS</th>
                                         <th scope="col">Cliente</th>
                                         <th scope="col">Lente</th>
                                         <th scope="col">Laboratorio</th>
@@ -49,9 +49,9 @@
                                 <tbody>
                                 <c:forEach items="${ordemServicos}" var="os">
                                     <tr>
-                                        <td>${os.idOs}</td>
+                                        <td style="width:5px">${os.idOs}</td>
                                         <td>${os.cliente.nome}</td>
-                                        <td>${os.lente.nome}</td>
+                                        <td>${os.lente.nome}/${os.lente.modelo}</td>
                                         <td>${os.laboratorio.nome}</td>
                                         <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataSolicitacao}"></fmt:formatDate></td>
                                         <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.vencimento}"></fmt:formatDate></td>
@@ -94,7 +94,7 @@
                                                 </c:otherwise>
                                             </c:choose>
                                         </td>
-                                        <td>
+                                        <td class="w-100">
                                             <script type="text/javascript">
                                                 function confirmDesativar(id) {
                                                     if (confirm("Deseja desativar a ordem de servico de numero " +
