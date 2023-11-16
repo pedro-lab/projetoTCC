@@ -22,7 +22,7 @@
             </ul>
         </div>
         <a href="gerenciarLogin?">
-            <div class="circulo">
+            <div class="circulo" id="circulo">
                 <p class="nickname" id="nomeLogin">${ulogado.login}</p>
             </div>
         </a>
@@ -33,4 +33,11 @@
     var p = document.getElementById("nomeLogin");
     var primeiraLetra = p.innerHTML.charAt(0).toUpperCase();
     p.innerHTML = primeiraLetra;
+    
+    alert(primeiraLetra)
+    if (primeiraLetra == "") {
+    document.getElementById("circulo").style.display = 'none';
+}
+    
+    
 </script>
