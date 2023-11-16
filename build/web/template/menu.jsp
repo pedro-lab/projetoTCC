@@ -2,10 +2,10 @@
 
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="d-flex">
-            <a class="navbar-brand icone" href="index.jsp" style="color: inherit;line-height: normal">
+            <a class="navbar-brand icone" href="index.jsp" style="color: inherit;line-height: normal;vertical-align: central">
                 <img src="./imagens/logo.png" alt="Logo" width="50" height="50" 
                      class="d-inline-block align-text-top logo">
-                Otica Nova
+                <div class="d-inline-block mt-2" style="vertical-align: text-top;">Otica Nova</div>
             </a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,6 @@
     var primeiraLetra = p.innerHTML.charAt(0).toUpperCase();
     p.innerHTML = primeiraLetra;
     
-    alert(primeiraLetra)
     if (primeiraLetra == "") {
     document.getElementById("circulo").style.display = 'none';
 }

@@ -12,68 +12,69 @@
         <link rel="stylesheet" href="bootstrap/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="css/menu.css" type="text/css">
         <link rel="stylesheet" href="css/styles.css" type="text/css"/>
+        <link rel="shortcut icon" href="./imagens/logo.png">        
         <title>Projeto ETB</title>
 
     </head>
     <body>
         <div id="container">
-            
-                <div id="menu">
+
+            <div id="menu">
                 <jsp:include page="template/menu.jsp"></jsp:include>
-            </div><!-- Fim da div menu -->
-            <main style="height: 100%">
-            <div id="conteudo" class="bg-background">
-                <%
-                HttpSession sessao = request.getSession();
-                if(sessao.getAttribute("msg") != null){
-                    
-                    String msg = (String) sessao.getAttribute("msg");
-                    if (msg != null) {
-                           
+                </div><!-- Fim da div menu -->
+                <main style="height: 100%">
+                    <div id="conteudo" class="bg-background">
+                    <%
+                        HttpSession sessao = request.getSession();
+                        if (sessao.getAttribute("msg") != null) {
+
+                            String msg = (String) sessao.getAttribute("msg");
+                            if (msg != null) {
+
                     %>
                     <div class="alert alert-danger" role="alert">
-                        <%= msg %>
+                        <%= msg%>
                         <button type="button" class="close" data-dismiss="alert">
                             <span>&times;</span>
                         </button>
                     </div>
-                    
+
                     <%
-                        
-                    }
-                    sessao.removeAttribute("msg");
-                }
-                
-                %>
-                <div class="container">
-                    <form action="gerenciarLogin" method="post" class="form-group">
-                        <h3 class="text-center">Página de Login</h3>
-                        
-                        <div class="form-group row mt-5 offset-md-2">
-                            <label class="col-md-3">Usuário</label>
-                            <div class="col-md-5">
-                                <input type="text" name="login" value="" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group row mt-5 offset-md-2">
-                            <label class="col-md-3">Senha</label>
-                            <div class="col-md-5">
-                                <input type="password" name="senha" value="" class="form-control">
-                            </div>
-                        </div>
-                        
-                        <div class="d-md-flex justify-content-md-center mt-5 mr-5">
-                            <button class="btn btn-primary mr-3">Logar</button>
-                            <a href="gerenciarMenu?acao=listar" 
-                               class="btn  btn-warning" role="button">Voltar
-                            </a>
-                        </div>
-                        
-                    </form>
 
-                </div>
+                            }
+                            sessao.removeAttribute("msg");
+                        }
 
-            </div><!-- Fim da div conteudo -->
+                    %>
+                    <div class="container">
+                        <form action="gerenciarLogin" method="post" class="form-group">
+                            <h3 class="text-center">Página de Login</h3>
+
+                            <div class="form-group row mt-5 offset-md-2">
+                                <label class="col-md-3">Usuário</label>
+                                <div class="col-md-5">
+                                    <input type="text" name="login" value="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group row mt-5 offset-md-2">
+                                <label class="col-md-3">Senha</label>
+                                <div class="col-md-5">
+                                    <input type="password" name="senha" value="" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="d-md-flex justify-content-md-center mt-5 mr-5">
+                                <button class="btn btn-primary mr-3">Logar</button>
+                                <a href="gerenciarMenu?acao=listar" 
+                                   class="btn  btn-warning" role="button">Voltar
+                                </a>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div><!-- Fim da div conteudo -->
             </main>
         </div><!-- Fim da div container -->
 
