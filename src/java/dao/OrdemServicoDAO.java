@@ -19,7 +19,7 @@ public class OrdemServicoDAO {
     public ArrayList<OrdemServico> getLista() throws SQLException {
 
         ArrayList<OrdemServico> ordemServicos = new ArrayList<>();
-        sql = "SELECT os.idOs, os.dataSolicitacao, os.dataEntrega, os.vencimento, os.status, "
+        sql = "SELECT os.idOs,os.dataOS, os.dataVenda, os.dataEntrega, os.dataVencimento, os.status, "
                 + "os.statusEntrega, c.idCliente, l.idLente, lab.idLaboratorio, c.idCliente "
                 + "FROM ordemservico os INNER JOIN cliente c "
                 + " ON os.idCliente = c.idCliente INNER JOIN lente l ON "
@@ -37,15 +37,16 @@ public class OrdemServicoDAO {
             OrdemServico os = new OrdemServico();
 
             os.setIdOs(rs.getInt("os.idOs"));
-            os.setDataSolicitacao(rs.getDate("os.dataSolicitacao"));
+            os.setDataVenda(rs.getDate("os.dataSolicitacao"));
             os.setDataEntrega(rs.getDate("os.dataEntrega"));
-            os.setVencimento(rs.getDate("os.vencimento"));
+            os.setDataVencimento(rs.getDate("os.vencimento"));
             os.setStatus(rs.getInt("os.status"));
             os.setStatusEntrega(rs.getString("os.statusEntrega"));
             os.setCliente(cdao.getCarregarPorId(rs.getInt("c.idCliente")));
             os.setLente(ldao.getCarregarPorId(rs.getInt("l.idLente")));
             os.setLaboratorio(labdao.getCarregarPorId(rs.getInt("lab.idLaboratorio")));
-            os.setStatusVencimento(os.verificaVencimento(os.getVencimento()));
+            os.setStatusVencimento(os.verificaVencimento(os.getDataVencimento()));
+            os.setDataOS(rs.getDate("os.dataOS"));
 
             ordemServicos.add(os);
         }
@@ -57,7 +58,7 @@ public class OrdemServicoDAO {
     public ArrayList<OrdemServico> getLista(int mes, int ano) throws SQLException {
 
         ArrayList<OrdemServico> ordemServicos = new ArrayList<>();
-        sql = "SELECT os.idOs, os.dataSolicitacao, os.dataEntrega, os.vencimento, os.status, "
+        sql = "SELECT os.idOs,os.dataOS, os.dataVenda, os.dataEntrega, os.dataVencimento, os.status, "
                 + "os.statusEntrega, c.idCliente, l.idLente, lab.idLaboratorio, c.idCliente "
                 + "FROM ordemservico os INNER JOIN cliente c "
                 + " ON os.idCliente = c.idCliente INNER JOIN lente l ON "
@@ -79,15 +80,16 @@ public class OrdemServicoDAO {
             OrdemServico os = new OrdemServico();
 
             os.setIdOs(rs.getInt("os.idOs"));
-            os.setDataSolicitacao(rs.getDate("os.dataSolicitacao"));
+            os.setDataVenda(rs.getDate("os.dataSolicitacao"));
             os.setDataEntrega(rs.getDate("os.dataEntrega"));
-            os.setVencimento(rs.getDate("os.vencimento"));
+            os.setDataVencimento(rs.getDate("os.vencimento"));
             os.setStatus(rs.getInt("os.status"));
             os.setStatusEntrega(rs.getString("os.statusEntrega"));
             os.setCliente(cdao.getCarregarPorId(rs.getInt("c.idCliente")));
             os.setLente(ldao.getCarregarPorId(rs.getInt("l.idLente")));
             os.setLaboratorio(labdao.getCarregarPorId(rs.getInt("lab.idLaboratorio")));
-            os.setStatusVencimento(os.verificaVencimento(os.getVencimento()));
+            os.setStatusVencimento(os.verificaVencimento(os.getDataVencimento()));
+            os.setDataOS(rs.getDate("os.dataOS"));
 
             ordemServicos.add(os);
         }
@@ -97,7 +99,7 @@ public class OrdemServicoDAO {
     }
 
     public OrdemServico getCarregarPorId(int idOS) throws SQLException {
-        sql = "SELECT os.idOs, os.dataSolicitacao, os.dataEntrega, os.vencimento, "
+        sql = "SELECT os.idOs,os.dataOS, os.dataVenda, os.dataEntrega, os.dataVencimento, "
                 + "os.statusEntrega, c.idCliente, l.idLente, lab.idLaboratorio, c.idCliente "
                 + "FROM ordemservico os INNER JOIN cliente c "
                 + " ON os.idCliente = c.idCliente INNER JOIN lente l ON "
@@ -117,13 +119,16 @@ public class OrdemServicoDAO {
             LaboratorioDAO labdao = new LaboratorioDAO();
 
             os.setIdOs(rs.getInt("os.idOs"));
-            os.setDataSolicitacao(rs.getDate("os.dataSolicitacao"));
+            os.setDataVenda(rs.getDate("os.dataSolicitacao"));
             os.setDataEntrega(rs.getDate("os.dataEntrega"));
-            os.setVencimento(rs.getDate("os.vencimento"));
+            os.setDataVencimento(rs.getDate("os.vencimento"));
+            os.setStatus(rs.getInt("os.status"));
             os.setStatusEntrega(rs.getString("os.statusEntrega"));
             os.setCliente(cdao.getCarregarPorId(rs.getInt("c.idCliente")));
             os.setLente(ldao.getCarregarPorId(rs.getInt("l.idLente")));
             os.setLaboratorio(labdao.getCarregarPorId(rs.getInt("lab.idLaboratorio")));
+            os.setStatusVencimento(os.verificaVencimento(os.getDataVencimento()));
+            os.setDataOS(rs.getDate("os.dataOS"));
         }
         ConexaoFactory.close(con);
         return os;
@@ -134,21 +139,21 @@ public class OrdemServicoDAO {
         con = ConexaoFactory.conectar();
 
         if (os.getIdOs() == 0) {
-            sql = "INSERT INTO ordemservico (dataSolicitacao,dataEntrega,vencimento,statusEntrega,"
+            sql = "INSERT INTO ordemservico (dataVenda,dataEntrega,dataVencimento,statusEntrega,"
                     + "idUsuario,idLaboratorio,idLente,idCliente,status) "
                     + "VALUES (? , ?, ?, ?, ?, ?, ?, ?, ?)";
             ps = con.prepareStatement(sql);
 
-            ps.setDate(1, new Date(os.getDataSolicitacao().getTime()));
+            ps.setDate(1, new Date(os.getDataVenda().getTime()));
             if (os.getDataEntrega() == null) {
                 ps.setString(2, null);
             } else {
                 ps.setDate(2, new Date(os.getDataEntrega().getTime()));
             }
-            if (os.getVencimento() == null) {
+            if (os.getDataVencimento()== null) {
                 ps.setString(3, null);
             } else {
-                ps.setDate(3, new Date(os.getVencimento().getTime()));
+                ps.setDate(3, new Date(os.getDataVencimento().getTime()));
             }
             ps.setString(4, os.getStatusEntrega());
             ps.setInt(5, os.getUsuario().getIdUsuario());

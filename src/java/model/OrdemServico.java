@@ -19,10 +19,11 @@ import lombok.ToString;
 public class OrdemServico {
 
     private int idOs;
-    private Date dataSolicitacao;
+    private Date dataVenda;
     private Date dataEntrega;
-    private Date vencimento;
+    private Date dataVencimento;
     private String statusEntrega;
+    private Date dataOS;
     private Usuario usuario;
     private Laboratorio laboratorio;
     private Lente lente;
@@ -32,7 +33,6 @@ public class OrdemServico {
     //Esse atribruto nao vai para o banco de dados
     public static Date dataAtual = new Date();
     private String statusVencimento;
-    private Date dataVencimento;
 
     public String verificaVencimento(Date data) {
         
