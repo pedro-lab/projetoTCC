@@ -174,10 +174,10 @@ public class OrdemServicoDAO {
             } else {
                 ps.setDate(2, new Date(os.getDataEntrega().getTime()));
             }
-            if (os.getVencimento() == null) {
+            if (os.getDataVencimento() == null) {
                 ps.setString(3, null);
             } else {
-                ps.setDate(3, new Date(os.getVencimento().getTime()));
+                ps.setDate(3, new Date(os.getDataVencimento().getTime()));
             }
             ps.setString(4, os.getStatusEntrega());
             ps.setInt(5, os.getUsuario().getIdUsuario());

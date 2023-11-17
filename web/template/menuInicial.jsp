@@ -1,4 +1,4 @@
-<nav class="navbar" style="background-color: 	#fefefe;">
+<nav class="navbar">
 
     <div class="d-flex">
         <a class="navbar-brand icone" href="index.jsp" style="color: inherit;line-height: normal;vertical-align: central">
