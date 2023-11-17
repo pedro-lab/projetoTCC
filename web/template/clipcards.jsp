@@ -18,7 +18,14 @@
                 <div class="card-body">
                     <h5 class="card-title">Ver ${menu.nome}</h5>
                     <p class="card-text">Consulte ${menu.nome} na nossa base de dados</p>
-                    <a href="${menu.link}" class="btn btn-primary">Ver ${menu.nome}</a>
+                    <c:choose>
+                        <c:when test="${menu.nome == 'Ordem de Servico'}">
+                            <a href="filtro.jsp" class="btn btn-primary">Ver ${menu.nome}</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="${menu.link}" class="btn btn-primary">Ver ${menu.nome}</a>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </c:if>
