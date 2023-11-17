@@ -50,7 +50,7 @@ public class GerenciarOrdemServico extends HttpServlet {
                 ordemServicos = osdao.getLista(Integer.parseInt(mes),
                         Integer.parseInt(ano));
                 RequestDispatcher dispatcher
-                        = getServletContext().getRequestDispatcher("/listarOrdemServico.jsp");
+                        = getServletContext().getRequestDispatcher("/listarOrdemServicos.jsp");
                 sessao.setAttribute("ano", ano);
                 sessao.setAttribute("mes", mes);
                 request.setAttribute("ordemServico", ordemServicos);
@@ -110,7 +110,7 @@ public class GerenciarOrdemServico extends HttpServlet {
         PrintWriter out = response.getWriter();
         String idOs = request.getParameter("idOs");
         String idUsuario = request.getParameter("idUsuario");
-        String dataSolicitacao = request.getParameter("dataSolicitacao");
+        String dataVenda = request.getParameter("dataSolicitacao");
         String statusEntrega = request.getParameter("statusEntrega");
         String vencimento = request.getParameter("vencimento");
         String idCliente = request.getParameter("idCliente");
@@ -124,7 +124,6 @@ public class GerenciarOrdemServico extends HttpServlet {
         OrdemServicoDAO osdao = new OrdemServicoDAO();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
-        System.out.println(dataSolicitacao);
 
         if (!idOs.isEmpty()) {
             try {
@@ -148,12 +147,12 @@ public class GerenciarOrdemServico extends HttpServlet {
 
         }
 
-        if (dataSolicitacao.isEmpty() || dataSolicitacao.equals("")) {
+        if (dataVenda.isEmpty() || dataVenda.equals("")) {
             sessao.setAttribute("msg", "Informe a data de Venda!");
             exibirMensagem(request, response);
         } else {
             try {
-                os.setDataSolicitacao(df.parse(dataSolicitacao));
+                os.setDataVenda(df.parse(dataVenda));
             } catch (ParseException e) {
                 mensagem = "Error: " + e.getMessage();
                 e.printStackTrace();
@@ -161,11 +160,11 @@ public class GerenciarOrdemServico extends HttpServlet {
 
         }
 
-        System.out.println(dataSolicitacao);
+        System.out.println(dataVenda);
         //Para atributos em que o valor pode ser nulo
         try {
             Date dataEntrega = null;
-            os.setVencimento(df.parse(vencimento));
+            os.setDataVencimento(df.parse(vencimento));
             os.setDataEntrega(dataEntrega);
         } catch (ParseException e) {
             mensagem = "Error: " + e.getMessage();

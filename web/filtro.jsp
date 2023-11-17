@@ -59,7 +59,7 @@
                         <button class="btn btn-info" id="filtro">Filtrar</button>
                     </div>
                     <div class="d-md-flex justify-content-md-end mt-5 ml-lg-5">
-                        <a href="servicos.jsp" 
+                        <a href="opcoes.jsp" 
                            class="btn btn-warning" role="button">Voltar
                         </a>
                     </div>

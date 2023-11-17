@@ -163,13 +163,13 @@ public class OrdemServicoDAO {
             ps.setInt(9, os.getStatus());
 
         } else {
-            sql = "UPDATE ordemservico SET dataSolicitacao = ?, dataEntrega = ?, "
+            sql = "UPDATE ordemservico SET dataVenda = ?, dataEntrega = ?, "
                     + "vencimento = ?,statusEntrega = ?, idUsuario = ?, idLaboratorio = ?, "
                     + "idLente = ?, idCliente = ?, status = ? WHERE idOs = ? ";
             ps = con.prepareStatement(sql);
 
-            ps.setDate(1, new Date(os.getDataSolicitacao().getTime()));
-            if (os.getDataEntrega() == null) {
+            ps.setDate(1, new Date(os.getDataVenda().getTime()));
+            if (os.getDataEntrega()== null) {
                 ps.setString(2, null);
             } else {
                 ps.setDate(2, new Date(os.getDataEntrega().getTime()));
