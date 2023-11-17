@@ -144,9 +144,9 @@
                             </div>
                             <div class="d-md-flex justify-content-md-end mt-5 mr-5">
                                 <button class="btn btn-primary mr-3">Gravar</button>
-                                <a href="" id="backListagem" 
+                                <button href="" id="backListagem" 
                                    class="btn  btn-warning" role="button">Voltar
-                                </a>
+                                </button>
                             </div>
 
                         </form>
