@@ -27,8 +27,41 @@
                 </div><!-- Fim da div menu -->
                 <main>
                     <div id="conteudo" class="bg-background">
-                        <div class="container">
-                            <h3 class="text-center">Listagem de Ordem de Servico</h3>
+<%
+                                HttpSession sessao = request.getSession();
+
+                                String ano = (String) sessao.getAttribute("ano");
+                                String mes = (String) sessao.getAttribute("mes");
+
+                                if (mes.equals("1")) {
+                                    mes = "Janeiro";
+                                } else if (mes.equals("2")) {
+                                    mes = "Fevereiro";
+                                } else if (mes.equals("3")) {
+                                    mes = "Março";
+                                } else if (mes.equals("4")) {
+                                    mes = "Abril";
+                                } else if (mes.equals("5")) {
+                                    mes = "Maio";
+                                } else if (mes.equals("6")) {
+                                    mes = "Junho";
+                                } else if (mes.equals("7")) {
+                                    mes = "Julho";
+                                } else if (mes.equals("8")) {
+                                    mes = "Agosto";
+                                } else if (mes.equals("9")) {
+                                    mes = "Setembro";
+                                } else if (mes.equals("10")) {
+                                    mes = "Outubro";
+                                } else if (mes.equals("11")) {
+                                    mes = "Novembro";
+                                } else {
+                                    mes = "Dezembro";
+                                }
+                        %>
+
+                        <div class="container" >
+                            <h3 class="text-center">Ordem de Serviços de <%=mes%> de <%=ano%></h3>
                             <a href="cadastrarOS.jsp" class="btn-sm btn-primary mb-5" 
                                role="button" style="text-decoration: none;display:inline-block;">Cadastrar OS</a>
                             <table class="table table-hover table-striped table-bordered mt-3" id="mytable">
@@ -47,101 +80,101 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${ordemServicos}" var="os">
-                                    <tr>
-                                        <td style="width:5px">${os.idOs}</td>
-                                        <td>${os.cliente.nome}</td>
-                                        <td>${os.lente.nome}/${os.lente.modelo}</td>
-                                        <td>${os.laboratorio.nome}</td>
-                                        <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataSolicitacao}"></fmt:formatDate></td>
-                                        <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.vencimento}"></fmt:formatDate></td>
-                                            <td>
-                                            <c:choose>
-                                                <c:when test="${empty os.dataEntrega}">
-                                                    Sem entrada
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataEntrega}"></fmt:formatDate>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </td>
-
-                                        <td>
-                                            <jsp:useBean class="dao.OrdemServicoDAO" id="osdao"/>
-                                            <c:if test="${empty os.statusEntrega}">
+                                    <c:forEach items="${ordemServicos}" var="os">
+                                        <tr>
+                                            <td style="width:5px">${os.idOs}</td>
+                                            <td>${os.cliente.nome}</td>
+                                            <td>${os.lente.nome}/${os.lente.modelo}</td>
+                                            <td>${os.laboratorio.nome}</td>
+                                            <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataSolicitacao}"></fmt:formatDate></td>
+                                            <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.vencimento}"></fmt:formatDate></td>
+                                                <td>
                                                 <c:choose>
-                                                    <c:when test="${os.statusVencimento == 'No prazo'}">
-                                                        No prazo
+                                                    <c:when test="${empty os.dataEntrega}">
+                                                        Sem entrada
                                                     </c:when>
                                                     <c:otherwise>
-                                                        Atrasado
+                                                        <fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataEntrega}"></fmt:formatDate>
                                                     </c:otherwise>
-                                                </c:choose>    
-                                            </c:if>
-                                            <c:if test="${not empty os.statusEntrega}">
-                                                ${os.statusEntrega}
-                                            </c:if>
+                                                </c:choose>
+                                            </td>
+
+                                            <td>
+                                                <jsp:useBean class="dao.OrdemServicoDAO" id="osdao"/>
+                                                <c:if test="${empty os.statusEntrega}">
+                                                    <c:choose>
+                                                        <c:when test="${os.statusVencimento == 'No prazo'}">
+                                                            No prazo
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            Atrasado
+                                                        </c:otherwise>
+                                                    </c:choose>    
+                                                </c:if>
+                                                <c:if test="${not empty os.statusEntrega}">
+                                                    ${os.statusEntrega}
+                                                </c:if>
 
 
-                                        </td>
-                                        <td>
-                                            <c:choose>
-                                                <c:when test="${os.status == 1}">
-                                                    Ativado
-                                                </c:when>
-                                                <c:otherwise>
-                                                    Desativado
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </td>
-                                        <td class="w-100">
-                                            <script type="text/javascript">
-                                                function confirmDesativar(id) {
-                                                    if (confirm("Deseja desativar a ordem de servico de numero " +
-                                                            id + "?")) {
-                                                        location.href = "gerenciarOrdemServico?acao=desativar&idOrdemServico=" + id;
+                                            </td>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${os.status == 1}">
+                                                        Ativado
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        Desativado
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                            <td class="w-100">
+                                                <script type="text/javascript">
+                                                    function confirmDesativar(id) {
+                                                        if (confirm("Deseja desativar a ordem de servico de numero " +
+                                                                id + "?")) {
+                                                            location.href = "gerenciarOrdemServico?acao=desativar&idOrdemServico=" + id;
+
+                                                        }
 
                                                     }
 
-                                                }
+                                                    function confirmAtivar(id) {
 
-                                                function confirmAtivar(id) {
+                                                        if (confirm("Deseja a ordem de servico de numero " +
+                                                                id + "?")) {
+                                                            location.href = "gerenciarOrdemServico?acao=ativar&idOrdemServico=" + id;
 
-                                                    if (confirm("Deseja a ordem de servico de numero " +
-                                                            id + "?")) {
-                                                        location.href = "gerenciarOrdemServico?acao=ativar&idOrdemServico=" + id;
-
+                                                        }
                                                     }
-                                                }
-                                            </script>
-                                            <a href="gerenciarOrdemServico?acao=alterar&idOrdemServico=${os.idOs}" 
-                                               class="btn btn-warning btn-sm" role="button">Alterar</a>
-                                            <c:choose>
-                                                <c:when test="${os.status == 1}">
-                                                    <a class="btn btn-sm btn-danger " style="text-decoration: none"
-                                                       onclick="confirmDesativar('${os.idOs}')">Desativar</a>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <a class="btn btn-success btn-sm" 
-                                                       onclick="confirmAtivar('${os.idOs}')">Ativar</a>
-                                                </c:otherwise>
-                                            </c:choose>
-                                            <a href="gerenciarOrdemServico?acao=atualizarEntrega&idOrdemServico=${os.idOs}&statusEntrega=Na loja" 
-                                               class="btn btn-dark btn-sm" role="button">Confirmar</a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                        <div class="d-md-flex justify-content-md-end mt-5 mr-5">
-                            <a href="opcoes.jsp" 
-                               class="btn  btn-warning" role="button">Voltar
-                            </a>
+                                                </script>
+                                                <a href="gerenciarOrdemServico?acao=alterar&idOrdemServico=${os.idOs}" 
+                                                   class="btn btn-warning btn-sm" role="button">Alterar</a>
+                                                <c:choose>
+                                                    <c:when test="${os.status == 1}">
+                                                        <a class="btn btn-sm btn-danger " style="text-decoration: none"
+                                                           onclick="confirmDesativar('${os.idOs}')">Desativar</a>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <a class="btn btn-success btn-sm" 
+                                                           onclick="confirmAtivar('${os.idOs}')">Ativar</a>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <a href="gerenciarOrdemServico?acao=atualizarEntrega&idOrdemServico=${os.idOs}&statusEntrega=Na loja" 
+                                                   class="btn btn-dark btn-sm" role="button">Confirmar</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                            <div class="d-md-flex justify-content-md-end mt-5 mr-5">
+                                <a href="opcoes.jsp" 
+                                   class="btn  btn-warning" role="button">Voltar
+                                </a>
+                            </div>
+
                         </div>
 
-                    </div>
-
-                </div><!-- Fim da div conteudo -->
+                    </div><!-- Fim da div conteudo -->
             </main>
         </div><!-- Fim da div container -->
         <!-- JQuery -->
@@ -154,30 +187,30 @@
         <script src="datatables/dataTables.bootstrap4.min.js"></script>
         <!-- Configuracao da tabela com JQuery -->
         <script>
-                                                           $(document).ready(function () {
-                                                               $('#mytable').dataTable({
-                                                                   "bJQueryUI": true,
-                                                                   "lengthMenu": [[5, 10, 20, 25, -1], [5, 10, 20, 25, "Todos"]],
-                                                                   "oLanguage": {
-                                                                       "sProcessing": "Processando",
-                                                                       "sLenghtMenu": "Montrar _MENU_ registros",
-                                                                       "sZeroRecords": "Não foram encontrados resultados",
-                                                                       "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                                                                       "sInfoEmpty": "Monstrado de 0 até 0 de 0 registros",
-                                                                       "sInfoFiltered": "",
-                                                                       "sInfoPostFix": "",
-                                                                       "sSearch": "Pesquisar",
-                                                                       "sUrl": "",
-                                                                       "oPaginate": {
-                                                                           "sFirst": "Primeiro",
-                                                                           "sPrevious": "Anterior",
-                                                                           "sNext": "Próximo",
-                                                                           "sLast": "Último"
-                                                                       }
+                                                               $(document).ready(function () {
+                                                                   $('#mytable').dataTable({
+                                                                       "bJQueryUI": true,
+                                                                       "lengthMenu": [[5, 10, 20, 25, -1], [5, 10, 20, 25, "Todos"]],
+                                                                       "oLanguage": {
+                                                                           "sProcessing": "Processando",
+                                                                           "sLenghtMenu": "Montrar _MENU_ registros",
+                                                                           "sZeroRecords": "Não foram encontrados resultados",
+                                                                           "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                                                                           "sInfoEmpty": "Monstrado de 0 até 0 de 0 registros",
+                                                                           "sInfoFiltered": "",
+                                                                           "sInfoPostFix": "",
+                                                                           "sSearch": "Pesquisar",
+                                                                           "sUrl": "",
+                                                                           "oPaginate": {
+                                                                               "sFirst": "Primeiro",
+                                                                               "sPrevious": "Anterior",
+                                                                               "sNext": "Próximo",
+                                                                               "sLast": "Último"
+                                                                           }
 
-                                                                   }
+                                                                       }
+                                                                   });
                                                                });
-                                                           });
         </script>
     </body>
 

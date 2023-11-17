@@ -54,6 +54,48 @@ public class OrdemServicoDAO {
         return ordemServicos;
     }
 
+    public ArrayList<OrdemServico> getLista(int mes, int ano) throws SQLException {
+
+        ArrayList<OrdemServico> ordemServicos = new ArrayList<>();
+        sql = "SELECT os.idOs, os.dataSolicitacao, os.dataEntrega, os.vencimento, os.status, "
+                + "os.statusEntrega, c.idCliente, l.idLente, lab.idLaboratorio, c.idCliente "
+                + "FROM ordemservico os INNER JOIN cliente c "
+                + " ON os.idCliente = c.idCliente INNER JOIN lente l ON "
+                + " os.idLente = l.idLente INNER JOIN laboratorio lab ON "
+                + " os.idLaboratorio = lab.idLaboratorio "
+                + "WHERE extract(month from dataOS) = ?"
+                + " and extract(year from dataOS) = ?";
+
+        con = ConexaoFactory.conectar();
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, mes);
+        ps.setInt(2, ano);
+        rs = ps.executeQuery();
+
+        while (rs.next()) {
+            ClienteDAO cdao = new ClienteDAO();
+            LenteDAO ldao = new LenteDAO();
+            LaboratorioDAO labdao = new LaboratorioDAO();
+            OrdemServico os = new OrdemServico();
+
+            os.setIdOs(rs.getInt("os.idOs"));
+            os.setDataSolicitacao(rs.getDate("os.dataSolicitacao"));
+            os.setDataEntrega(rs.getDate("os.dataEntrega"));
+            os.setVencimento(rs.getDate("os.vencimento"));
+            os.setStatus(rs.getInt("os.status"));
+            os.setStatusEntrega(rs.getString("os.statusEntrega"));
+            os.setCliente(cdao.getCarregarPorId(rs.getInt("c.idCliente")));
+            os.setLente(ldao.getCarregarPorId(rs.getInt("l.idLente")));
+            os.setLaboratorio(labdao.getCarregarPorId(rs.getInt("lab.idLaboratorio")));
+            os.setStatusVencimento(os.verificaVencimento(os.getVencimento()));
+
+            ordemServicos.add(os);
+        }
+
+        ConexaoFactory.close(con);
+        return ordemServicos;
+    }
+
     public OrdemServico getCarregarPorId(int idOS) throws SQLException {
         sql = "SELECT os.idOs, os.dataSolicitacao, os.dataEntrega, os.vencimento, "
                 + "os.statusEntrega, c.idCliente, l.idLente, lab.idLaboratorio, c.idCliente "
@@ -98,14 +140,14 @@ public class OrdemServicoDAO {
             ps = con.prepareStatement(sql);
 
             ps.setDate(1, new Date(os.getDataSolicitacao().getTime()));
-            if (os.getDataEntrega()== null) {
+            if (os.getDataEntrega() == null) {
                 ps.setString(2, null);
             } else {
                 ps.setDate(2, new Date(os.getDataEntrega().getTime()));
             }
             if (os.getVencimento() == null) {
                 ps.setString(3, null);
-            }else{
+            } else {
                 ps.setDate(3, new Date(os.getVencimento().getTime()));
             }
             ps.setString(4, os.getStatusEntrega());
@@ -129,7 +171,7 @@ public class OrdemServicoDAO {
             }
             if (os.getVencimento() == null) {
                 ps.setString(3, null);
-            }else{
+            } else {
                 ps.setDate(3, new Date(os.getVencimento().getTime()));
             }
             ps.setString(4, os.getStatusEntrega());
@@ -168,13 +210,13 @@ public class OrdemServicoDAO {
         return true;
     }
 
-    public boolean atualizaEntrega(int idOS,String status) throws SQLException {
+    public boolean atualizaEntrega(int idOS, String status) throws SQLException {
 
         sql = "UPDATE ordemservico SET statusEntrega = ?, dataEntrega = ? WHERE idOs = ?";
         con = ConexaoFactory.conectar();
         ps = con.prepareStatement(sql);
         ps.setString(1, status);
-        ps.setDate(2,new Date(OrdemServico.dataAtual.getTime()));
+        ps.setDate(2, new Date(OrdemServico.dataAtual.getTime()));
         ps.setInt(3, idOS);
         ps.executeUpdate();
         ConexaoFactory.close(con);

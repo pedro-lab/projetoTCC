@@ -33,6 +33,8 @@ public class GerenciarOrdemServico extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("utf-8");
         String acao = request.getParameter("acao");
+        String ano = request.getParameter("ano");
+        String mes = request.getParameter("mes");
         String idOs = request.getParameter("idOrdemServico");
         String statusEntrega = request.getParameter("statusEntrega");
 
@@ -40,18 +42,19 @@ public class GerenciarOrdemServico extends HttpServlet {
 
         OrdemServicoDAO osdao = new OrdemServicoDAO();
         OrdemServico os = new OrdemServico();
+        HttpSession sessao = request.getSession();
 
         try {
             if (acao.equals("listar")) {
                 ArrayList<OrdemServico> ordemServicos = new ArrayList<>();
-                ordemServicos = osdao.getLista();
-                System.out.println(ordemServicos.get(1).getStatusVencimento());
+                ordemServicos = osdao.getLista(Integer.parseInt(mes),
+                        Integer.parseInt(ano));
                 RequestDispatcher dispatcher
-                        = getServletContext().getRequestDispatcher("/listarOrdemServicos.jsp");
-
-                request.setAttribute("ordemServicos", ordemServicos);
+                        = getServletContext().getRequestDispatcher("/listarOrdemServico.jsp");
+                sessao.setAttribute("ano", ano);
+                sessao.setAttribute("mes", mes);
+                request.setAttribute("ordemServico", ordemServicos);
                 dispatcher.forward(request, response);
-
             } else if (acao.equals("alterar")) {
 
                 os = osdao.getCarregarPorId(Integer.parseInt(idOs));
@@ -79,7 +82,7 @@ public class GerenciarOrdemServico extends HttpServlet {
                     mensagem = "Falha ao desativar a Ordem de Servico!";
                 }
             } else if (acao.equals("atualizarEntrega")) {
-                if (osdao.atualizaEntrega(Integer.parseInt(idOs),statusEntrega)) {
+                if (osdao.atualizaEntrega(Integer.parseInt(idOs), statusEntrega)) {
                     mensagem = "Ordem de Servico concluido!";
                 } else {
                     mensagem = "Falha a atualizar o status de entrega";
@@ -209,7 +212,7 @@ public class GerenciarOrdemServico extends HttpServlet {
         }
 
         os.setStatusEntrega(statusEntrega);
-        
+
         if (status.isEmpty() || status.equals("")) {
             sessao.setAttribute("msg", "Informe o status do Usuário!");
             exibirMensagem(request, response);
@@ -217,10 +220,10 @@ public class GerenciarOrdemServico extends HttpServlet {
             os.setStatus(Integer.parseInt(status));
         }
 
-        if (os.getStatusEntrega()== null) {
+        if (os.getStatusEntrega() == null) {
             os.setStatusEntrega("");
         }
-        
+
         try {
             if (osdao.gravar(os)) {
                 System.out.println(os);

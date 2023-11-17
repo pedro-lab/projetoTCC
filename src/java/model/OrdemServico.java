@@ -2,6 +2,7 @@ package model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import lombok.AllArgsConstructor;
@@ -71,5 +72,24 @@ public class OrdemServico {
         }
         return calendario;
 
+    }
+    
+    public ArrayList<String> meses (){
+        
+        ArrayList<String> meses = new ArrayList<>();
+        meses.add("Janeiro");
+        meses.add("Fevereiro");
+        meses.add("Março");
+        meses.add("Abril");
+        meses.add("Maio");
+        meses.add("Junho");
+        meses.add("Julho");
+        meses.add("Agosto");
+        meses.add("Setembro");
+        meses.add("Outubro");
+        meses.add("Novembro");
+        meses.add("Dezembro");
+        
+        return meses;
     }
 }
