@@ -178,5 +178,11 @@
 
         var dataOS = document.getElementById("dataOS");
         dataOS.value = ano + "-" + mes + "-" + dia;
+        
+        //input ano e mes 
+        var inputAno = document.getElementById("ano");
+        var inputMes = document.getElementById("mes");
+        inputAno.value = ano;
+        inputMes.value = mes;
     </script>
 </html>

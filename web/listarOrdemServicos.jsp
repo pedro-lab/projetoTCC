@@ -86,8 +86,8 @@
                                             <td>${os.cliente.nome}</td>
                                             <td>${os.lente.nome}/${os.lente.modelo}</td>
                                             <td>${os.laboratorio.nome}</td>
-                                            <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataSolicitacao}"></fmt:formatDate></td>
-                                            <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.vencimento}"></fmt:formatDate></td>
+                                            <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataVenda}"></fmt:formatDate></td>
+                                            <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataVencimento}"></fmt:formatDate></td>
                                                 <td>
                                                 <c:choose>
                                                     <c:when test="${empty os.dataEntrega}">

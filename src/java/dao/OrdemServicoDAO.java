@@ -84,7 +84,7 @@ public class OrdemServicoDAO {
             os.setDataOS(rs.getDate("os.dataOS"));
             os.setDataVenda(rs.getDate("os.dataVenda"));
             os.setDataEntrega(rs.getDate("os.dataEntrega"));
-            os.setDataVencimento(rs.getDate("os.vencimento"));
+            os.setDataVencimento(rs.getDate("os.dataVencimento"));
             os.setStatus(rs.getInt("os.status"));
             os.setStatusEntrega(rs.getString("os.statusEntrega"));
             os.setCliente(cdao.getCarregarPorId(rs.getInt("c.idCliente")));
@@ -124,7 +124,7 @@ public class OrdemServicoDAO {
             os.setDataOS(rs.getDate("os.dataOS"));            
             os.setDataVenda(rs.getDate("os.dataVenda"));
             os.setDataEntrega(rs.getDate("os.dataEntrega"));
-            os.setDataVencimento(rs.getDate("os.vencimento"));
+            os.setDataVencimento(rs.getDate("os.dataVencimento"));
             os.setStatus(rs.getInt("os.status"));
             os.setStatusEntrega(rs.getString("os.statusEntrega"));
             os.setCliente(cdao.getCarregarPorId(rs.getInt("c.idCliente")));
@@ -143,7 +143,7 @@ public class OrdemServicoDAO {
 
         if (os.getIdOs() == 0) {
             sql = "INSERT INTO ordemservico (dataVenda,dataEntrega,dataVencimento,statusEntrega,"
-                    + "idUsuario,idLaboratorio,idLente,idCliente,status,os.dataVenda)"
+                    + "idUsuario,idLaboratorio,idLente,idCliente,status,dataOS)"
                     + "VALUES (? , ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             ps = con.prepareStatement(sql);
 

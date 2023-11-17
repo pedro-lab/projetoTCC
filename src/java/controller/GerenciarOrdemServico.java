@@ -53,7 +53,7 @@ public class GerenciarOrdemServico extends HttpServlet {
                         = getServletContext().getRequestDispatcher("/listarOrdemServicos.jsp");
                 sessao.setAttribute("ano", ano);
                 sessao.setAttribute("mes", mes);
-                request.setAttribute("ordemServico", ordemServicos);
+                request.setAttribute("ordemServicos", ordemServicos);
                 dispatcher.forward(request, response);
             } else if (acao.equals("alterar")) {
 
@@ -110,6 +110,8 @@ public class GerenciarOrdemServico extends HttpServlet {
         PrintWriter out = response.getWriter();
         String idOs = request.getParameter("idOs");
         String idUsuario = request.getParameter("idUsuario");
+        String ano = request.getParameter("ano");
+        String mes = request.getParameter("mes");
         String dataOS = request.getParameter("dataOS");
         String dataVenda = request.getParameter("dataSolicitacao");
         String statusEntrega = request.getParameter("statusEntrega");
@@ -167,7 +169,6 @@ public class GerenciarOrdemServico extends HttpServlet {
             e.printStackTrace();
         }
 
-        System.out.println(dataVenda);
         //Para atributos em que o valor pode ser nulo
         try {
             Date dataEntrega = null;
@@ -232,7 +233,6 @@ public class GerenciarOrdemServico extends HttpServlet {
 
         try {
             if (osdao.gravar(os)) {
-                System.out.println(os);
                 mensagem = "Ordem de servico salvo na base de dados!";
             } else {
                 mensagem = "Falha ao salvar o ordem de servico na base de dados!";
@@ -241,11 +241,10 @@ public class GerenciarOrdemServico extends HttpServlet {
             mensagem = "Error: " + e.getMessage();
             e.printStackTrace();
         }
-
         out.println(
                 "<script type='text/javascript'>"
                 + "alert('" + mensagem + "');"
-                + "location.href='gerenciarOrdemServico?acao=listar';"
+                + "location.href='gerenciarOrdemServico?acao=listar&ano="+ano+"&mes="+mes+"';"
                 + "</script>"
         );
 
