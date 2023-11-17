@@ -38,7 +38,7 @@ public class OrdemServicoDAO {
 
             os.setIdOs(rs.getInt("os.idOs"));
             os.setDataOS(rs.getDate("os.dataOS"));
-            os.setDataVenda(rs.getDate("os.dataSolicitacao"));
+            os.setDataVenda(rs.getDate("os.dataVenda"));
             os.setDataEntrega(rs.getDate("os.dataEntrega"));
             os.setDataVencimento(rs.getDate("os.vencimento"));
             os.setStatus(rs.getInt("os.status"));
@@ -82,7 +82,7 @@ public class OrdemServicoDAO {
 
             os.setIdOs(rs.getInt("os.idOs"));
             os.setDataOS(rs.getDate("os.dataOS"));
-            os.setDataVenda(rs.getDate("os.dataSolicitacao"));
+            os.setDataVenda(rs.getDate("os.dataVenda"));
             os.setDataEntrega(rs.getDate("os.dataEntrega"));
             os.setDataVencimento(rs.getDate("os.vencimento"));
             os.setStatus(rs.getInt("os.status"));
@@ -122,7 +122,7 @@ public class OrdemServicoDAO {
 
             os.setIdOs(rs.getInt("os.idOs"));
             os.setDataOS(rs.getDate("os.dataOS"));            
-            os.setDataVenda(rs.getDate("os.dataSolicitacao"));
+            os.setDataVenda(rs.getDate("os.dataVenda"));
             os.setDataEntrega(rs.getDate("os.dataEntrega"));
             os.setDataVencimento(rs.getDate("os.vencimento"));
             os.setStatus(rs.getInt("os.status"));
@@ -144,7 +144,7 @@ public class OrdemServicoDAO {
         if (os.getIdOs() == 0) {
             sql = "INSERT INTO ordemservico (dataVenda,dataEntrega,dataVencimento,statusEntrega,"
                     + "idUsuario,idLaboratorio,idLente,idCliente,status,os.dataVenda)"
-                    + "VALUES (? , ?, ?, ?, ?, ?, ?, ?, ?)";
+                    + "VALUES (? , ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             ps = con.prepareStatement(sql);
 
             ps.setDate(1, new Date(os.getDataVenda().getTime()));

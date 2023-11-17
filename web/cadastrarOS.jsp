@@ -70,6 +70,13 @@
                                            class="form-control" value="${ordemServico.vencimento}">
                                 </div>
                             </div>
+                            <div class="form-group row mt-5 offset-md-2">
+                                <label class="col-md-3">data do OS</label>
+                                <div class="col-md-5">
+                                    <input type="date" name="dataOS" value="${ordemServico.dataOS}" 
+                                           class="form-control" id="dataOS">
+                                </div>
+                            </div>
                             <div class="form-group row offset-md-2">
                                 <label class="col-md-3">Nome do Cliente<sup class="text-danger">*</sup></label>
                                 <div class="col-md-5">
@@ -171,6 +178,5 @@
 
         var dataOS = document.getElementById("dataOS");
         dataOS.value = ano + "-" + mes + "-" + dia;
-        console.log(dia)
     </script>
 </html>
