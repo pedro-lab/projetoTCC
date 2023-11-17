@@ -110,6 +110,7 @@ public class GerenciarOrdemServico extends HttpServlet {
         PrintWriter out = response.getWriter();
         String idOs = request.getParameter("idOs");
         String idUsuario = request.getParameter("idUsuario");
+        String dataOS = request.getParameter("dataOS");
         String dataVenda = request.getParameter("dataSolicitacao");
         String statusEntrega = request.getParameter("statusEntrega");
         String vencimento = request.getParameter("vencimento");
@@ -123,7 +124,6 @@ public class GerenciarOrdemServico extends HttpServlet {
         OrdemServico os = new OrdemServico();
         OrdemServicoDAO osdao = new OrdemServicoDAO();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-
 
         if (!idOs.isEmpty()) {
             try {
@@ -158,6 +158,13 @@ public class GerenciarOrdemServico extends HttpServlet {
                 e.printStackTrace();
             }
 
+        }
+
+        try {
+            os.setDataOS(df.parse(dataOS));
+        } catch (ParseException e) {
+            mensagem = "Error: " + e.getMessage();
+            e.printStackTrace();
         }
 
         System.out.println(dataVenda);

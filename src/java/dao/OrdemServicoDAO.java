@@ -37,6 +37,7 @@ public class OrdemServicoDAO {
             OrdemServico os = new OrdemServico();
 
             os.setIdOs(rs.getInt("os.idOs"));
+            os.setDataOS(rs.getDate("os.dataOS"));
             os.setDataVenda(rs.getDate("os.dataSolicitacao"));
             os.setDataEntrega(rs.getDate("os.dataEntrega"));
             os.setDataVencimento(rs.getDate("os.vencimento"));
@@ -80,6 +81,7 @@ public class OrdemServicoDAO {
             OrdemServico os = new OrdemServico();
 
             os.setIdOs(rs.getInt("os.idOs"));
+            os.setDataOS(rs.getDate("os.dataOS"));
             os.setDataVenda(rs.getDate("os.dataSolicitacao"));
             os.setDataEntrega(rs.getDate("os.dataEntrega"));
             os.setDataVencimento(rs.getDate("os.vencimento"));
@@ -119,6 +121,7 @@ public class OrdemServicoDAO {
             LaboratorioDAO labdao = new LaboratorioDAO();
 
             os.setIdOs(rs.getInt("os.idOs"));
+            os.setDataOS(rs.getDate("os.dataOS"));            
             os.setDataVenda(rs.getDate("os.dataSolicitacao"));
             os.setDataEntrega(rs.getDate("os.dataEntrega"));
             os.setDataVencimento(rs.getDate("os.vencimento"));
@@ -140,36 +143,12 @@ public class OrdemServicoDAO {
 
         if (os.getIdOs() == 0) {
             sql = "INSERT INTO ordemservico (dataVenda,dataEntrega,dataVencimento,statusEntrega,"
-                    + "idUsuario,idLaboratorio,idLente,idCliente,status) "
+                    + "idUsuario,idLaboratorio,idLente,idCliente,status,os.dataVenda)"
                     + "VALUES (? , ?, ?, ?, ?, ?, ?, ?, ?)";
             ps = con.prepareStatement(sql);
 
             ps.setDate(1, new Date(os.getDataVenda().getTime()));
             if (os.getDataEntrega() == null) {
-                ps.setString(2, null);
-            } else {
-                ps.setDate(2, new Date(os.getDataEntrega().getTime()));
-            }
-            if (os.getDataVencimento()== null) {
-                ps.setString(3, null);
-            } else {
-                ps.setDate(3, new Date(os.getDataVencimento().getTime()));
-            }
-            ps.setString(4, os.getStatusEntrega());
-            ps.setInt(5, os.getUsuario().getIdUsuario());
-            ps.setInt(6, os.getLaboratorio().getIdLaboratorio());
-            ps.setInt(7, os.getLente().getIdLente());
-            ps.setInt(8, os.getCliente().getIdCliente());
-            ps.setInt(9, os.getStatus());
-
-        } else {
-            sql = "UPDATE ordemservico SET dataVenda = ?, dataEntrega = ?, "
-                    + "vencimento = ?,statusEntrega = ?, idUsuario = ?, idLaboratorio = ?, "
-                    + "idLente = ?, idCliente = ?, status = ? WHERE idOs = ? ";
-            ps = con.prepareStatement(sql);
-
-            ps.setDate(1, new Date(os.getDataVenda().getTime()));
-            if (os.getDataEntrega()== null) {
                 ps.setString(2, null);
             } else {
                 ps.setDate(2, new Date(os.getDataEntrega().getTime()));
@@ -185,7 +164,33 @@ public class OrdemServicoDAO {
             ps.setInt(7, os.getLente().getIdLente());
             ps.setInt(8, os.getCliente().getIdCliente());
             ps.setInt(9, os.getStatus());
-            ps.setInt(10, os.getIdOs());
+            ps.setDate(10, new Date(os.getDataOS().getTime()));
+
+        } else {
+            sql = "UPDATE ordemservico SET dataVenda = ?, dataEntrega = ?, "
+                    + "vencimento = ?,statusEntrega = ?, idUsuario = ?, idLaboratorio = ?, "
+                    + "idLente = ?, idCliente = ?, status = ?,dataOS = ? WHERE idOs = ? ";
+            ps = con.prepareStatement(sql);
+
+            ps.setDate(1, new Date(os.getDataVenda().getTime()));
+            if (os.getDataEntrega() == null) {
+                ps.setString(2, null);
+            } else {
+                ps.setDate(2, new Date(os.getDataEntrega().getTime()));
+            }
+            if (os.getDataVencimento() == null) {
+                ps.setString(3, null);
+            } else {
+                ps.setDate(3, new Date(os.getDataVencimento().getTime()));
+            }
+            ps.setString(4, os.getStatusEntrega());
+            ps.setInt(5, os.getUsuario().getIdUsuario());
+            ps.setInt(6, os.getLaboratorio().getIdLaboratorio());
+            ps.setInt(7, os.getLente().getIdLente());
+            ps.setInt(8, os.getCliente().getIdCliente());
+            ps.setInt(9, os.getStatus());
+            ps.setDate(10, new Date(os.getDataOS().getTime()));
+            ps.setInt(11, os.getIdOs());
 
         }
         ps.executeUpdate();

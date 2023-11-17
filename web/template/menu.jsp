@@ -36,6 +36,7 @@
 </header>
             
 <script>
+    
     var p = document.getElementById("nomeLogin");
     var primeiraLetra = p.innerHTML.charAt(0).toUpperCase();
     p.innerHTML = primeiraLetra;
@@ -43,6 +44,5 @@
     if (primeiraLetra == "") {
     document.getElementById("circulo").style.display = 'none';
 }
-    
-    
+
 </script>

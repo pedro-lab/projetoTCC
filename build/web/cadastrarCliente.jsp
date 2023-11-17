@@ -61,14 +61,14 @@
                             <div class="form-group row offset-md-2">
                                 <label class="col-md-3">CPF</label>
                                 <div class="col-md-5">
-                                    <input type="text" name="cpf" 
+                                    <input type="text" name="cpf" id="cpf" maxlength="14"
                                            class="form-control" value="${cliente.cpf}">
                                 </div>
                             </div>
                             <div class="form-group row offset-md-2">
                                 <label class="col-md-3">Telefone<sup class="text-danger">*</sup></label>
                                 <div class="col-md-5">
-                                    <input type="tel" name="telefone" 
+                                    <input type="tel" name="telefone" id="telefone" maxlength="15"
                                            class="form-control" value="${cliente.telefone}">
                                 </div>
                             </div>
@@ -121,4 +121,29 @@
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="bootstrap/bootstrap.min.js"></script>
 
+    <script>
+        // Mascara para cpf
+        const cpf = document.querySelector("#cpf");
+
+        cpf.addEventListener("keyup", () => {
+            let value = cpf.value.replace(/[^0-9]/g, "").replace(/^([\d]{3})([\d]{3})?([\d]{3})?([\d]{2})?/, "$1.$2.$3-$4");
+
+            cpf.value = value;
+        });
+
+        // Mascara para telefone
+        const tel = document.getElementById('telefone') // Seletor do campo de telefone
+
+        tel.addEventListener('keypress', (e) => mascaraTelefone(e.target.value)) // Dispara quando digitado no campo
+        tel.addEventListener('change', (e) => mascaraTelefone(e.target.value)) // Dispara quando autocompletado o campo
+
+        const mascaraTelefone = (valor) => {
+            valor = valor.replace(/\D/g, "")
+            valor = valor.replace(/^(\d{2})(\d)/g, "($1) $2")
+            valor = valor.replace(/(\d)(\d{4})$/, "$1-$2")
+            tel.value = valor // Insere o(s) valor(es) no campo
+        }
+
+
+    </script>
 </html>

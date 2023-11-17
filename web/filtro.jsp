@@ -27,8 +27,8 @@
                 <div id="conteudo" class="bg-background">
 
                     <div class="form-group row mt-5 offset-md-2">
-                        <label class="col-md-3">Informe da Ordem de Servico</label>
-                        <div class="col-md-5">
+                        <label class="col-md-3">Informe o ano da OS</label>
+                        <div class="col-md-2">
                             <input type="number" name="filtro" id="ano" class="form-control">
                         </div>
 
@@ -57,10 +57,9 @@
                     </div>
                     <div class="d-md-flex justify-content-md-center mt-5 mr-5">
                         <button class="btn btn-info" id="filtro">Filtrar</button>
-                    </div>
-                    <div class="d-md-flex justify-content-md-end mt-5 ml-lg-5">
+                        
                         <a href="opcoes.jsp" 
-                           class="btn btn-warning" role="button">Voltar
+                           class="btn btn-warning ml-4" role="button">Voltar
                         </a>
                     </div>
                 </div><!-- Fim da div conteudo -->

@@ -52,6 +52,9 @@
                             <input type="hidden" name="idOs" value="${ordemServico.idOs}">
                             <input type="hidden" name="statusEntrega" value="${ordemServico.statusEntrega}">
                             <input type="hidden" name="idUsuario" value="${ulogado.idUsuario}">
+                            <input type="hidden" name="ano" id="ano">
+                            <input type="hidden" name="mes" id="mes">
+                            <input type="hidden" name="dia" id="dia">
 
                             <div class="form-group row offset-md-2">
                                 <label class="col-md-3">Data de Venda<sup class="text-danger">*</sup></label>
@@ -134,7 +137,7 @@
                             </div>
                             <div class="d-md-flex justify-content-md-end mt-5 mr-5">
                                 <button class="btn btn-primary mr-3">Gravar</button>
-                                <a href="gerenciarOrdemServico?acao=listar" 
+                                <a href="" id="backListagem" 
                                    class="btn  btn-warning" role="button">Voltar
                                 </a>
                             </div>
@@ -150,5 +153,24 @@
     </body>
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="bootstrap/bootstrap.min.js"></script>
+    <script>
+        var link = document.querySelector("#backListagem");
+        var ano = sessionStorage.getItem("ano");
+        var mes = sessionStorage.getItem("mes");
+        link.href = "gerenciarOrdemServico?acao=listar&ano=" + ano +
+                "&mes=" + mes;
 
+        //Setar input dataOS
+        var data = new Date;
+        var dia = data.getDate();
+        dia = dia.toString()
+        if (dia.length === 1) {
+            dia = "0" + dia;
+            console.log("entrou")
+        }
+
+        var dataOS = document.getElementById("dataOS");
+        dataOS.value = ano + "-" + mes + "-" + dia;
+        console.log(dia)
+    </script>
 </html>
