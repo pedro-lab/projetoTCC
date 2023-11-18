@@ -18,7 +18,7 @@
         <title>Projeto ETB</title>
         <script>
             window.onload = function () {
-
+                
                 var options = {
                     animationEnabled: true,
                     theme: "light2",
@@ -95,7 +95,7 @@
                         }]
                 };
                 $("#chartContainer").CanvasJSChart(options);
-
+                
                 function toogleDataSeries(e) {
                     if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
                         e.dataSeries.visible = false;
@@ -104,15 +104,17 @@
                     }
                     e.chart.render();
                 }
-
+                
             }
         </script>
     </head>
     <body>
         <main>
             <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-            <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-            <script src="https://cdn.canvasjs.com/jquery.canvasjs.min.js"></script>
+            <!-- JQuery -->
+            <script src="js/jquery-3.6.0.min.js"></script>
+            <script src="js/canvasjs.min.js"></script>
+            <script src="js/jquery.canvasjs.min.js"></script>
             <a class="btn btn-warning mt-5 ml-5" href="opcoes.jsp">Voltar</a>
         </main>
     </body>
