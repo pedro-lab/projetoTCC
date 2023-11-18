@@ -21,16 +21,16 @@
                 
                 var options = {
                     animationEnabled: true,
-                    theme: "light2",
+                    theme: "light3",
                     title: {
-                        text: "Actual vs Projected Sales"
+                        text: "Quantidade de OS"
                     },
                     axisX: {
                         valueFormatString: "DD MMM"
                     },
                     axisY: {
                         title: "Number of Sales",
-                        suffix: "K",
+                        suffix: "",
                         minimum: 30
                     },
                     toolTip: {
@@ -50,7 +50,7 @@
                             markerType: "square",
                             xValueFormatString: "DD MMM, YYYY",
                             color: "#F08080",
-                            yValueFormatString: "#,##0K",
+                            yValueFormatString: "#,##",
                             dataPoints: [
                                 {x: new Date(2017, 10, 1), y: 63},
                                 {x: new Date(2017, 10, 2), y: 69},

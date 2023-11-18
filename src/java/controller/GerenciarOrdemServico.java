@@ -34,6 +34,7 @@ public class GerenciarOrdemServico extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         String acao = request.getParameter("acao");
         String ano = request.getParameter("ano");
+        String ano2 = request.getParameter("ano2");
         String mes = request.getParameter("mes");
         String idOs = request.getParameter("idOrdemServico");
         String statusEntrega = request.getParameter("statusEntrega");
@@ -87,6 +88,18 @@ public class GerenciarOrdemServico extends HttpServlet {
                 } else {
                     mensagem = "Falha a atualizar o status de entrega";
                 }
+            }else if(acao.equals("analise")){
+                ArrayList<Integer> quantidadeOS1 = new ArrayList<>();
+                ArrayList<Integer> quantidadeOS2 = new ArrayList<>();
+                
+                quantidadeOS1 = osdao.quantidadeOS(Integer.parseInt(ano));
+                quantidadeOS2 = osdao.quantidadeOS(Integer.parseInt(ano2));
+                RequestDispatcher dispatcher
+                        = getServletContext().getRequestDispatcher("/estatistica.jsp");
+                request.setAttribute("os1", quantidadeOS1);
+                request.setAttribute("os2", quantidadeOS2);
+                dispatcher.forward(request, response);
+                  
             } else {
                 response.sendRedirect("index.jsp");
             }

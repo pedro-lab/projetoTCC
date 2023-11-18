@@ -121,7 +121,7 @@ public class OrdemServicoDAO {
             LaboratorioDAO labdao = new LaboratorioDAO();
 
             os.setIdOs(rs.getInt("os.idOs"));
-            os.setDataOS(rs.getDate("os.dataOS"));            
+            os.setDataOS(rs.getDate("os.dataOS"));
             os.setDataVenda(rs.getDate("os.dataVenda"));
             os.setDataEntrega(rs.getDate("os.dataEntrega"));
             os.setDataVencimento(rs.getDate("os.dataVencimento"));
@@ -231,5 +231,26 @@ public class OrdemServicoDAO {
         ps.executeUpdate();
         ConexaoFactory.close(con);
         return true;
+    }
+
+    public ArrayList<Integer> quantidadeOS(int ano) throws SQLException {
+
+        ArrayList<Integer> quantidadeOS = new ArrayList<>();
+        for (int i = 1; i <= 12; i++) {
+            sql = "select count(*) from ordemservico where extract(month from dataOS) = ? and extract(year from dataOS) = ?";
+            con = ConexaoFactory.conectar();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, i);
+            ps.setInt(2, ano);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                quantidadeOS.add(Integer.valueOf(rs.toString()));
+            }
+        }
+
+        return quantidadeOS;
+
     }
 }
