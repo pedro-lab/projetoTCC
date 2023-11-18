@@ -92,8 +92,11 @@ public class GerenciarOrdemServico extends HttpServlet {
                 ArrayList<Integer> quantidadeOS1 = new ArrayList<>();
                 ArrayList<Integer> quantidadeOS2 = new ArrayList<>();
                 
-                quantidadeOS1 = osdao.quantidadeOS(Integer.parseInt(ano));
-                quantidadeOS2 = osdao.quantidadeOS(Integer.parseInt(ano2));
+                for (int i = 1; i <= 12; i++) {
+                    quantidadeOS1.add(osdao.quantidadeOS(Integer.parseInt(ano),i));
+                    quantidadeOS2.add(osdao.quantidadeOS(Integer.parseInt(ano2),i));
+                }
+                
                 RequestDispatcher dispatcher
                         = getServletContext().getRequestDispatcher("/estatistica.jsp");
                 request.setAttribute("os1", quantidadeOS1);

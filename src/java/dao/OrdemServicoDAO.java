@@ -233,24 +233,24 @@ public class OrdemServicoDAO {
         return true;
     }
 
-    public ArrayList<Integer> quantidadeOS(int ano) throws SQLException {
+    public Integer quantidadeOS(int ano, int mes) throws SQLException {
 
-        ArrayList<Integer> quantidadeOS = new ArrayList<>();
-        for (int i = 1; i <= 12; i++) {
-            sql = "select count(*) from ordemservico where extract(month from dataOS) = ? and extract(year from dataOS) = ?";
-            con = ConexaoFactory.conectar();
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, i);
-            ps.setInt(2, ano);
-            rs = ps.executeQuery();
+        Integer quantidadeOS = null;
 
-            if (rs.next()) {
+        sql = "select count(*) from ordemservico where extract(month from dataOS) = ? and extract(year from dataOS) = ?";
+        con = ConexaoFactory.conectar();
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, mes);
+        ps.setInt(2, ano);
+        rs = ps.executeQuery();
 
-                quantidadeOS.add(Integer.valueOf(rs.toString()));
-            }
+        if (rs.next()) {
+
+            quantidadeOS = (Integer.parseInt(rs.getString("count(*)")));
+;
         }
-
+        ConexaoFactory.close(con);
         return quantidadeOS;
-
     }
+
 }

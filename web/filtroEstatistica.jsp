@@ -76,7 +76,6 @@
                  * para o pagina cadastrarOS.jsp
                  */
                 sessionStorage.setItem("ano", ano.value);
-                sessionStorage.setItem("mes", meses.value);
                 location.href = "gerenciarOrdemServico?acao=analise&ano=" + ano.value +
                         "&ano2=" + ano2.value;
             });
