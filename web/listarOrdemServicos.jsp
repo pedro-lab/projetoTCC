@@ -32,36 +32,37 @@
 
                         String ano = (String) sessao.getAttribute("ano");
                         String mes = (String) sessao.getAttribute("mes");
+                        String mesN;
 
                         if (mes.equals("1")) {
-                            mes = "Janeiro";
+                            mesN = "Janeiro";
                         } else if (mes.equals("2")) {
-                            mes = "Fevereiro";
+                            mesN = "Fevereiro";
                         } else if (mes.equals("3")) {
-                            mes = "Março";
+                            mesN = "Março";
                         } else if (mes.equals("4")) {
-                            mes = "Abril";
+                            mesN = "Abril";
                         } else if (mes.equals("5")) {
-                            mes = "Maio";
+                            mesN = "Maio";
                         } else if (mes.equals("6")) {
-                            mes = "Junho";
+                            mesN = "Junho";
                         } else if (mes.equals("7")) {
-                            mes = "Julho";
+                            mesN = "Julho";
                         } else if (mes.equals("8")) {
-                            mes = "Agosto";
+                            mesN = "Agosto";
                         } else if (mes.equals("9")) {
-                            mes = "Setembro";
+                            mesN = "Setembro";
                         } else if (mes.equals("10")) {
-                            mes = "Outubro";
+                            mesN = "Outubro";
                         } else if (mes.equals("11")) {
-                            mes = "Novembro";
+                            mesN = "Novembro";
                         } else {
-                            mes = "Dezembro";
+                            mesN = "Dezembro";
                         }
                     %>
 
                     <div class="container" >
-                        <h3 class="text-center">Ordem de Serviços de <%=mes%> de <%=ano%></h3>
+                        <h3 class="text-center">Ordem de Serviços de <%=mesN%> de <%=ano%></h3>
                         <a href="cadastrarOS.jsp" class="btn-sm btn-primary mb-5" 
                            role="button" style="text-decoration: none;display:inline-block;">Cadastrar OS</a>
                         <table class="table table-hover table-striped table-bordered mt-3" id="mytable">
@@ -114,11 +115,6 @@
                                             <c:if test="${not empty os.statusEntrega}">
                                                 ${os.statusEntrega}
                                             </c:if>
-                                            <script>
-                                                var statusEntrega = document.getElementById("statusEntrega");
-                                                statusEntrega.innerHTML. = "teste";
-                                            </script>
-
                                         </td>
                                         <td>
                                             <c:choose>
@@ -135,7 +131,7 @@
                                                 function confirmDesativar(id) {
                                                     if (confirm("Deseja desativar a ordem de servico de numero " +
                                                             id + "?")) {
-                                                        location.href = "gerenciarOrdemServico?acao=desativar&idOrdemServico=" + id;
+                                                        location.href = "gerenciarOrdemServico?acao=desativar&idOrdemServico=" + id+"&ano=<%=ano%>&mes=<%=mes%>";
 
                                                     }
 
@@ -145,7 +141,7 @@
 
                                                     if (confirm("Deseja a ordem de servico de numero " +
                                                             id + "?")) {
-                                                        location.href = "gerenciarOrdemServico?acao=ativar&idOrdemServico=" + id;
+                                                        location.href = "gerenciarOrdemServico?acao=ativar&idOrdemServico=" + id+"&ano=<%=ano%>&mes=<%=mes%>";
 
                                                     }
                                                 }
@@ -162,7 +158,7 @@
                                                        onclick="confirmAtivar('${os.idOs}')">Ativar</a>
                                                 </c:otherwise>
                                             </c:choose>
-                                            <a href="gerenciarOrdemServico?acao=atualizarEntrega&idOrdemServico=${os.idOs}&statusEntrega=Na loja" 
+                                            <a href="gerenciarOrdemServico?acao=atualizarEntrega&idOrdemServico=${os.idOs}&statusEntrega=Na loja&ano=<%=ano%>&mes=<%=mes%>" 
                                                class="btn btn-dark btn-sm" role="button">Confirmar</a>
                                         </td>
                                     </tr>
@@ -216,6 +212,19 @@
                                                            });
         </script>
     </body>
+    <script>
+        var statusEntrega = document.querySelectorAll("#statusEntrega");
+        var elementos = []
+        statusEntrega.forEach(function (elemento) {
+            if(elemento.innerText == "Atrasado"){
+                elemento.style.background = "#f17ea1";
+            }else if(elemento.innerText == "No prazo"){
+                elemento.style.background = "#fff000";
+            }else{
+                elemento.style.background = "#00ff00";
+            }
 
+        })
+    </script>
 
 </html>

@@ -48,7 +48,7 @@ public class GerenciarOrdemServico extends HttpServlet {
         try {
             if (acao.equals("listar")) {
                 ArrayList<OrdemServico> ordemServicos = new ArrayList<>();
-                ordemServicos = osdao.getLista(Integer.parseInt(mes),
+                    ordemServicos = osdao.getLista(Integer.parseInt(mes),
                         Integer.parseInt(ano));
                 RequestDispatcher dispatcher
                         = getServletContext().getRequestDispatcher("/listarOrdemServicos.jsp");
@@ -115,7 +115,7 @@ public class GerenciarOrdemServico extends HttpServlet {
         out.println(
                 "<script type='text/javascript'>"
                 + "alert('" + mensagem + "');"
-                + "location.href='gerenciarOrdemServico?acao=listar';"
+                + "location.href='gerenciarOrdemServico?acao=listar&ano="+ano+"&mes="+mes+"'"
                 + "</script>"
         );
     }

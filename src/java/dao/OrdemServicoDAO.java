@@ -102,7 +102,7 @@ public class OrdemServicoDAO {
 
     public OrdemServico getCarregarPorId(int idOS) throws SQLException {
         sql = "SELECT os.idOs,os.dataOS, os.dataVenda, os.dataEntrega, os.dataVencimento, "
-                + "os.statusEntrega, c.idCliente, l.idLente, lab.idLaboratorio, c.idCliente "
+                + "os.statusEntrega,os.status, c.idCliente, l.idLente, lab.idLaboratorio, c.idCliente "
                 + "FROM ordemservico os INNER JOIN cliente c "
                 + " ON os.idCliente = c.idCliente INNER JOIN lente l ON "
                 + " os.idLente = l.idLente INNER JOIN laboratorio lab ON "
@@ -168,7 +168,7 @@ public class OrdemServicoDAO {
 
         } else {
             sql = "UPDATE ordemservico SET dataVenda = ?, dataEntrega = ?, "
-                    + "vencimento = ?,statusEntrega = ?, idUsuario = ?, idLaboratorio = ?, "
+                    + "dataVencimento = ?,statusEntrega = ?, idUsuario = ?, idLaboratorio = ?, "
                     + "idLente = ?, idCliente = ?, status = ?,dataOS = ? WHERE idOs = ? ";
             ps = con.prepareStatement(sql);
 

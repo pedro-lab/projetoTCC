@@ -19,84 +19,140 @@
         <script>
             window.onload = function () {
 
-            var options = {
-            animationEnabled: true,
-                    theme: "light3",
+                var arrayOS = [];
+                var os1 = document.querySelectorAll("#os1");
+                os1.forEach(function (elemento) {
+
+                    arrayOS.push(elemento.value);
+                });
+                console.log(arrayOS);
+                var arrayOS2 = [];
+                var os2 = document.querySelectorAll("#os2");
+                os1.forEach(function (elemento) {
+
+                    arrayOS2.push(elemento.value);
+                });
+                console.log(arrayOS2);
+                var ano = sessionStorage.getItem("ano");
+                var ano2 = sessionStorage.getItem("ano2");
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    exportEnabled: true,
+                    animationEnabled: true,
                     title: {
-                    text: "Quantidade de OS"
+                        text: "Quantidades de ordens de serviços no mês"
                     },
+                    subtitles: [{
+                            text: "Clica na legenda para mais informações"
+                        }],
                     axisX: {
-                    valueFormatString: "DD MMM"
+                        title: "Meses"
                     },
                     axisY: {
-                    title: "Number of Sales",
-                            suffix: "",
-                            minimum: 30
+
+                        scales: {
+                            y: {
+                                min: 0,
+                                max: 30,
+                                ticks: {
+                                    stepSize: 5
+                                }
+                            }
+                        },
+                        title: ano,
+                        titleFontColor: "#4F81BC",
+                        lineColor: "#4F81BC",
+                        labelFontColor: "#4F81BC",
+                        tickColor: "#4F81BC",
+                        includeZero: true
+                    },
+                    axisY2: {
+                        scales: {
+                            y: {
+                                min: 0,
+                                max: 30,
+                                ticks: {
+                                    stepSize: 5
+                                }
+                            }
+                        },
+                        title: ano2,
+                        titleFontColor: "#C0504E",
+                        lineColor: "#C0504E",
+                        labelFontColor: "#C0504E",
+                        tickColor: "#C0504E",
+                        includeZero: true
                     },
                     toolTip: {
-                    shared: true
+                        shared: true
                     },
                     legend: {
-                    cursor: "pointer",
-                            verticalAlign: "bottom",
-                            horizontalAlign: "left",
-                            dockInsidePlotArea: true,
-                            itemclick: toogleDataSeries
+                        cursor: "pointer",
+                        itemclick: toggleDataSeries
                     },
                     data: [{
-                    type: "line",
+                            type: "column",
+                            name: ano,
                             showInLegend: true,
-                            name: "Projected Sales",
-                            markerType: "square",
-                            xValueFormatString: "DD MMM, YYYY",
-                            color: "#F08080",
-                            yValueFormatString: "#,##",
+                            yValueFormatString: "#",
                             dataPoints: [
-            <c:forEach items="${os1}" var="os1">
-                            {x: new Date(2017, 10, 1), y: ${os1}}
-            </c:forEach>
+                                {label: "Jan", y: arrayOS[0]},
+                                {label: "Fev", y: arrayOS[1]},
+                                {label: "Mar", y: arrayOS[2]},
+                                {label: "Abr", y: arrayOS[3]},
+                                {label: "Maio", y: arrayOS[4]},
+                                {label: "Jun", y: arrayOS[5]},
+                                {label: "Jul", y: arrayOS[6]},
+                                {label: "Ago", y: arrayOS[7]},
+                                {label: "Set", y: arrayOS[8]},
+                                {label: "Out", y: arrayOS[9]},
+                                {label: "Nov", y: arrayOS[10]},
+                                {label: "Dez", y: arrayOS[11]}
                             ]
-                    },
-                    {
-                    type: "line",
+                        },
+                        {
+                            type: "column",
+                            name: ano2,
+                            axisYType: "secondary",
                             showInLegend: true,
-                            name: "Actual Sales",
-                            lineDashType: "dash",
-                            yValueFormatString: "#,##0K",
+                            yValueFormatString: "#",
                             dataPoints: [
-                            {x: new Date(2017, 10, 1), y: 60},
-                            {x: new Date(2017, 10, 2), y: 57},
-                            {x: new Date(2017, 10, 3), y: 51},
-                            {x: new Date(2017, 10, 4), y: 56},
-                            {x: new Date(2017, 10, 5), y: 54},
-                            {x: new Date(2017, 10, 6), y: 55},
-                            {x: new Date(2017, 10, 7), y: 54},
-                            {x: new Date(2017, 10, 8), y: 69},
-                            {x: new Date(2017, 10, 9), y: 65},
-                            {x: new Date(2017, 10, 10), y: 66},
-                            {x: new Date(2017, 10, 11), y: 63},
-                            {x: new Date(2017, 10, 12), y: 67},
-                            {x: new Date(2017, 10, 13), y: 66},
-                            {x: new Date(2017, 10, 14), y: 56},
-                            {x: new Date(2017, 10, 15), y: 64}
+                                {label: "Jan", y: os2[0].value},
+                                {label: "Fev", y: os2[1].value},
+                                {label: "Mar", y: os2[2].value},
+                                {label: "Abr", y: os2[3].value},
+                                {label: "Maio", y: os2[4].value},
+                                {label: "Jun", y: os2[5].value},
+                                {label: "Jul", y: os2[6].value},
+                                {label: "Ago", y: os2[7].value},
+                                {label: "Set", y: os2[8].value},
+                                {label: "Out", y: os2[9].value},
+                                {label: "Nov", y: os2[10].value},
+                                {label: "Dez", y: os2[11].value}
                             ]
-                    }]
-            };
-            $("#chartContainer").CanvasJSChart(options);
-            function toogleDataSeries(e) {
-            if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-            e.dataSeries.visible = false;
-            } else {
-            e.dataSeries.visible = true;
-            }
-            e.chart.render();
-            }
+                        }]
+                });
+                chart.render();
+                function toggleDataSeries(e) {
+                    if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                        e.dataSeries.visible = false;
+                    } else {
+                        e.dataSeries.visible = true;
+                    }
+                    e.chart.render();
+                }
 
             }
         </script>
     </head>
     <body>
         <main>
+            <c:forEach items="${os1}" var="os1">
+                <input type="hidden" value="${os1}" id="os1">
+            </c:forEach>
+            <br>
+            <c:forEach items="${os2}" var="os2">
+                <input type="hidden" value="${os2}" id="os2">
+            </c:forEach>
             <div id="chartContainer" style="height: 300px; width: 100%;"></div>
             <!-- JQuery -->
             <script src="js/jquery-3.6.0.min.js"></script>

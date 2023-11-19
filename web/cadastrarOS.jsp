@@ -60,14 +60,14 @@
                                 <label class="col-md-3">Data de Venda<sup class="text-danger">*</sup></label>
                                 <div class="col-md-5">
                                     <input type="date" name="dataSolicitacao" 
-                                           class="form-control" value="${ordemServico.dataSolicitacao}">
+                                           class="form-control" value="${ordemServico.dataVenda}">
                                 </div>
                             </div>
                             <div class="form-group row offset-md-2">
                                 <label class="col-md-3">Data de Vencimento</label>
                                 <div class="col-md-5">
                                     <input type="date" name="vencimento" 
-                                           class="form-control" value="${ordemServico.vencimento}">
+                                           class="form-control" value="${ordemServico.dataVencimento}">
                                 </div>
                             </div>
                             <div class="form-group row mt-5 offset-md-2">
