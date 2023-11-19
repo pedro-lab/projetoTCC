@@ -127,37 +127,28 @@
                                             </c:choose>
                                         </td>
                                         <td class="w-100">
-                                            <script type="text/javascript">
-                                                function confirmDesativar(id) {
-                                                    if (confirm("Deseja desativar a ordem de servico de numero " +
-                                                            id + "?")) {
-                                                        location.href = "gerenciarOrdemServico?acao=desativar&idOrdemServico=" + id+"&ano=<%=ano%>&mes=<%=mes%>";
-
-                                                    }
-
-                                                }
-
-                                                function confirmAtivar(id) {
-
-                                                    if (confirm("Deseja a ordem de servico de numero " +
-                                                            id + "?")) {
-                                                        location.href = "gerenciarOrdemServico?acao=ativar&idOrdemServico=" + id+"&ano=<%=ano%>&mes=<%=mes%>";
-
-                                                    }
-                                                }
-                                            </script>
+                                            <!--                                            <script type="text/javascript">
+                                                                                            function confirmDesativar(id) {
+                                                                                                if (confirm("Deseja desativar a ordem de servico de numero " +
+                                                                                                        id + "?")) {
+                                                                                                    location.href = "gerenciarOrdemServico?acao=desativar&idOrdemServico=" + id+"&ano=<%=ano%>&mes=<%=mes%>";
+                                            
+                                                                                                }
+                                            
+                                                                                            }
+                                            
+                                                                                            function confirmAtivar(id) {
+                                            
+                                                                                                if (confirm("Deseja a ordem de servico de numero " +
+                                                                                                        id + "?")) {
+                                                                                                    location.href = "gerenciarOrdemServico?acao=ativar&idOrdemServico=" + id+"&ano=<%=ano%>&mes=<%=mes%>";
+                                            
+                                                                                                }
+                                                                                            }
+                                                                                        </script>-->
                                             <a href="gerenciarOrdemServico?acao=alterar&idOrdemServico=${os.idOs}" 
                                                class="btn btn-warning btn-sm" role="button">Alterar</a>
-                                            <c:choose>
-                                                <c:when test="${os.status == 1}">
-                                                    <a class="btn btn-sm btn-danger " style="text-decoration: none"
-                                                       onclick="confirmDesativar('${os.idOs}')">Desativar</a>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <a class="btn btn-success btn-sm" 
-                                                       onclick="confirmAtivar('${os.idOs}')">Ativar</a>
-                                                </c:otherwise>
-                                            </c:choose>
+
                                             <a href="gerenciarOrdemServico?acao=atualizarEntrega&idOrdemServico=${os.idOs}&statusEntrega=Na loja&ano=<%=ano%>&mes=<%=mes%>" 
                                                class="btn btn-dark btn-sm" role="button">Confirmar</a>
                                         </td>
@@ -216,11 +207,11 @@
         var statusEntrega = document.querySelectorAll("#statusEntrega");
         var elementos = []
         statusEntrega.forEach(function (elemento) {
-            if(elemento.innerText == "Atrasado"){
+            if (elemento.innerText == "Atrasado") {
                 elemento.style.background = "#f17ea1";
-            }else if(elemento.innerText == "No prazo"){
+            } else if (elemento.innerText == "No prazo") {
                 elemento.style.background = "#fff000";
-            }else{
+            } else {
                 elemento.style.background = "#00ff00";
             }
 
