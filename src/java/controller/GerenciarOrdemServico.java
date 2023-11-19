@@ -152,7 +152,7 @@ public class GerenciarOrdemServico extends HttpServlet {
         }
 
         if (idUsuario.isEmpty() || idUsuario.equals("")) {
-            sessao.setAttribute("msg", "Informe o nome do Usuario!");
+            sessao.setAttribute("msg", "Ainda não está logado");
             exibirMensagem(request, response);
         } else {
             Usuario usuario = new Usuario();

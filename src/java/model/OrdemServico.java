@@ -33,6 +33,7 @@ public class OrdemServico {
     //Esse atribruto nao vai para o banco de dados
     public static Date dataAtual = new Date();
     private String statusVencimento;
+    private Date vencimento;
 
     public String verificaVencimento(Date data) {
         
@@ -43,13 +44,13 @@ public class OrdemServico {
         Calendar calendarioDataAtual = DataParaCalendario(dataAtual, true);
 
         try {
-            dataVencimento = df.parse(data1);
+            vencimento = df.parse(data1);
         } catch (ParseException e) {
             mensagem = "Error: " + e.getMessage();
             e.printStackTrace();
         }
 
-        Calendar calendarioDataVencimento = DataParaCalendario(dataVencimento, true);
+        Calendar calendarioDataVencimento = DataParaCalendario(vencimento, true);
 
 
         System.out.println(calendarioDataAtual + " */* " + calendarioDataVencimento);

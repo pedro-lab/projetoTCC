@@ -39,9 +39,9 @@
                     </div>
 
                     <%
-                                sessao.removeAttribute("msg");
+                                
                             }
-
+                            sessao.removeAttribute("msg");
                         }
 
                     %>

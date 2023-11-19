@@ -42,7 +42,7 @@
                     <%
 
                             }
-
+                            sessao.removeAttribute("msg");
                         }
 
                     %>
@@ -144,9 +144,9 @@
                             </div>
                             <div class="d-md-flex justify-content-md-end mt-5 mr-5">
                                 <button class="btn btn-primary mr-3">Gravar</button>
-                                <button href="" id="backListagem" 
-                                   class="btn  btn-warning" role="button">Voltar
-                                </button>
+                                <a href="" id="backListagem" 
+                                        class="btn  btn-warning" role="button">Voltar
+                                </a>
                             </div>
 
                         </form>
@@ -178,7 +178,7 @@
 
         var dataOS = document.getElementById("dataOS");
         dataOS.value = ano + "-" + mes + "-" + dia;
-        
+
         //input ano e mes 
         var inputAno = document.getElementById("ano");
         var inputMes = document.getElementById("mes");

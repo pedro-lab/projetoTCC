@@ -40,7 +40,7 @@ public class OrdemServicoDAO {
             os.setDataOS(rs.getDate("os.dataOS"));
             os.setDataVenda(rs.getDate("os.dataVenda"));
             os.setDataEntrega(rs.getDate("os.dataEntrega"));
-            os.setDataVencimento(rs.getDate("os.vencimento"));
+            os.setDataVencimento(rs.getDate("os.dataVencimento"));
             os.setStatus(rs.getInt("os.status"));
             os.setStatusEntrega(rs.getString("os.statusEntrega"));
             os.setCliente(cdao.getCarregarPorId(rs.getInt("c.idCliente")));
@@ -90,7 +90,6 @@ public class OrdemServicoDAO {
             os.setCliente(cdao.getCarregarPorId(rs.getInt("c.idCliente")));
             os.setLente(ldao.getCarregarPorId(rs.getInt("l.idLente")));
             os.setLaboratorio(labdao.getCarregarPorId(rs.getInt("lab.idLaboratorio")));
-            os.setStatusVencimento(os.verificaVencimento(os.getDataVencimento()));
             os.setDataOS(rs.getDate("os.dataOS"));
 
             ordemServicos.add(os);
@@ -130,7 +129,6 @@ public class OrdemServicoDAO {
             os.setCliente(cdao.getCarregarPorId(rs.getInt("c.idCliente")));
             os.setLente(ldao.getCarregarPorId(rs.getInt("l.idLente")));
             os.setLaboratorio(labdao.getCarregarPorId(rs.getInt("lab.idLaboratorio")));
-            os.setStatusVencimento(os.verificaVencimento(os.getDataVencimento()));
             os.setDataOS(rs.getDate("os.dataOS"));
         }
         ConexaoFactory.close(con);
