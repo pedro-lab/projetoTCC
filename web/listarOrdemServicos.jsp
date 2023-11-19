@@ -65,7 +65,7 @@
                         <h3 class="text-center">Ordem de Serviços de <%=mesN%> de <%=ano%></h3>
                         <a href="cadastrarOS.jsp" class="btn-sm btn-primary mb-5" 
                            role="button" style="text-decoration: none;display:inline-block;">Cadastrar OS</a>
-                        <table class="table table-hover table-striped table-bordered mt-3" id="mytable">
+                        <table class="table table-bordered mt-3" id="mytable">
                             <thead>
                                 <tr class="thead-dark">
                                     <th scope="col">OS</th>
@@ -80,7 +80,7 @@
                                     <th scope="col">Ação</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="table-light">
                                 <c:forEach items="${ordemServicos}" var="os">
                                     <tr>
                                         <td>${os.idOs}</td>
