@@ -23,14 +23,14 @@
                 var os1 = document.querySelectorAll("#os1");
                 os1.forEach(function (elemento) {
 
-                    arrayOS.push(elemento.value);
+                    arrayOS.push(parseInt(elemento.value));
                 });
                 console.log(arrayOS);
                 var arrayOS2 = [];
                 var os2 = document.querySelectorAll("#os2");
-                os1.forEach(function (elemento) {
+                os2.forEach(function (elementos) {
 
-                    arrayOS2.push(elemento.value);
+                    arrayOS2.push(parseInt(elementos.value));
                 });
                 console.log(arrayOS2);
                 var ano = sessionStorage.getItem("ano");
@@ -49,15 +49,6 @@
                     },
                     axisY: {
 
-                        scales: {
-                            y: {
-                                min: 0,
-                                max: 30,
-                                ticks: {
-                                    stepSize: 5
-                                }
-                            }
-                        },
                         title: ano,
                         titleFontColor: "#4F81BC",
                         lineColor: "#4F81BC",
@@ -66,15 +57,7 @@
                         includeZero: true
                     },
                     axisY2: {
-                        scales: {
-                            y: {
-                                min: 0,
-                                max: 30,
-                                ticks: {
-                                    stepSize: 5
-                                }
-                            }
-                        },
+
                         title: ano2,
                         titleFontColor: "#C0504E",
                         lineColor: "#C0504E",
@@ -116,18 +99,18 @@
                             showInLegend: true,
                             yValueFormatString: "#",
                             dataPoints: [
-                                {label: "Jan", y: os2[0].value},
-                                {label: "Fev", y: os2[1].value},
-                                {label: "Mar", y: os2[2].value},
-                                {label: "Abr", y: os2[3].value},
-                                {label: "Maio", y: os2[4].value},
-                                {label: "Jun", y: os2[5].value},
-                                {label: "Jul", y: os2[6].value},
-                                {label: "Ago", y: os2[7].value},
-                                {label: "Set", y: os2[8].value},
-                                {label: "Out", y: os2[9].value},
-                                {label: "Nov", y: os2[10].value},
-                                {label: "Dez", y: os2[11].value}
+                                {label: "Jan", y: arrayOS2[0]},
+                                {label: "Fev", y: arrayOS2[1]},
+                                {label: "Mar", y: arrayOS2[2]},
+                                {label: "Abr", y: arrayOS2[3]},
+                                {label: "Maio", y: arrayOS2[4]},
+                                {label: "Jun", y: arrayOS2[5]},
+                                {label: "Jul", y: arrayOS2[6]},
+                                {label: "Ago", y: arrayOS2[7]},
+                                {label: "Set", y: arrayOS2[8]},
+                                {label: "Out", y: arrayOS2[9]},
+                                {label: "Nov", y: arrayOS2[10]},
+                                {label: "Dez", y: arrayOS2[11]}
                             ]
                         }]
                 });
