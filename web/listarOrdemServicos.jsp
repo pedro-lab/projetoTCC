@@ -27,34 +27,68 @@
                 </div><!-- Fim da div menu -->
                 <main>
                     <div id="conteudo" class="bg-background">
-                        <div class="container">
-                            <h3 class="text-center">Listagem de Ordem de Servico</h3>
-                            <a href="cadastrarOS.jsp" class="btn-sm btn-primary mb-5" 
-                               role="button" style="text-decoration: none;display:inline-block;">Cadastrar OS</a>
-                            <table class="table table-hover table-striped table-bordered mt-3" id="mytable">
-                                <thead>
-                                    <tr class="thead-dark">
-                                        <th scope="col">OS</th>
-                                        <th scope="col">Cliente</th>
-                                        <th scope="col">Lente</th>
-                                        <th scope="col">Laboratorio</th>
-                                        <th scope="col">Data Venda</th>
-                                        <th scope="col">Vencimento</th>
-                                        <th scope="col">Ent. na loja</th>
-                                        <th scope="col">Status de Entrega</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Ação</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                    <%
+                        HttpSession sessao = request.getSession();
+
+                        String ano = (String) sessao.getAttribute("ano");
+                        String mes = (String) sessao.getAttribute("mes");
+                        String mesN;
+
+                        if (mes.equals("1")) {
+                            mesN = "Janeiro";
+                        } else if (mes.equals("2")) {
+                            mesN = "Fevereiro";
+                        } else if (mes.equals("3")) {
+                            mesN = "Março";
+                        } else if (mes.equals("4")) {
+                            mesN = "Abril";
+                        } else if (mes.equals("5")) {
+                            mesN = "Maio";
+                        } else if (mes.equals("6")) {
+                            mesN = "Junho";
+                        } else if (mes.equals("7")) {
+                            mesN = "Julho";
+                        } else if (mes.equals("8")) {
+                            mesN = "Agosto";
+                        } else if (mes.equals("9")) {
+                            mesN = "Setembro";
+                        } else if (mes.equals("10")) {
+                            mesN = "Outubro";
+                        } else if (mes.equals("11")) {
+                            mesN = "Novembro";
+                        } else {
+                            mesN = "Dezembro";
+                        }
+                    %>
+
+                    <div class="container" >
+                        <h3 class="text-center">Ordem de Serviços de <%=mesN%> de <%=ano%></h3>
+                        <a href="cadastrarOS.jsp" class="btn-sm btn-primary mb-5" 
+                           role="button" style="text-decoration: none;display:inline-block;">Cadastrar OS</a>
+                        <table class="table table-hover table-striped table-bordered mt-3" id="mytable">
+                            <thead>
+                                <tr class="thead-dark">
+                                    <th scope="col">OS</th>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Lente</th>
+                                    <th scope="col">Laboratorio</th>
+                                    <th scope="col">Data Venda</th>
+                                    <th scope="col">Vencimento</th>
+                                    <th scope="col">Ent. na loja</th>
+                                    <th scope="col">Status de Entrega</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 <c:forEach items="${ordemServicos}" var="os">
                                     <tr>
-                                        <td style="width:5px">${os.idOs}</td>
+                                        <td>${os.idOs}</td>
                                         <td>${os.cliente.nome}</td>
                                         <td>${os.lente.nome}/${os.lente.modelo}</td>
                                         <td>${os.laboratorio.nome}</td>
-                                        <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataSolicitacao}"></fmt:formatDate></td>
-                                        <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.vencimento}"></fmt:formatDate></td>
+                                        <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataVenda}"></fmt:formatDate></td>
+                                        <td><fmt:formatDate pattern="dd/MM/yyyy" value="${os.dataVencimento}"></fmt:formatDate></td>
                                             <td>
                                             <c:choose>
                                                 <c:when test="${empty os.dataEntrega}">
@@ -66,7 +100,7 @@
                                             </c:choose>
                                         </td>
 
-                                        <td>
+                                        <td id="statusEntrega">
                                             <jsp:useBean class="dao.OrdemServicoDAO" id="osdao"/>
                                             <c:if test="${empty os.statusEntrega}">
                                                 <c:choose>
@@ -81,8 +115,6 @@
                                             <c:if test="${not empty os.statusEntrega}">
                                                 ${os.statusEntrega}
                                             </c:if>
-
-
                                         </td>
                                         <td>
                                             <c:choose>
@@ -99,7 +131,7 @@
                                                 function confirmDesativar(id) {
                                                     if (confirm("Deseja desativar a ordem de servico de numero " +
                                                             id + "?")) {
-                                                        location.href = "gerenciarOrdemServico?acao=desativar&idOrdemServico=" + id;
+                                                        location.href = "gerenciarOrdemServico?acao=desativar&idOrdemServico=" + id+"&ano=<%=ano%>&mes=<%=mes%>";
 
                                                     }
 
@@ -109,7 +141,7 @@
 
                                                     if (confirm("Deseja a ordem de servico de numero " +
                                                             id + "?")) {
-                                                        location.href = "gerenciarOrdemServico?acao=ativar&idOrdemServico=" + id;
+                                                        location.href = "gerenciarOrdemServico?acao=ativar&idOrdemServico=" + id+"&ano=<%=ano%>&mes=<%=mes%>";
 
                                                     }
                                                 }
@@ -126,7 +158,7 @@
                                                        onclick="confirmAtivar('${os.idOs}')">Ativar</a>
                                                 </c:otherwise>
                                             </c:choose>
-                                            <a href="gerenciarOrdemServico?acao=atualizarEntrega&idOrdemServico=${os.idOs}&statusEntrega=Na loja" 
+                                            <a href="gerenciarOrdemServico?acao=atualizarEntrega&idOrdemServico=${os.idOs}&statusEntrega=Na loja&ano=<%=ano%>&mes=<%=mes%>" 
                                                class="btn btn-dark btn-sm" role="button">Confirmar</a>
                                         </td>
                                     </tr>
@@ -180,6 +212,19 @@
                                                            });
         </script>
     </body>
+    <script>
+        var statusEntrega = document.querySelectorAll("#statusEntrega");
+        var elementos = []
+        statusEntrega.forEach(function (elemento) {
+            if(elemento.innerText == "Atrasado"){
+                elemento.style.background = "#f17ea1";
+            }else if(elemento.innerText == "No prazo"){
+                elemento.style.background = "#fff000";
+            }else{
+                elemento.style.background = "#00ff00";
+            }
 
+        })
+    </script>
 
 </html>

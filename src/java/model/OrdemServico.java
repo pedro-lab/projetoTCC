@@ -2,6 +2,7 @@ package model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import lombok.AllArgsConstructor;
@@ -18,10 +19,11 @@ import lombok.ToString;
 public class OrdemServico {
 
     private int idOs;
-    private Date dataSolicitacao;
+    private Date dataVenda;
     private Date dataEntrega;
-    private Date vencimento;
+    private Date dataVencimento;
     private String statusEntrega;
+    private Date dataOS;
     private Usuario usuario;
     private Laboratorio laboratorio;
     private Lente lente;
@@ -31,7 +33,6 @@ public class OrdemServico {
     //Esse atribruto nao vai para o banco de dados
     public static Date dataAtual = new Date();
     private String statusVencimento;
-    private Date dataVencimento;
 
     public String verificaVencimento(Date data) {
         
@@ -71,5 +72,24 @@ public class OrdemServico {
         }
         return calendario;
 
+    }
+    
+    public ArrayList<String> meses (){
+        
+        ArrayList<String> meses = new ArrayList<>();
+        meses.add("Janeiro");
+        meses.add("Fevereiro");
+        meses.add("Março");
+        meses.add("Abril");
+        meses.add("Maio");
+        meses.add("Junho");
+        meses.add("Julho");
+        meses.add("Agosto");
+        meses.add("Setembro");
+        meses.add("Outubro");
+        meses.add("Novembro");
+        meses.add("Dezembro");
+        
+        return meses;
     }
 }
