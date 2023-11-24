@@ -89,6 +89,7 @@ public class OrdemServicoDAO {
             os.setStatusEntrega(rs.getString("os.statusEntrega"));
             os.setCliente(cdao.getCarregarPorId(rs.getInt("c.idCliente")));
             os.setLente(ldao.getCarregarPorId(rs.getInt("l.idLente")));
+            os.setStatusVencimento(os.verificaVencimento(rs.getDate("os.dataVencimento")));
             os.setLaboratorio(labdao.getCarregarPorId(rs.getInt("lab.idLaboratorio")));
             os.setDataOS(rs.getDate("os.dataOS"));
 
