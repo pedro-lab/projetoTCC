@@ -9,7 +9,7 @@
             <a class="navbar-brand icone" href="index.jsp" style="color: inherit;line-height: normal;vertical-align: central">
                 <img src="./imagens/logo.png" alt="Logo" width="50" height="50" 
                      class="d-inline-block align-text-top logo">
-                <div class="d-inline-block mt-2" style="vertical-align: text-top;">Otica Nova</div>
+                <div class="d-inline-block mt-2" style="vertical-align: text-top;">Ótica Nova</div>
             </a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
