@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="bootstrap/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="css/menu.css" type="text/css">
         <link rel="stylesheet" href="css/styles.css" type="text/css"/>
-        <title>Projeto ETB</title>
+        <title>Ótica Nova</title>
 
     </head>
     <body>

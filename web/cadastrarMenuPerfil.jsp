@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="css/styles.css" type="text/css"/>
         <link rel="stylesheet" href="datatables/dataTables.bootstrap4.min.css" type="text/css"/>
         <link rel="stylesheet" href="datatables/jquery.dataTables.min.css" type="text/css"/>
-        <title>Projeto ETB</title>
+        <title>Ótica Nova</title>
 
     </head>
     <body>
