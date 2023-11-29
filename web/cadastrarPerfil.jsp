@@ -42,7 +42,7 @@
                     <%
 
                             }
-
+                            sessao.removeAttribute("msg");
                         }
 
                     %>

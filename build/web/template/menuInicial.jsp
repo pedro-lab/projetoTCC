@@ -1,10 +1,10 @@
-<nav class="navbar" style="background-color: 	#fefefe;">
+<nav class="navbar">
 
     <div class="d-flex">
         <a class="navbar-brand icone" href="index.jsp" style="color: inherit;line-height: normal;vertical-align: central">
             <img src="./imagens/logo.png" alt="Logo" width="50" height="50" 
                  class="d-inline-block align-text-top logo">
-            <div class="d-inline-block mt-2" style="vertical-align: text-top;">Otica Nova</div>
+            <div class="d-inline-block mt-2" style="vertical-align: text-top;">Ótica Nova</div>
         </a>
     </div>
     <div class="d-flex">

@@ -33,6 +33,9 @@ public class GerenciarOrdemServico extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("utf-8");
         String acao = request.getParameter("acao");
+        String ano = request.getParameter("ano");
+        String ano2 = request.getParameter("ano2");
+        String mes = request.getParameter("mes");
         String idOs = request.getParameter("idOrdemServico");
         String statusEntrega = request.getParameter("statusEntrega");
 
@@ -40,18 +43,19 @@ public class GerenciarOrdemServico extends HttpServlet {
 
         OrdemServicoDAO osdao = new OrdemServicoDAO();
         OrdemServico os = new OrdemServico();
+        HttpSession sessao = request.getSession();
 
         try {
             if (acao.equals("listar")) {
                 ArrayList<OrdemServico> ordemServicos = new ArrayList<>();
-                ordemServicos = osdao.getLista();
-                System.out.println(ordemServicos.get(1).getStatusVencimento());
+                    ordemServicos = osdao.getLista(Integer.parseInt(mes),
+                        Integer.parseInt(ano));
                 RequestDispatcher dispatcher
                         = getServletContext().getRequestDispatcher("/listarOrdemServicos.jsp");
-
+                sessao.setAttribute("ano", ano);
+                sessao.setAttribute("mes", mes);
                 request.setAttribute("ordemServicos", ordemServicos);
                 dispatcher.forward(request, response);
-
             } else if (acao.equals("alterar")) {
 
                 os = osdao.getCarregarPorId(Integer.parseInt(idOs));
@@ -79,11 +83,26 @@ public class GerenciarOrdemServico extends HttpServlet {
                     mensagem = "Falha ao desativar a Ordem de Servico!";
                 }
             } else if (acao.equals("atualizarEntrega")) {
-                if (osdao.atualizaEntrega(Integer.parseInt(idOs),statusEntrega)) {
+                if (osdao.atualizaEntrega(Integer.parseInt(idOs), statusEntrega)) {
                     mensagem = "Ordem de Servico concluido!";
                 } else {
                     mensagem = "Falha a atualizar o status de entrega";
                 }
+            }else if(acao.equals("analise")){
+                ArrayList<Integer> quantidadeOS1 = new ArrayList<>();
+                ArrayList<Integer> quantidadeOS2 = new ArrayList<>();
+                
+                for (int i = 1; i <= 12; i++) {
+                    quantidadeOS1.add(osdao.quantidadeOS(Integer.parseInt(ano),i));
+                    quantidadeOS2.add(osdao.quantidadeOS(Integer.parseInt(ano2),i));
+                }
+                
+                RequestDispatcher dispatcher
+                        = getServletContext().getRequestDispatcher("/estatistica.jsp");
+                request.setAttribute("os1", quantidadeOS1);
+                request.setAttribute("os2", quantidadeOS2);
+                dispatcher.forward(request, response);
+                  
             } else {
                 response.sendRedirect("index.jsp");
             }
@@ -96,7 +115,7 @@ public class GerenciarOrdemServico extends HttpServlet {
         out.println(
                 "<script type='text/javascript'>"
                 + "alert('" + mensagem + "');"
-                + "location.href='gerenciarOrdemServico?acao=listar';"
+                + "location.href='gerenciarOrdemServico?acao=listar&ano="+ano+"&mes="+mes+"'"
                 + "</script>"
         );
     }
@@ -107,7 +126,10 @@ public class GerenciarOrdemServico extends HttpServlet {
         PrintWriter out = response.getWriter();
         String idOs = request.getParameter("idOs");
         String idUsuario = request.getParameter("idUsuario");
-        String dataSolicitacao = request.getParameter("dataSolicitacao");
+        String ano = request.getParameter("ano");
+        String mes = request.getParameter("mes");
+        String dataOS = request.getParameter("dataOS");
+        String dataVenda = request.getParameter("dataSolicitacao");
         String statusEntrega = request.getParameter("statusEntrega");
         String vencimento = request.getParameter("vencimento");
         String idCliente = request.getParameter("idCliente");
@@ -121,8 +143,6 @@ public class GerenciarOrdemServico extends HttpServlet {
         OrdemServicoDAO osdao = new OrdemServicoDAO();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
-        System.out.println(dataSolicitacao);
-
         if (!idOs.isEmpty()) {
             try {
                 os.setIdOs(Integer.parseInt(idOs));
@@ -132,7 +152,7 @@ public class GerenciarOrdemServico extends HttpServlet {
         }
 
         if (idUsuario.isEmpty() || idUsuario.equals("")) {
-            sessao.setAttribute("msg", "Informe o nome do Usuario!");
+            sessao.setAttribute("msg", "Ainda não está logado");
             exibirMensagem(request, response);
         } else {
             Usuario usuario = new Usuario();
@@ -145,12 +165,12 @@ public class GerenciarOrdemServico extends HttpServlet {
 
         }
 
-        if (dataSolicitacao.isEmpty() || dataSolicitacao.equals("")) {
+        if (dataVenda.isEmpty() || dataVenda.equals("")) {
             sessao.setAttribute("msg", "Informe a data de Venda!");
             exibirMensagem(request, response);
         } else {
             try {
-                os.setDataSolicitacao(df.parse(dataSolicitacao));
+                os.setDataVenda(df.parse(dataVenda));
             } catch (ParseException e) {
                 mensagem = "Error: " + e.getMessage();
                 e.printStackTrace();
@@ -158,11 +178,17 @@ public class GerenciarOrdemServico extends HttpServlet {
 
         }
 
-        System.out.println(dataSolicitacao);
+        try {
+            os.setDataOS(df.parse(dataOS));
+        } catch (ParseException e) {
+            mensagem = "Error: " + e.getMessage();
+            e.printStackTrace();
+        }
+
         //Para atributos em que o valor pode ser nulo
         try {
             Date dataEntrega = null;
-            os.setVencimento(df.parse(vencimento));
+            os.setDataVencimento(df.parse(vencimento));
             os.setDataEntrega(dataEntrega);
         } catch (ParseException e) {
             mensagem = "Error: " + e.getMessage();
@@ -209,7 +235,7 @@ public class GerenciarOrdemServico extends HttpServlet {
         }
 
         os.setStatusEntrega(statusEntrega);
-        
+
         if (status.isEmpty() || status.equals("")) {
             sessao.setAttribute("msg", "Informe o status do Usuário!");
             exibirMensagem(request, response);
@@ -217,13 +243,12 @@ public class GerenciarOrdemServico extends HttpServlet {
             os.setStatus(Integer.parseInt(status));
         }
 
-        if (os.getStatusEntrega()== null) {
+        if (os.getStatusEntrega() == null) {
             os.setStatusEntrega("");
         }
-        
+
         try {
             if (osdao.gravar(os)) {
-                System.out.println(os);
                 mensagem = "Ordem de servico salvo na base de dados!";
             } else {
                 mensagem = "Falha ao salvar o ordem de servico na base de dados!";
@@ -232,11 +257,10 @@ public class GerenciarOrdemServico extends HttpServlet {
             mensagem = "Error: " + e.getMessage();
             e.printStackTrace();
         }
-
         out.println(
                 "<script type='text/javascript'>"
                 + "alert('" + mensagem + "');"
-                + "location.href='gerenciarOrdemServico?acao=listar';"
+                + "location.href='gerenciarOrdemServico?acao=listar&ano="+ano+"&mes="+mes+"';"
                 + "</script>"
         );
 

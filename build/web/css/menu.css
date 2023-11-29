@@ -36,10 +36,6 @@ header{
     outline: none;
 }
 
-.navbar-collapse{
-    background: #fafafa;
-}
-
 .icone:hover{
     font-size: 24px;
     color: #f1b0b7;
