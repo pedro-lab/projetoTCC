@@ -81,7 +81,7 @@
                                                     }
                                                 }
                                             </script>
-                                            <a href="gerenciarLaboratorio?acao=alterar&idLaboratorio=${l.idLaboratorio}" 
+                                            <a href="gerenciarCliente?acao=alterar&idCliente=${c.idCliente}" 
                                                class="btn btn-warning btn-sm" role="button">Alterar</a>
                                             <c:choose>
                                                 <c:when test="${c.status == 1}">

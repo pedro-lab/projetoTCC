@@ -61,7 +61,7 @@
                             <div class="form-group row offset-md-2">
                                 <label class="col-md-3">CPF</label>
                                 <div class="col-md-5">
-                                    <input type="text" name="cpf" id="cpf" maxlength="11"
+                                    <input type="text" name="cpf" id="cpf" maxlength="14"
                                            class="form-control" value="${cliente.cpf}">
                                 </div>
                             </div>
