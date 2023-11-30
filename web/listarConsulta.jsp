@@ -33,7 +33,7 @@
                     <div id="conteudo" class="bg-background">
                         <div class="container">
                             <h3 class="text-center">Listagem de Consultas</h3>
-                            <a href="" class="btn-sm btn-primary mb-5" 
+                            <a href="cadastrarConsulta.jsp" class="btn-sm btn-primary mb-5" 
                                role="button" style="text-decoration: none;display:inline-block;">Agendamento</a>
                             <table class="table table-hover table-striped table-bordered mt-3" id="mytable">
                                 <thead>

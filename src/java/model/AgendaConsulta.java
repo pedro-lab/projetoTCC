@@ -19,6 +19,5 @@ public class AgendaConsulta {
     private String observacoes;
     private String confirmacao;
     private Cliente cliente;
-    private String nomeMedico;
             
 }

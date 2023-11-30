@@ -21,7 +21,7 @@ public class AgendaConsultaDAO {
 
         ArrayList<AgendaConsulta> consultas = new ArrayList<>();
         sql = "SELECT con.idConsulta,con.dia_hora,con.observacoes,con.confirmacao,"
-                + "con.nomeMedico,c.nome,c.dataNasc,c.idade,c.telefone,c.idCliente "
+                + "c.nome,c.dataNasc,c.idade,c.telefone,c.idCliente "
                 + "FROM cliente c INNER JOIN agendaConsulta con "
                 + " ON c.idCliente = con.idCliente";
 
@@ -36,7 +36,6 @@ public class AgendaConsultaDAO {
             consulta.setConfirmacao(rs.getString("con.confirmacao"));
             consulta.setDiaHora(rs.getDate("con.dia_hora"));
             consulta.setIdConsulta(rs.getInt("con.idConsulta"));
-            consulta.setNomeMedico(rs.getString("con.nomeMedico"));
             consulta.setObservacoes(rs.getString("con.observacoes"));
             consulta.setCliente(clientedao.getCarregarPorId(rs.getInt("c.idCliente")));
 
@@ -51,7 +50,7 @@ public class AgendaConsultaDAO {
 
         ArrayList<AgendaConsulta> consultas = new ArrayList<>();
         sql = "SELECT con.idConsulta,con.dia_hora,con.observacoes,con.confirmacao,"
-                + "con.nomeMedico,c.nome,c.dataNasc,c.idade,c.telefone,c.idCliente "
+                + "c.nome,c.dataNasc,c.idade,c.telefone,c.idCliente "
                 + "FROM cliente c INNER JOIN agendaConsulta con "
                 + " ON c.idCliente = con.idCliente WHERE "
                 + "dia_hora BETWEEN ? AND ?";
@@ -69,7 +68,6 @@ public class AgendaConsultaDAO {
             consulta.setConfirmacao(rs.getString("con.confirmacao"));
             consulta.setDiaHora(rs.getDate("con.dia_hora"));
             consulta.setIdConsulta(rs.getInt("con.idConsulta"));
-            consulta.setNomeMedico(rs.getString("con.nomeMedico"));
             consulta.setObservacoes(rs.getString("con.observacoes"));
             consulta.setCliente(clientedao.getCarregarPorId(rs.getInt("c.idCliente")));
 
@@ -82,7 +80,7 @@ public class AgendaConsultaDAO {
 
     public AgendaConsulta getCarregarPorId(int idConsulta) throws SQLException {
         sql = "SELECT con.idConsulta,con.dia_hora,con.observacoes,con.confirmacao,"
-                + "con.nomeMedico,c.nome,c.dataNasc,c.idade,c.telefone,c.idCliente "
+                + "c.nome,c.dataNasc,c.idade,c.telefone,c.idCliente "
                 + "FROM cliente c INNER JOIN agendaConsulta con "
                 + " ON c.idCliente = con.idCliente WHERE con.idConsulta = ?";
 
@@ -99,7 +97,6 @@ public class AgendaConsultaDAO {
             consulta.setConfirmacao(rs.getString("con.confirmacao"));
             consulta.setDiaHora(rs.getDate("con.dia_hora"));
             consulta.setIdConsulta(rs.getInt("con.idConsulta"));
-            consulta.setNomeMedico(rs.getString("con.nomeMedico"));
             consulta.setObservacoes(rs.getString("con.observacoes"));
             consulta.setCliente(clientedao.getCarregarPorId(rs.getInt("c.idCliente")));
         }
@@ -112,26 +109,24 @@ public class AgendaConsultaDAO {
         con = ConexaoFactory.conectar();
 
         if (c.getIdConsulta() == 0) {
-            sql = "INSERT INTO agendaconsulta (dia_hora,observacoes,confirmacao,nomeMedico,idCliente) "
+            sql = "INSERT INTO agendaconsulta (dia_hora,observacoes,confirmacao,idCliente) "
                     + "VALUES (?, ?, ?, ?, ?)";
             ps = con.prepareStatement(sql);
             ps.setDate(1, new Date(c.getDiaHora().getTime()));
             ps.setString(2, c.getObservacoes());
             ps.setString(3, c.getConfirmacao());
-            ps.setString(4, c.getNomeMedico());
-            ps.setInt(5, c.getCliente().getIdCliente());
+            ps.setInt(4, c.getCliente().getIdCliente());
 
         } else {
             sql = "UPDATE agendaconsulta SET dia_hora = ?, observacoes = ?, confirmacao = ?, "
-                    + "nomeMedico = ?,idCliente = ? WHERE idConsulta = ? ";
+                    + "idCliente = ? WHERE idConsulta = ? ";
 
             ps = con.prepareStatement(sql);
             ps.setDate(1, new Date(c.getDiaHora().getTime()));
             ps.setString(2, c.getObservacoes());
             ps.setString(3, c.getConfirmacao());
-            ps.setString(4, c.getNomeMedico());
-            ps.setInt(5, c.getCliente().getIdCliente());
-            ps.setInt(6, c.getIdConsulta());
+            ps.setInt(4, c.getCliente().getIdCliente());
+            ps.setInt(5, c.getIdConsulta());
 
         }
         ps.executeUpdate();
