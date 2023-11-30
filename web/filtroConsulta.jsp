@@ -31,10 +31,10 @@
 
                     <div class="col-md-8" style="text-align: center ">
                         <label class="mr-2">De</label>
-                        <input type="date" required="" name="dataInicial" 
+                        <input type="date" required="" name="dataInicial" id="dataInicial"
                                class="form-control d-inline-block" style="width: 150px">
                         <label>até</label>
-                        <input type="date" required="" name="dataFinal" 
+                        <input type="date" required="" name="dataFinal" id="dataFinal"
                                class="form-control d-inline-block" style="width: 150px">
                     </div>
 
@@ -58,6 +58,19 @@
         <script src="datatables/dataTables.bootstrap4.min.js"></script>
         <!-- Configuracao da tabela com JQuery -->
     </body>
+    <script>
+        var filtro = document.querySelector("#filtro")
 
+        filtro.addEventListener("click", function () {
+ 
+            var dataInicial = document.querySelector("#dataInicial").value;
+            var dataFinal = document.querySelector("#dataFinal").value;
+
+            location.href = "gerenciarAgendaConsulta?acao=listar&dataInicial=" + dataInicial +
+                    "&dataFinal=" + dataFinal;
+        });
+
+
+    </script>
 
 </html>
