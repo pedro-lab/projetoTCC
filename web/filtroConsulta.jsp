@@ -26,32 +26,16 @@
             <main>
                 <div id="conteudo" class="bg-background">
 
-                    <div class="form-group row mt-5 offset-md-2">
-                        <label class="col-md-3">Informe o ano da OS</label>
-                        <div class="col-md-2">
-                            <input type="number" name="filtro" id="ano" class="form-control">
-                        </div>
-
-
                     </div>
                     <div class="form-group row mt-5 offset-md-2">
-                        <label class="col-md-3">Informe o mês dos Registros</label>
-                        <div class="col-md-5">
-                            <select name="meses" id="meses" class="form-control-sm">
-                                <option value="1">Janeiro</option>
-                                <option value="2">Fevereito</option>
-                                <option value="3">Março</option>
-                                <option value="4">Abril</option>
-                                <option value="5">Maio</option>
-                                <option value="6">Junho</option>
-                                <option value="7">Julho</option>
-                                <option value="8">Agosto</option>
-                                <option value="9">Setembro</option>
-                                <option value="10">Outubro</option>
-                                <option value="11">Novembro</option>
-                                <option value="12">Dezembro</option>
-                            </select>
-
+                        
+                        <div class="col-md-5" style="text-align: center ">
+                            <label>De</label>
+                            <input type="date" required="" name="dataInicial" 
+                                   class="form-control d-inline-block" style="width: 150px">
+                            <label>até</label>
+                            <input type="date" required="" name="dataFinal" 
+                                   class="form-control d-inline-block" style="width: 150px">
                         </div>
 
                     </div>
