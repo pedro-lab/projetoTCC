@@ -48,7 +48,7 @@
 
                     %>
                     <div class="container">
-                        <form action="gerenciarCliente?acao=cadastrar" method="post" class="form-group">
+                        <form action="gerenciarCliente?acao=cadastrar" method="POST" class="form-group">
                             <h3 class="text-center">Cadastro de Cliente</h3>
                             <input type="hidden" name="idCliente" value="${cliente.idCliente}">
                             <input type="hidden" name="dataAtual" id="dataAtual" value="">
@@ -85,11 +85,11 @@
                                     <select class="form-control-sm" name="status">
                                         <option value="">Escolha uma opção</option>
                                         <option value="1"
-                                                <c:if test="${laboratorio.status == 1}">
+                                                <c:if test="${cliente.status == 1}">
                                                     selected
                                                 </c:if>>Ativado</option>
                                         <option value="0"
-                                                <c:if test="${laboratorio.status == 0}">
+                                                <c:if test="${cliente.status == 0}">
                                                     selected
                                                 </c:if>>Desativado</option>
                                     </select>
@@ -139,16 +139,17 @@
 
         //Passa o ano atual pelo input hidden
 
-        var inputDataAtual = document.querySelector("#dataAtual")
-        var dataAtual = new Date()
+        var inputDataAtual = document.querySelector("#dataAtual");
+        var dataAtual = new Date();
 
         var dia = dataAtual.getDate();
+        var mes = dataAtual.getMonth() + 1;
         dia = dia.toString()
         if (dia.length === 1) {
             dia = "0" + dia;
         }
 
-        inputDataAtual.value = dataAtual.getFullYear() + "-" + dataAtual.getMonth() + "-" + dia
+        inputDataAtual.value = dataAtual.getFullYear() + "-" + mes + "-" + dia;
         
     </script>
 </html>

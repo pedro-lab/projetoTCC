@@ -183,13 +183,16 @@ public class GerenciarCliente extends HttpServlet {
         int mesAtual = Integer.parseInt(dataSeparadaAtual[1]);
         int diaAtual = Integer.parseInt(dataSeparadaAtual[2]);
         
+        System.out.println(anoAtual+"-"+mesAtual+"-"+diaAtual);
+        System.out.println(anoNasc+"-"+mesNasc+"-"+diaNasc);
+        
         if(mesNasc < mesAtual){
             return anoAtual - anoNasc;
         }else if(mesNasc == mesAtual){
-            if(diaNasc >= diaAtual){
-                return anoAtual - anoNasc - 1;
-            }else{
+            if(diaNasc <= diaAtual){
                 return anoAtual - anoNasc;
+            }else{
+                return anoAtual - anoNasc - 1;
             }
         }else{
             return anoAtual - anoNasc - 1;
