@@ -89,8 +89,8 @@ public class GerenciarCliente extends HttpServlet {
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
         String telefone = request.getParameter("telefone");
-        String idade = request.getParameter("idade");
         String dataNasc = request.getParameter("dataNasc");
+        String dataAtual = request.getParameter("dataAtual");
         String status = request.getParameter("status");
         Cliente c = new Cliente();
         ClienteDAO cdao = new ClienteDAO();
@@ -112,7 +112,6 @@ public class GerenciarCliente extends HttpServlet {
 
         //Valores que podem ser nulos
         c.setCpf(cpf);
-        c.setIdade(Integer.parseInt(idade));
         
         if (telefone.isEmpty() || telefone.equals("")) {
             sessao.setAttribute("msg", "Informe o telefone do Cliente!");
@@ -127,12 +126,15 @@ public class GerenciarCliente extends HttpServlet {
         }else{
             try {
                 c.setDataNasc(df.parse(dataNasc));
+                c.setIdade(calculaIdade(dataNasc, dataAtual));
             } catch (ParseException e) {
                 mensagem = "Error: " + e.getMessage();
                 e.printStackTrace();
             }
             
         }
+
+
         
         if (status.isEmpty() || status.equals("")) {
             sessao.setAttribute("msg", "Informe o status do Cliente!");
@@ -165,6 +167,32 @@ public class GerenciarCliente extends HttpServlet {
         RequestDispatcher dispatcher = getServletContext().
                 getRequestDispatcher("/cadastrarCliente.jsp");
         dispatcher.forward(request, response);
+    }
+
+    private int calculaIdade(String dataNasc, String dataAtual){
+
+        String[] dataSeparadaNasc = dataNasc.split("-");
+        String[] dataSeparadaAtual = dataNasc.split("-");
+        
+        int anoNasc = Integer.parseInt(dataSeparadaNasc[0]);
+        int mesNasc = Integer.parseInt(dataSeparadaNasc[1]);
+        int diaNasc = Integer.parseInt(dataSeparadaNasc[2]);
+        
+        int anoAtual = Integer.parseInt(dataSeparadaAtual[0]);
+        int mesAtual = Integer.parseInt(dataSeparadaAtual[1]);
+        int diaAtual = Integer.parseInt(dataSeparadaAtual[2]);
+        
+        if(mesNasc < mesAtual){
+            return anoAtual - anoNasc + 1;
+        }else if(mesNasc == mesAtual){
+            if(diaNasc >= diaAtual){
+                return anoAtual - anoNasc;
+            }else{
+                return anoAtual - anoNasc + 1;
+            }
+        }else{
+            return anoAtual - anoNasc;
+        }
     }
 
 }

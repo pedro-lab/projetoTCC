@@ -173,7 +173,6 @@
         dia = dia.toString()
         if (dia.length === 1) {
             dia = "0" + dia;
-            console.log("entrou")
         }
 
         var dataOS = document.getElementById("dataOS");

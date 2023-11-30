@@ -51,7 +51,7 @@
                         <form action="gerenciarCliente?acao=cadastrar" method="post" class="form-group">
                             <h3 class="text-center">Cadastro de Cliente</h3>
                             <input type="hidden" name="idCliente" value="${cliente.idCliente}">
-
+                            <input type="hidden" name="dataAtual" id="dataAtual" value="">
                             <div class="form-group row mt-5 offset-md-2">
                                 <label class="col-md-3">Nome<sup class="text-danger">*</sup></label>
                                 <div class="col-md-5">
@@ -70,13 +70,6 @@
                                 <div class="col-md-5">
                                     <input type="tel" name="telefone" id="telefone" maxlength="15"
                                            class="form-control" value="${cliente.telefone}">
-                                </div>
-                            </div>
-                            <div class="form-group row offset-md-2">
-                                <label class="col-md-3">Idade</label>
-                                <div class="col-md-5">
-                                    <input type="number" name="idade" 
-                                           class="form-control" value="${cliente.idade}">
                                 </div>
                             </div>
                             <div class="form-group row offset-md-2">
@@ -144,17 +137,18 @@
             tel.value = valor // Insere o(s) valor(es) no campo
         }
 
-        //calculo de idade pela data de nascimento
-        
-        const dataNasc = document.querySelector("#dataNasc")
-        const data = new Date; //data Atual
-        const dia = data.getDate()
-        const mes = data.getMonth()
-        const ano = data.getFullYear()
+        //Passa o ano atual pelo input hidden
 
-        var idade
-        alert(dataNasc.value)
-        
+        var inputDataAtual = document.querySelector("#dataAtual")
+        var dataAtual = new Date()
 
+        var dia = dataAtual.getDate();
+        dia = dia.toString()
+        if (dia.length === 1) {
+            dia = "0" + dia;
+        }
+
+        inputDataAtual.value = dataAtual.getFullYear() + "-" + dataAtual.getMonth() + "-" + dia
+        
     </script>
 </html>
