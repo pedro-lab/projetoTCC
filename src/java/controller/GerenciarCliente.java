@@ -34,7 +34,7 @@ public class GerenciarCliente extends HttpServlet {
         ClienteDAO cdao = new ClienteDAO();
 
         try {
-            if (acao.equals("listar")) {
+            if(acao.equals("listar")) {
                 ArrayList<Cliente> clientes = new ArrayList<>();
                 clientes = cdao.getLista();
                 RequestDispatcher dispatcher
