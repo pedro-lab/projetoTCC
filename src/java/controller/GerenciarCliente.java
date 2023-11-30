@@ -173,7 +173,7 @@ public class GerenciarCliente extends HttpServlet {
     private int calculaIdade(String dataNasc, String dataAtual){
 
         String[] dataSeparadaNasc = dataNasc.split("-");
-        String[] dataSeparadaAtual = dataNasc.split("-");
+        String[] dataSeparadaAtual = dataAtual.split("-");
         
         int anoNasc = Integer.parseInt(dataSeparadaNasc[0]);
         int mesNasc = Integer.parseInt(dataSeparadaNasc[1]);
@@ -184,15 +184,15 @@ public class GerenciarCliente extends HttpServlet {
         int diaAtual = Integer.parseInt(dataSeparadaAtual[2]);
         
         if(mesNasc < mesAtual){
-            return anoAtual - anoNasc + 1;
+            return anoAtual - anoNasc;
         }else if(mesNasc == mesAtual){
             if(diaNasc >= diaAtual){
-                return anoAtual - anoNasc;
+                return anoAtual - anoNasc - 1;
             }else{
-                return anoAtual - anoNasc + 1;
+                return anoAtual - anoNasc;
             }
         }else{
-            return anoAtual - anoNasc;
+            return anoAtual - anoNasc - 1;
         }
     }
 

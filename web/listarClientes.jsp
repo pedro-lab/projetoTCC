@@ -90,7 +90,7 @@
                                                 </c:when>
                                                 <c:otherwise>
                                                     <a class="btn btn-success btn-sm" 
-                                                       onclick="confirmAtivar('${c.idLaboratorio}', '${c.nome}')">Ativar</a>
+                                                       onclick="confirmAtivar('${c.idCliente}', '${c.nome}')">Ativar</a>
                                                 </c:otherwise>
                                             </c:choose>
                                         </td>
