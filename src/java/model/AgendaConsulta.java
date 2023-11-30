@@ -14,4 +14,10 @@ import lombok.ToString;
 @ToString
 public class AgendaConsulta {
     
+    private int idConsulta;
+    private Date diaHora;
+    private String observacoes;
+    private String confirmacao;
+    private Cliente cliente;
+            
 }
