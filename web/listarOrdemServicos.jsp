@@ -127,25 +127,6 @@
                                             </c:choose>
                                         </td>
                                         <td class="w-100">
-                                            <!--                                            <script type="text/javascript">
-                                                                                            function confirmDesativar(id) {
-                                                                                                if (confirm("Deseja desativar a ordem de servico de numero " +
-                                                                                                        id + "?")) {
-                                                                                                    location.href = "gerenciarOrdemServico?acao=desativar&idOrdemServico=" + id+"&ano=<%=ano%>&mes=<%=mes%>";
-                                            
-                                                                                                }
-                                            
-                                                                                            }
-                                            
-                                                                                            function confirmAtivar(id) {
-                                            
-                                                                                                if (confirm("Deseja a ordem de servico de numero " +
-                                                                                                        id + "?")) {
-                                                                                                    location.href = "gerenciarOrdemServico?acao=ativar&idOrdemServico=" + id+"&ano=<%=ano%>&mes=<%=mes%>";
-                                            
-                                                                                                }
-                                                                                            }
-                                                                                        </script>-->
                                             <a href="gerenciarOrdemServico?acao=alterar&idOrdemServico=${os.idOs}" 
                                                class="btn btn-warning btn-sm" role="button">Alterar</a>
 
@@ -157,7 +138,7 @@
                             </tbody>
                         </table>
                         <div class="d-md-flex justify-content-md-end mt-5 mr-5">
-                            <a href="opcoes.jsp" 
+                            <a href="filtro.jsp" 
                                class="btn  btn-warning" role="button">Voltar
                             </a>
                         </div>

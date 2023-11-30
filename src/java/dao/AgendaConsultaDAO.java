@@ -47,19 +47,19 @@ public class AgendaConsultaDAO {
         return consultas;
     }
 
-    public ArrayList<AgendaConsulta> getLista(Date dataInicial,Date DataFinal) throws SQLException {
+    public ArrayList<AgendaConsulta> getLista(String dataInicial,String dataFinal) throws SQLException {
 
         ArrayList<AgendaConsulta> consultas = new ArrayList<>();
         sql = "SELECT con.idConsulta,con.dia_hora,con.observacoes,con.confirmacao,"
                 + "con.nomeMedico,c.nome,c.dataNasc,c.idade,c.telefone,c.idCliente "
                 + "FROM cliente c INNER JOIN agendaConsulta con "
-                + " ON c.idCliente = con.idCliente "
+                + " ON c.idCliente = con.idCliente WHERE "
                 + "dia_hora BETWEEN ? AND ?";
 
         con = ConexaoFactory.conectar();
         ps = con.prepareStatement(sql);
-        ps.setDate(1, dataInicial);
-        ps.setDate(2, DataFinal);
+        ps.setString(1, dataInicial);
+        ps.setString(2, dataFinal);
         rs = ps.executeQuery();
 
         while (rs.next()) {

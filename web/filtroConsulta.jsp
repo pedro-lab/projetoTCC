@@ -62,12 +62,17 @@
         var filtro = document.querySelector("#filtro")
 
         filtro.addEventListener("click", function () {
- 
+
             var dataInicial = document.querySelector("#dataInicial").value;
             var dataFinal = document.querySelector("#dataFinal").value;
 
-            location.href = "gerenciarAgendaConsulta?acao=listar&dataInicial=" + dataInicial +
-                    "&dataFinal=" + dataFinal;
+            if (dataInicial == "" || dataFinal == "") {
+                alert("Preencha todos os campos de datas");
+            } else {
+
+                location.href = "gerenciarAgendaConsulta?acao=listar&dataInicial=" + dataInicial +
+                        "&dataFinal=" + dataFinal;
+            }
         });
 
 
