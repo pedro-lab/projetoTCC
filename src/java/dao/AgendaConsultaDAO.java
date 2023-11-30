@@ -106,23 +106,23 @@ public class AgendaConsultaDAO {
         return true;
     }
 
-    public boolean desativar(Usuario u) throws SQLException {
+    public boolean desativar(AgendaConsulta consulta) throws SQLException {
 
-        sql = "UPDATE usuario SET status = 0 WHERE idUsuario = ?";
+        sql = "UPDATE agendaConsulta SET status = 0 WHERE idConsulta = ?";
         con = ConexaoFactory.conectar();
         ps = con.prepareStatement(sql);
-        ps.setInt(1, u.getIdUsuario());
+        ps.setInt(1, consulta.getIdConsulta());
         ps.executeUpdate();
         ConexaoFactory.close(con);
         return true;
     }
 
-    public boolean ativar(Usuario u) throws SQLException {
+    public boolean ativar(AgendaConsulta consulta) throws SQLException {
 
-        sql = "UPDATE usuario SET status = 1 WHERE idUsuario = ?";
+        sql = "UPDATE agendaConsulta SET status = 1 WHERE idConsulta = ?";
         con = ConexaoFactory.conectar();
         ps = con.prepareStatement(sql);
-        ps.setInt(1, u.getIdUsuario());
+        ps.setInt(1, consulta.getIdConsulta());
         ps.executeUpdate();
         ConexaoFactory.close(con);
         return true;
