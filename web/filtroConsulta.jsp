@@ -25,27 +25,26 @@
             </div><!-- Fim da div menu -->
             <main>
                 <div id="conteudo" class="bg-background">
-                    <h1 class="text-center m-2">Filtro de agendamento de consulta</h1>
-                    </div>
-                    <div class="form-group row mt-5 offset-md-2">
-                        
-                        <div class="col-md-8" style="text-align: center ">
-                            <label class="mr-2">De</label>
-                            <input type="date" required="" name="dataInicial" 
-                                   class="form-control d-inline-block" style="width: 150px">
-                            <label>até</label>
-                            <input type="date" required="" name="dataFinal" 
-                                   class="form-control d-inline-block" style="width: 150px">
-                        </div>
+                    <h1 class="text-center m-2">Filtro de agendamento de consultas</h1>
+                </div>
+                <div class="form-group row mt-5 offset-md-2">
 
+                    <div class="col-md-8" style="text-align: center ">
+                        <label class="mr-2">De</label>
+                        <input type="date" required="" name="dataInicial" 
+                               class="form-control d-inline-block" style="width: 150px">
+                        <label>até</label>
+                        <input type="date" required="" name="dataFinal" 
+                               class="form-control d-inline-block" style="width: 150px">
                     </div>
-                    <div class="d-md-flex justify-content-md-center mt-5 mr-5">
-                        <button class="btn btn-info" id="filtro">Filtrar</button>
-                        
-                        <a href="opcoes.jsp" 
-                           class="btn btn-warning ml-4" role="button">Voltar
-                        </a>
-                    </div>
+
+                </div>
+                <div class="d-md-flex justify-content-md-center mt-5 mr-5">
+                    <button class="btn btn-info" id="filtro">Filtrar</button>
+
+                    <a href="opcoes.jsp" 
+                       class="btn btn-warning ml-4" role="button">Voltar
+                    </a>
                 </div><!-- Fim da div conteudo -->
             </main>
         </div><!-- Fim da div container -->
@@ -58,38 +57,6 @@
         <!-- Datables.Bootstrap.min -->
         <script src="datatables/dataTables.bootstrap4.min.js"></script>
         <!-- Configuracao da tabela com JQuery -->
-        <script>
-
-            var ano = document.querySelector("#ano");
-
-            // Esse trecho serve para o input ano ficar com o ano atual
-            const dataAtual = new Date();
-            const anoAtual = dataAtual.getFullYear();
-            ano.value = anoAtual;
-            // Esse trecho serve para o filtro do mes fique por padrao no
-            // mes atual
-
-            var meses = document.getElementById("meses");
-            const mesAtual = dataAtual.getMonth();
-
-            meses.options = mesAtual;
-            meses.childNodes[mesAtual * 2 + 1].selected = true;
-
-
-            filtro.addEventListener("click", function () {
-
-                /*O sessionStorage ele armazenará no navegador
-                 * o ano e o mes para ser usado no butão de voltar
-                 * para o pagina cadastrarOS.jsp
-                 */
-                sessionStorage.setItem("ano", ano.value);
-                sessionStorage.setItem("mes", meses.value);
-                location.href = "gerenciarOrdemServico?acao=listar&ano=" + ano.value +
-                        "&mes=" + meses.value;
-            });
-
-
-        </script>
     </body>
 
 
