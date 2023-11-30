@@ -25,12 +25,12 @@
             </div><!-- Fim da div menu -->
             <main>
                 <div id="conteudo" class="bg-background">
-
+                    <h1 class="text-center m-2">Filtro de agendamento de consulta</h1>
                     </div>
                     <div class="form-group row mt-5 offset-md-2">
                         
-                        <div class="col-md-5" style="text-align: center ">
-                            <label>De</label>
+                        <div class="col-md-8" style="text-align: center ">
+                            <label class="mr-2">De</label>
                             <input type="date" required="" name="dataInicial" 
                                    class="form-control d-inline-block" style="width: 150px">
                             <label>até</label>
