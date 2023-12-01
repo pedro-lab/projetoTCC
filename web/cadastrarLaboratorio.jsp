@@ -59,24 +59,24 @@
                                 </div>
                             </div>
                             <div class="form-group row offset-md-2">
-                                <label class="col-md-3">Endereco<sup class="text-danger">*</sup></label>
+                                <label class="col-md-3">Endereco</label>
                                 <div class="col-md-5">
                                     <input type="text" name="endereco" 
                                            class="form-control" value="${laboratorio.endereco}">
                                 </div>
                             </div>
                             <div class="form-group row offset-md-2">
-                                <label class="col-md-3">Telefone<sup class="text-danger">*</sup></label>
+                                <label class="col-md-3">Telefone</label>
                                 <div class="col-md-5">
                                     <input type="tel" name="telefone" id="telefone" maxlength="15" 
                                            class="form-control" value="${laboratorio.telefone}">
                                 </div>
                             </div>
                             <div class="form-group row offset-md-2">
-                                <label class="col-md-3">Email<sup class="text-danger">*</sup></label>
+                                <label class="col-md-3">Email</label>
                                 <div class="col-md-5">
                                     <input type="email" name="email" 
-                                           class="form-control" value="${laboratorio.preco}">
+                                           class="form-control" value="${laboratorio.email}">
                                 </div>
                             </div>
                             <div class="form-group row offset-md-2">

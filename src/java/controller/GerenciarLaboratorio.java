@@ -20,7 +20,7 @@ public class GerenciarLaboratorio extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         response.setContentType("text/html");
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
@@ -30,42 +30,41 @@ public class GerenciarLaboratorio extends HttpServlet {
 
         Laboratorio lab = new Laboratorio();
         LaboratorioDAO ldao = new LaboratorioDAO();
-        
 
         try {
             if (acao.equals("listar")) {
                 ArrayList<Laboratorio> laboratorios = new ArrayList<>();
                 laboratorios = ldao.getLista();
-                RequestDispatcher dispatcher = 
-                        getServletContext().getRequestDispatcher("/listarLaboratorios.jsp");
-                
+                RequestDispatcher dispatcher
+                        = getServletContext().getRequestDispatcher("/listarLaboratorios.jsp");
+
                 request.setAttribute("laboratorios", laboratorios);
                 dispatcher.forward(request, response);
 
             } else if (acao.equals("alterar")) {
-                
+
                 lab = ldao.getCarregarPorId(Integer.parseInt(idLaboratorio));
-                if (lab.getIdLaboratorio()> 0) {
-                    RequestDispatcher dispatcher = 
-                        getServletContext().getRequestDispatcher("/cadastrarLaboratorio.jsp");
+                if (lab.getIdLaboratorio() > 0) {
+                    RequestDispatcher dispatcher
+                            = getServletContext().getRequestDispatcher("/cadastrarLaboratorio.jsp");
                     request.setAttribute("laboratorio", lab);
                     dispatcher.forward(request, response);
-                }else{
+                } else {
                     mensagem = "Laboratorio não encontrado na base de dados!";
                 }
-                
+
             } else if (acao.equals("ativar")) {
                 lab.setIdLaboratorio(Integer.parseInt(idLaboratorio));
                 if (ldao.ativar(lab)) {
                     mensagem = "Laboratorio ativado com sucesso!";
-                }else{
+                } else {
                     mensagem = "Falha ao ativar o laboratorio!";
                 }
             } else if (acao.equals("desativar")) {
                 lab.setIdLaboratorio(Integer.parseInt(idLaboratorio));
                 if (ldao.desativar(lab)) {
                     mensagem = "Laboratorio desativado com sucesso!";
-                }else{
+                } else {
                     mensagem = "Falha ao desativar o laboratorio!";
                 }
             } else {
@@ -73,7 +72,7 @@ public class GerenciarLaboratorio extends HttpServlet {
             }
 
         } catch (SQLException e) {
-            mensagem = "Erro: "+ e.getMessage();
+            mensagem = "Erro: " + e.getMessage();
             e.printStackTrace();
         }
 
@@ -82,8 +81,8 @@ public class GerenciarLaboratorio extends HttpServlet {
                 + "alert('" + mensagem + "');"
                 + "location.href='gerenciarLaboratorio?acao=listar';"
                 + "</script>"
-        ); 
-        
+        );
+
     }
 
     @Override
@@ -114,32 +113,17 @@ public class GerenciarLaboratorio extends HttpServlet {
             lab.setNome(nome);
         }
 
-        if (endereco.isEmpty() || endereco.equals("")) {
-            sessao.setAttribute("msg", "Informe o endereco do Laboratorio!");
-            exibirMensagem(request, response);
-        } else {
-            lab.setEndereco(endereco);
-        }
-
-        if (telefone.isEmpty() || telefone.equals("")) {
-            sessao.setAttribute("msg", "Informe o telefone do laboratorio!");
-            exibirMensagem(request, response);
-        } else {
-            lab.setTelefone(telefone);
-        }
-
-        if (email.isEmpty() || email.equals("")) {
-            sessao.setAttribute("msg", "Informe o email do laboratorio!");
-            exibirMensagem(request, response);
-        } else {
-            lab.setEmail(email);
-        }
         if (status.isEmpty() || status.equals("")) {
             sessao.setAttribute("msg", "Informe o status do laboratorio!");
             exibirMensagem(request, response);
         } else {
             lab.setStatus(Integer.parseInt(status));
         }
+
+        //campos que podem ser nulos
+        lab.setEndereco(endereco);
+        lab.setTelefone(telefone);
+        lab.setEmail(email);
 
         try {
             if (ldao.gravar(lab)) {
@@ -159,7 +143,7 @@ public class GerenciarLaboratorio extends HttpServlet {
                 + "</script>"
         );
     }
-    
+
     private void exibirMensagem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         RequestDispatcher dispatcher = getServletContext().

@@ -41,14 +41,41 @@
                                         <th scope="col">Ação</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="table-light">
                                 <c:forEach items="${laboratorios}" var="lab">
                                     <tr>
                                         <td>${lab.idLaboratorio}</td>
                                         <td>${lab.nome}</td>
-                                        <td>${lab.endereco}</td>
-                                        <td>${lab.telefone}</td>
-                                        <td>${lab.email}</td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${empty lab.endereco}">
+                                                    Não registrado
+                                                </c:when>
+                                                <c:otherwise>
+                                                     ${lab.endereco}
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${empty lab.telefone}">
+                                                    Não registrado
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${lab.telefone}
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${empty lab.email}">
+                                                    Não registrado
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${lab.email}
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
                                         <td>
                                             <c:choose>
                                                 <c:when test="${lab.status == 1}">
