@@ -126,7 +126,6 @@ public class GerenciarCliente extends HttpServlet {
         }else{
             try {
                 c.setDataNasc(df.parse(dataNasc));
-                System.out.println(dataNasc + " ****** "+ dataAtual);
                 c.setIdade(calculaIdade(dataNasc, dataAtual));
             } catch (ParseException e) {
                 mensagem = "Error: " + e.getMessage();

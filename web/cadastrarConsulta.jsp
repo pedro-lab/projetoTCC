@@ -50,7 +50,7 @@
                         <form action="gerenciarAgendaConsulta?acao=cadastrar" method="post" class="form-group">
                             <h3 class="text-center mb-5">Agendamento de Consulta</h3>
                             <input type="hidden" name="idConsulta" value="${consulta.idConsulta}">
-
+                            <input type="hidden" id="filtro" name="filtro" value="value">
                             <div class="form-group row offset-md-2">
                                 <label class="col-md-3">Dia e hora</label>
                                 <div class="col-md-5">
@@ -69,7 +69,7 @@
                             <div class="form-group row offset-md-2">
                                 <label class="col-md-3">Confirmacoes</label>
                                 <div class="col-md-5">
-                                    <select class="form-control-sm" name="idCliente">
+                                    <select class="form-control-sm" name="confirmacoes">
                                         <option value="">Escolha uma opção</option>
                                         <option value="Confirmado">Confirmado</option>
                                         <option value="Cancelou">Cancelou</option>
@@ -117,5 +117,8 @@
 
 <script>
     var voltar = document.querySelector("#backListagem");
+    var filtro = document.querySelector("#filtro");
+
     voltar.href = sessionStorage.getItem("uri");
+    filtro.value = sessionStorage.getItem("uri");
 </script>

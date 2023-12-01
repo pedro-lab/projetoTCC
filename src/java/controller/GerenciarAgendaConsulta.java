@@ -1,17 +1,22 @@
 package controller;
 
 import dao.AgendaConsultaDAO;
+import dao.ClienteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.AgendaConsulta;
+import model.Cliente;
 
 @WebServlet(name = "GerenciarAgendaConsulta", urlPatterns = {"/gerenciarAgendaConsulta"})
 public class GerenciarAgendaConsulta extends HttpServlet {
@@ -46,7 +51,7 @@ public class GerenciarAgendaConsulta extends HttpServlet {
             } else if (acao.equals("alterar")) {
 
                 consulta = consultadao.getCarregarPorId(Integer.parseInt(idConsulta));
-                if (consulta.getIdConsulta()> 0) {
+                if (consulta.getIdConsulta() > 0) {
                     RequestDispatcher dispatcher
                             = getServletContext().getRequestDispatcher("/cadastrarConsulta.jsp");
                     request.setAttribute("consulta", consulta);
@@ -83,5 +88,80 @@ public class GerenciarAgendaConsulta extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        String idConsulta = request.getParameter("idConsulta");
+        String diaHora = request.getParameter("diaHora");
+        String observacoes = request.getParameter("observacoes");
+        String confirmacoes = request.getParameter("confirmacoes");
+        String idCliente = request.getParameter("idCliente");
+        String filtro = request.getParameter("filtro");
+
+        AgendaConsulta consulta = new AgendaConsulta();
+        AgendaConsultaDAO cdao = new AgendaConsultaDAO();
+        String mensagem = "";
+        HttpSession sessao = request.getSession();
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dfComplex = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+        if (!idConsulta.isEmpty()) {
+            consulta.setIdConsulta(Integer.parseInt(idConsulta));
+        }
+
+        if (diaHora.isEmpty() || diaHora.equals("")) {
+            sessao.setAttribute("msg", "Informe a data e a hora da consulta!");
+            exibirMensagem(request, response);
+        } else {
+            try {
+                consulta.setDiaHora(dfComplex.parse(diaHora));
+            } catch (ParseException e) {
+                mensagem = "Error: " + e.getMessage();
+                e.printStackTrace();
+            }
+
+        }
+
+        consulta.setObservacoes(observacoes);
+        consulta.setConfirmacao(confirmacoes);
+
+        if (idCliente.isEmpty() || idCliente.equals("")) {
+            sessao.setAttribute("msg", "Informe o nome do Cliente!");
+            exibirMensagem(request, response);
+        } else {
+            Cliente cliente = new Cliente();
+            try {
+                cliente.setIdCliente(Integer.parseInt(idCliente));
+                consulta.setCliente(cliente);
+            } catch (NumberFormatException e) {
+                mensagem = "Error" + e.getMessage();
+            }
+        }
+
+        try {
+            if (cdao.gravar(consulta)) {
+                mensagem = "Agendamento salvo na base de dados!";
+            } else {
+                mensagem = "Falha ao salvar o agendamento na base de dados!";
+            }
+        } catch (SQLException e) {
+            mensagem = "Error: " + e.getMessage();
+            e.printStackTrace();
+        }
+
+        out.println(
+                "<script type='text/javascript'>"
+                + "alert('" + mensagem + "');"
+                + "location.href="+filtro+";"
+                + "</script>"
+        );
     }
+
+    private void exibirMensagem(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        RequestDispatcher dispatcher = getServletContext().
+                getRequestDispatcher("/cadastrarConsulta.jsp");
+        dispatcher.forward(request, response);
+    }
+
 }
