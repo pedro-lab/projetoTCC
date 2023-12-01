@@ -29,7 +29,7 @@ public class GerenciarAgendaConsulta extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         PrintWriter out = response.getWriter();
         String acao = request.getParameter("acao");
-        String idConsulta = request.getParameter("idCliente");
+        String idConsulta = request.getParameter("idConsulta");
         String dataInicial = request.getParameter("dataInicial");
         String dataFinal = request.getParameter("dataFinal");
         String mensagem = "";

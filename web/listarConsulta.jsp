@@ -48,10 +48,10 @@
                                         <th scope="col">Ação</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="table-light">
                                 <c:forEach items="${consultas}" var="c">
                                     <tr>
-                                        <td><fmt:formatDate pattern="dd/MM/yyyy HH:mm:ss" value="${c.diaHora}"></fmt:formatDate></td>
+                                        <td><fmt:formatDate pattern="dd/MM/yyyy || HH:mm" value="${c.diaHora}"></fmt:formatDate></td>
                                         <td>${c.cliente.nome}</td>
                                         <td><fmt:formatDate pattern="dd/MM/yyyy" value="${c.cliente.dataNasc}"></fmt:formatDate></td>
                                         <td>${c.cliente.idade}</td>

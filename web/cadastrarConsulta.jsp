@@ -55,14 +55,14 @@
                                 <label class="col-md-3">Dia e hora</label>
                                 <div class="col-md-5">
                                     <input type="datetime-local" name="diaHora" 
-                                           class="form-control" value="${consulta.diaHora}">
+                                           class="form-control" value="<fmt:formatDate pattern="yyyy-MM-dd'T'hh:mm" value="${consulta.diaHora}"></fmt:formatDate>">
                                 </div>
                             </div>
                             <div class="form-group row offset-md-2">
                                 <label class="col-md-3">Observacoes</label>
                                 <div class="col-md-5">
-                                    <textarea id="observacoes" name="observacoes" rows="5" cols="10" class="w-100">
-                                        
+                                    <textarea id="observacoes" name="observacoes" rows="5" cols="10" class="w-100" id="campo">
+                                        ${consulta.observacoes}
                                     </textarea>
                                 </div>
                             </div>
@@ -71,10 +71,14 @@
                                 <div class="col-md-5">
                                     <select class="form-control-sm" name="confirmacoes">
                                         <option value="">Escolha uma opção</option>
-                                        <option value="Confirmado">Confirmado</option>
-                                        <option value="Cancelou">Cancelou</option>
-                                        <option value="Remarcou">Remarcou</option>
-                                        <option value="Sem Resposta">Sem Resposta</option>
+                                        <option value="Confirmado" <c:if test="${consulta.confirmacao == 'Confirmado'}">
+                                            selected </c:if>>Confirmado</option>
+                                        <option value="Cancelou" <c:if test="${consulta.confirmacao == 'Cancelou'}">
+                                            selected </c:if>>Cancelou</option>
+                                        <option value="Remarcou" <c:if test="${consulta.confirmacao == 'Remarcou'}">
+                                            selected </c:if>>Remarcou</option>
+                                        <option value="Sem Resposta" <c:if test="${consulta.confirmacao == 'Sem Resposta'}">
+                                            selected </c:if>>Sem Resposta</option>
                                     </select>
 
                                 </div>
@@ -87,7 +91,7 @@
                                         <jsp:useBean class="dao.ClienteDAO" id="cdao"/>
                                         <c:forEach items="${cdao.lista}" var="c">
                                             <option value="${c.idCliente}"
-                                                    <c:if test="${c.idCliente == ordemServico.cliente.idCliente}">
+                                                    <c:if test="${c.idCliente == consulta.cliente.idCliente}">
                                                         selected</c:if>>
                                                     ${c.nome}</option>
                                             </c:forEach>
@@ -121,4 +125,5 @@
 
     voltar.href = sessionStorage.getItem("uri");
     filtro.value = sessionStorage.getItem("uri");
+
 </script>

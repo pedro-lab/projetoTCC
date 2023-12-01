@@ -67,7 +67,7 @@ public class AgendaConsultaDAO {
             ClienteDAO clientedao = new ClienteDAO();
 
             consulta.setConfirmacao(rs.getString("con.confirmacao"));
-            consulta.setDiaHora(rs.getDate("con.dia_hora"));
+            consulta.setDiaHora(rs.getTimestamp("con.dia_hora"));
             consulta.setIdConsulta(rs.getInt("con.idConsulta"));
             consulta.setObservacoes(rs.getString("con.observacoes"));
             consulta.setCliente(clientedao.getCarregarPorId(rs.getInt("c.idCliente")));
@@ -96,7 +96,7 @@ public class AgendaConsultaDAO {
             ClienteDAO clientedao = new ClienteDAO();
 
             consulta.setConfirmacao(rs.getString("con.confirmacao"));
-            consulta.setDiaHora(rs.getDate("con.dia_hora"));
+            consulta.setDiaHora(rs.getTimestamp("con.dia_hora"));
             consulta.setIdConsulta(rs.getInt("con.idConsulta"));
             consulta.setObservacoes(rs.getString("con.observacoes"));
             consulta.setCliente(clientedao.getCarregarPorId(rs.getInt("c.idCliente")));
@@ -124,7 +124,7 @@ public class AgendaConsultaDAO {
                     + "idCliente = ? WHERE idConsulta = ? ";
 
             ps = con.prepareStatement(sql);
-            ps.setDate(1, new Date(c.getDiaHora().getTime()));
+            ps.setTimestamp(1, new Timestamp(c.getDiaHora().getTime()));
             ps.setString(2, c.getObservacoes());
             ps.setString(3, c.getConfirmacao());
             ps.setInt(4, c.getCliente().getIdCliente());
