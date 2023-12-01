@@ -32,24 +32,31 @@
                 <main>
                     <div id="conteudo" class="bg-background">
                         <div class="container">
-                            <h3 class="text-center">Listagem de Consultas</h3>
-                            <a href="cadastrarConsulta.jsp" class="btn-sm btn-primary mb-5" 
-                               role="button" style="text-decoration: none;display:inline-block;">Agendamento</a>
-                            <table class="table table-hover table-striped table-bordered mt-3" id="mytable">
-                                <thead>
-                                    <tr class="thead-dark">
-                                        <th scope="col">Data/hora</th>
-                                        <th scope="col">Dia Sem</th>
-                                        <th scope="col">Cliente</th>
-                                        <th scope="col">Data de Nasc</th>
-                                        <th scope="col">Idade</th>
-                                        <th scope="col">Observações</th>
-                                        <th scope="col">Contato</th>
-                                        <th scope="col">Confirmação</th>
-                                        <th scope="col">Ação</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table-light">
+                        <%
+                            HttpSession sessao = request.getSession();
+
+                            String dataInicial = (String) sessao.getAttribute("dataInicial");
+                            String dataFinal = (String) sessao.getAttribute("dataFinal");
+
+                        %>
+                        <h3 class="text-center">Listagem de Consultas de <%=dataInicial%> até <%=dataFinal%></span> </h3>
+                        <a href="cadastrarConsulta.jsp" class="btn-sm btn-primary mb-5" 
+                           role="button" style="text-decoration: none;display:inline-block;">Agendamento</a>
+                        <table class="table table-hover table-striped table-bordered mt-3" id="mytable">
+                            <thead>
+                                <tr class="thead-dark">
+                                    <th scope="col">Data/hora</th>
+                                    <th scope="col">Dia Sem</th>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Data de Nasc</th>
+                                    <th scope="col">Idade</th>
+                                    <th scope="col">Observações</th>
+                                    <th scope="col">Contato</th>
+                                    <th scope="col">Confirmação</th>
+                                    <th scope="col">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-light">
                                 <c:forEach items="${consultas}" var="c">
                                     <tr>
                                         <td style="width: 100px"><fmt:formatDate pattern="dd/MM/yyyy  HH:mm" value="${c.diaHora}"></fmt:formatDate></td>
@@ -159,4 +166,10 @@
         }
         contador += 1
     })
+
+    //Titulo da pagina
+    var inf = document.querySelector("#inf")
+    var dataInicial = sessionStorage.getItem("dataInicial")
+    var dataFinal = sessionStorage.getItem("dataFinal")
+    inf.innerHTML = "de " + dataInicial + " até " + dataFinal;
 </script>

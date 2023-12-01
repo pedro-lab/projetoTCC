@@ -36,6 +36,7 @@ public class GerenciarAgendaConsulta extends HttpServlet {
 
         AgendaConsulta consulta = new AgendaConsulta();
         AgendaConsultaDAO consultadao = new AgendaConsultaDAO();
+        HttpSession sessao = request.getSession();
 
         try {
             if (acao.equals("listar")) {
@@ -44,6 +45,8 @@ public class GerenciarAgendaConsulta extends HttpServlet {
                 RequestDispatcher dispatcher
                         = getServletContext().getRequestDispatcher("/listarConsulta.jsp");
 
+                sessao.setAttribute("dataInicial", dataInicial);
+                sessao.setAttribute("dataFinal", dataFinal);
                 request.setAttribute("consultas", consultas);
                 dispatcher.forward(request, response);
 
@@ -152,7 +155,7 @@ public class GerenciarAgendaConsulta extends HttpServlet {
         out.println(
                 "<script type='text/javascript'>"
                 + "alert('" + mensagem + "');"
-                + "location.href='"+filtro+"';"
+                + "location.href='" + filtro + "';"
                 + "</script>"
         );
     }
