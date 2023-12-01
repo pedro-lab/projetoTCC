@@ -38,6 +38,13 @@
                             String dataInicial = (String) sessao.getAttribute("dataInicial");
                             String dataFinal = (String) sessao.getAttribute("dataFinal");
 
+                            String[] dataSeparadaInicial = dataInicial.split("-");
+                            String[] dataSeparadaFinal = dataFinal.split("-");
+                            
+                            dataInicial = "";dataFinal = "";
+                            
+                            dataInicial = dataSeparadaInicial[2]+"/"+dataSeparadaInicial[1]+"/"+dataSeparadaInicial[0];
+                            dataFinal = dataSeparadaFinal[2]+"/"+dataSeparadaFinal[1]+"/"+dataSeparadaFinal[0];
                         %>
                         <h3 class="text-center">Listagem de Consultas de <%=dataInicial%> até <%=dataFinal%></span> </h3>
                         <a href="cadastrarConsulta.jsp" class="btn-sm btn-primary mb-5" 
