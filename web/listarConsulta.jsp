@@ -39,6 +39,7 @@
                                 <thead>
                                     <tr class="thead-dark">
                                         <th scope="col">Data/hora</th>
+                                        <th scope="col">Dia Sem</th>
                                         <th scope="col">Cliente</th>
                                         <th scope="col">Data de Nasc</th>
                                         <th scope="col">Idade</th>
@@ -51,8 +52,12 @@
                                 <tbody class="table-light">
                                 <c:forEach items="${consultas}" var="c">
                                     <tr>
-                                        <td><fmt:formatDate pattern="dd/MM/yyyy || HH:mm" value="${c.diaHora}"></fmt:formatDate></td>
-                                        <td>${c.cliente.nome}</td>
+                                        <td style="width: 100px"><fmt:formatDate pattern="dd/MM/yyyy  HH:mm" value="${c.diaHora}"></fmt:formatDate></td>
+                                            <td id="colunaDiaSemana">
+                                                <input type="hidden" id="diaSemana" name="diaSemana" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${c.diaHora}"></fmt:formatDate>">
+                                            <fmt:formatDate pattern="yyyy-MM-dd" value="${c.diaHora}"></fmt:formatDate>
+                                            </td>
+                                            <td>${c.cliente.nome}</td>
                                         <td><fmt:formatDate pattern="dd/MM/yyyy" value="${c.cliente.dataNasc}"></fmt:formatDate></td>
                                         <td>${c.cliente.idade}</td>
                                         <td>${c.observacoes}</td>
@@ -115,6 +120,43 @@
     </body>
 </html>
 <script>
+    //Guarda na secao a uri da pagina
     var uri = window.location.href;
     sessionStorage.setItem("uri", uri);
+
+    //Pega o dia da semana segundo a data
+    var inputDiaSemana = document.querySelectorAll("#diaSemana")
+    var colunaDiaSemana = document.querySelectorAll("#colunaDiaSemana")
+    var data = new Date(inputDiaSemana.value)
+    var contador = 0;
+    var diaDaSemana
+
+    inputDiaSemana.forEach(function (d) {
+        var data = new Date(d.value)
+        diaDaSemana = data.getDay()
+        switch (diaDaSemana) {
+            case 0:
+                colunaDiaSemana[contador].innerHTML = "Seg";
+                break
+            case 1:
+                colunaDiaSemana[contador].innerHTML = "Ter";
+                break
+            case 2:
+                colunaDiaSemana[contador].innerHTML = "Qua";
+                break
+            case 3:
+                colunaDiaSemana[contador].innerHTML = "Qui";
+                break
+            case 4:
+                colunaDiaSemana[contador].innerHTML = "Sex";
+                break
+            case 5:
+                colunaDiaSemana[contador].innerHTML = "Sab";
+                break
+            case 6:
+                colunaDiaSemana[contador].innerHTML = "Dom";
+                break
+        }
+        contador += 1
+    })
 </script>

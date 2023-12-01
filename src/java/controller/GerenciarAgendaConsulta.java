@@ -104,6 +104,7 @@ public class GerenciarAgendaConsulta extends HttpServlet {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat dfComplex = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
+        System.out.println(diaHora);
         if (!idConsulta.isEmpty()) {
             consulta.setIdConsulta(Integer.parseInt(idConsulta));
         }
@@ -113,7 +114,6 @@ public class GerenciarAgendaConsulta extends HttpServlet {
             exibirMensagem(request, response);
         } else {
             try {
-                System.out.println(dfComplex.parse(diaHora.replace("T", " ")));
                 consulta.setDiaHora(dfComplex.parse(diaHora.replace("T", " ")));
             } catch (ParseException e) {
                 mensagem = "Error: " + e.getMessage();
