@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="form-group row offset-md-2">
-                                <label class="col-md-3">CPF</label>
+                                <label class="col-md-3">CPF<sup class="text-danger">*</sup></label>
                                 <div class="col-md-5">
                                     <input type="text" name="cpf" id="cpf" maxlength="14"
                                            class="form-control" value="${cliente.cpf}">
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                             <div class="form-group row offset-md-2">
-                                <label class="col-md-3">Data de Nascimento<sup class="text-danger">*</sup></label>
+                                <label class="col-md-3">Data de Nascimento</label>
                                 <div class="col-md-5">
                                     <input type="date" name="dataNasc" id="dataNasc" 
                                            class="form-control" value="${cliente.dataNasc}">

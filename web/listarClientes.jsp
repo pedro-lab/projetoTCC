@@ -42,16 +42,34 @@
                                         <th scope="col">Ação</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="table-light">
                                 <c:forEach items="${clientes}" var="c">
                                     <tr>
                                         <td>${c.idCliente}</td>
                                         <td>${c.nome}</td>
                                         <td>${c.cpf}</td>
                                         <td>${c.telefone}</td>
-                                        <td>${c.idade}</td>
-                                        <td><fmt:formatDate pattern="dd/MM/yyyy" value="${c.dataNasc}"></fmt:formatDate></td>
-                                            <td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${c.idade ==0}">
+                                                    Não registrado
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${c.idade}
+                                                </c:otherwise>
+                                            </c:choose>
+                                         </td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${empty c.dataNasc}">
+                                                    Não registrado
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <fmt:formatDate pattern="dd/MM/yyyy" value="${c.dataNasc}"></fmt:formatDate>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td>
                                             <c:choose>
                                                 <c:when test="${c.status == 1}">
                                                     Ativado

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import model.Cliente;
 
 public class ClienteDAO {
-    
+
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
@@ -49,7 +49,7 @@ public class ClienteDAO {
 
         con = ConexaoFactory.conectar();
 
-        if (c.getIdCliente()== 0) {
+        if (c.getIdCliente() == 0) {
             sql = "INSERT INTO cliente(nome, cpf, telefone, status, idade, dataNasc) "
                     + "VALUES(?,?,?,?,?,?)";
             ps = con.prepareStatement(sql);
@@ -58,7 +58,11 @@ public class ClienteDAO {
             ps.setString(3, c.getTelefone());
             ps.setInt(4, c.getStatus());
             ps.setInt(5, c.getIdade());
-            ps.setDate(6, new Date(c.getDataNasc().getTime()));
+            if (c.getDataNasc() == null) {
+                ps.setString(6, null);
+            } else {
+                 ps.setDate(6, new Date(c.getDataNasc().getTime()));
+            }
 
         } else {
             sql = "UPDATE cliente SET nome = ?, cpf = ?, telefone = ?, "

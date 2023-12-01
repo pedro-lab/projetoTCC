@@ -34,7 +34,7 @@ public class GerenciarCliente extends HttpServlet {
         ClienteDAO cdao = new ClienteDAO();
 
         try {
-            if(acao.equals("listar")) {
+            if (acao.equals("listar")) {
                 ArrayList<Cliente> clientes = new ArrayList<>();
                 clientes = cdao.getLista();
                 RequestDispatcher dispatcher
@@ -96,7 +96,7 @@ public class GerenciarCliente extends HttpServlet {
         ClienteDAO cdao = new ClienteDAO();
         String mensagem = "";
         HttpSession sessao = request.getSession();
-        
+
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
         if (!idCliente.isEmpty()) {
@@ -110,9 +110,13 @@ public class GerenciarCliente extends HttpServlet {
             c.setNome(nome);
         }
 
-        //Valores que podem ser nulos
-        c.setCpf(cpf);
-        
+        if (cpf.isEmpty() || cpf.equals("")) {
+            sessao.setAttribute("msg", "Informe o cpf do Cliente!");
+            exibirMensagem(request, response);
+        } else {
+            c.setCpf(cpf);
+        }
+
         if (telefone.isEmpty() || telefone.equals("")) {
             sessao.setAttribute("msg", "Informe o telefone do Cliente!");
             exibirMensagem(request, response);
@@ -120,27 +124,20 @@ public class GerenciarCliente extends HttpServlet {
             c.setTelefone(telefone);
         }
 
-        if (dataNasc.isEmpty() || dataNasc.equals("")) {
-            sessao.setAttribute("msg", "Informe a data de nascimento do Cliente!");
-            exibirMensagem(request, response);
-        }else{
-            try {
-                c.setDataNasc(df.parse(dataNasc));
-                c.setIdade(calculaIdade(dataNasc, dataAtual));
-            } catch (ParseException e) {
-                mensagem = "Error: " + e.getMessage();
-                e.printStackTrace();
-            }
-            
-        }
-
-
-        
         if (status.isEmpty() || status.equals("")) {
             sessao.setAttribute("msg", "Informe o status do Cliente!");
             exibirMensagem(request, response);
         } else {
             c.setStatus(Integer.parseInt(status));
+        }
+
+        //Valores que podem ser nulos
+        try {
+            c.setDataNasc(df.parse(dataNasc));
+            c.setIdade(calculaIdade(dataNasc, dataAtual));
+        } catch (ParseException e) {
+            mensagem = "Error: " + e.getMessage();
+            e.printStackTrace();
         }
 
         try {
@@ -169,31 +166,31 @@ public class GerenciarCliente extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private int calculaIdade(String dataNasc, String dataAtual){
+    private int calculaIdade(String dataNasc, String dataAtual) {
 
         String[] dataSeparadaNasc = dataNasc.split("-");
         String[] dataSeparadaAtual = dataAtual.split("-");
-        
+
         int anoNasc = Integer.parseInt(dataSeparadaNasc[0]);
         int mesNasc = Integer.parseInt(dataSeparadaNasc[1]);
         int diaNasc = Integer.parseInt(dataSeparadaNasc[2]);
-        
+
         int anoAtual = Integer.parseInt(dataSeparadaAtual[0]);
         int mesAtual = Integer.parseInt(dataSeparadaAtual[1]);
         int diaAtual = Integer.parseInt(dataSeparadaAtual[2]);
-        
-        System.out.println(anoAtual+"-"+mesAtual+"-"+diaAtual);
-        System.out.println(anoNasc+"-"+mesNasc+"-"+diaNasc);
-        
-        if(mesNasc < mesAtual){
+
+        System.out.println(anoAtual + "-" + mesAtual + "-" + diaAtual);
+        System.out.println(anoNasc + "-" + mesNasc + "-" + diaNasc);
+
+        if (mesNasc < mesAtual) {
             return anoAtual - anoNasc;
-        }else if(mesNasc == mesAtual){
-            if(diaNasc <= diaAtual){
+        } else if (mesNasc == mesAtual) {
+            if (diaNasc <= diaAtual) {
                 return anoAtual - anoNasc;
-            }else{
+            } else {
                 return anoAtual - anoNasc - 1;
             }
-        }else{
+        } else {
             return anoAtual - anoNasc - 1;
         }
     }
