@@ -112,27 +112,12 @@ public class GerenciarLente extends HttpServlet {
             l.setNome(nome);
         }
 
-        if (modelo.isEmpty() || modelo.equals("")) {
-            sessao.setAttribute("msg", "Informe o modelo da lente!");
-            exibirMensagem(request, response);
-        } else {
-            l.setModelo(modelo);
-        }
-
-        if (fabricante.isEmpty() || fabricante.equals("")) {
-            sessao.setAttribute("msg", "Informe o fabricante da lente!");
-            exibirMensagem(request, response);
-        } else {
-            l.setFabricante(fabricante);
-        }
-
         if (preco.isEmpty() || preco.equals("")) {
-            preco = "0.0";
-            l.setPreco(Double.valueOf(preco));
+            sessao.setAttribute("msg", "Informe o preco da lente!");
+            exibirMensagem(request, response);
         } else {
             if (podeConverterParaDouble(preco)) {
                 preco = preco.replaceAll(",", ".");
-                System.out.println(preco);
                 l.setPreco(Double.valueOf(preco));
             }else{
                 sessao.setAttribute("msg", "Formato de preco invalido");
@@ -147,6 +132,10 @@ public class GerenciarLente extends HttpServlet {
             l.setStatus(Integer.parseInt(status));
         }
 
+        //campos que podem ser nulos
+        l.setModelo(modelo);
+        l.setFabricante(fabricante);
+        
         try {
             if (ldao.gravar(l)) {
                 mensagem = "Lente salvo na base de dados!";

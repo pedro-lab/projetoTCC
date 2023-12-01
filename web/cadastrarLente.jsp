@@ -59,21 +59,21 @@
                                 </div>
                             </div>
                             <div class="form-group row offset-md-2">
-                                <label class="col-md-3">Modelo<sup class="text-danger">*</sup></label>
+                                <label class="col-md-3">Modelo</label>
                                 <div class="col-md-5">
                                     <input type="text" name="modelo" 
                                            class="form-control" value="${lente.modelo}">
                                 </div>
                             </div>
                             <div class="form-group row offset-md-2">
-                                <label class="col-md-3">Fabricante<sup class="text-danger">*</sup></label>
+                                <label class="col-md-3">Fabricante</label>
                                 <div class="col-md-5">
                                     <input type="text" name="fabricante" 
                                            class="form-control" value="${lente.fabricante}">
                                 </div>
                             </div>
                             <div class="form-group row offset-md-2">
-                                <label class="col-md-3">Preço</label>
+                                <label class="col-md-3">Preço<sup class="text-danger">*</sup></label>
                                 <div class="col-md-5">
                                     <input type="text" name="preco" 
                                            class="form-control" value="${lente.preco}">

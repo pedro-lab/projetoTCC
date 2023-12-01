@@ -46,8 +46,26 @@
                                     <tr>
                                         <td>${l.idLente}</td>
                                         <td>${l.nome}</td>
-                                        <td>${l.modelo}</td>
-                                        <td>${l.fabricante}</td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${empty l.modelo}">
+                                                    Não registrado
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${l.modelo}
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${empty l.fabricante}">
+                                                    Não registrado
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${l.fabricante}
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
                                         <td>${l.preco}</td>
                                         <td>
                                             <c:choose>
