@@ -114,7 +114,8 @@ public class GerenciarAgendaConsulta extends HttpServlet {
             exibirMensagem(request, response);
         } else {
             try {
-                consulta.setDiaHora(dfComplex.parse(diaHora));
+                System.out.println(dfComplex.parse(diaHora.replace("T", " ")));
+                consulta.setDiaHora(dfComplex.parse(diaHora.replace("T", " ")));
             } catch (ParseException e) {
                 mensagem = "Error: " + e.getMessage();
                 e.printStackTrace();
@@ -152,7 +153,7 @@ public class GerenciarAgendaConsulta extends HttpServlet {
         out.println(
                 "<script type='text/javascript'>"
                 + "alert('" + mensagem + "');"
-                + "location.href="+filtro+";"
+                + "location.href='"+filtro+"';"
                 + "</script>"
         );
     }

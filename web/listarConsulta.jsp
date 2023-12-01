@@ -51,7 +51,7 @@
                                 <tbody>
                                 <c:forEach items="${consultas}" var="c">
                                     <tr>
-                                        <td>${c.dia_hora}</td>
+                                        <td>${c.diaHora}</td>
                                         <td>${c.cliente.nome}</td>
                                         <td>${c.cliente.dataNasc}</td>
                                         <td>${c.cliente.idade}</td>

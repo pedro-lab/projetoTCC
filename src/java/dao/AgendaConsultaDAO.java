@@ -110,7 +110,7 @@ public class AgendaConsultaDAO {
 
         if (c.getIdConsulta() == 0) {
             sql = "INSERT INTO agendaconsulta (dia_hora,observacoes,confirmacao,idCliente) "
-                    + "VALUES (?, ?, ?, ?, ?)";
+                    + "VALUES (?, ?, ?, ?)";
             ps = con.prepareStatement(sql);
             ps.setDate(1, new Date(c.getDiaHora().getTime()));
             ps.setString(2, c.getObservacoes());
