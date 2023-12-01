@@ -41,7 +41,6 @@ public class GerenciarAgendaConsulta extends HttpServlet {
             if (acao.equals("listar")) {
                 ArrayList<AgendaConsulta> consultas = new ArrayList<>();
                 consultas = consultadao.getLista(dataInicial, dataFinal);
-                System.out.println("Entrou");
                 RequestDispatcher dispatcher
                         = getServletContext().getRequestDispatcher("/listarConsulta.jsp");
 

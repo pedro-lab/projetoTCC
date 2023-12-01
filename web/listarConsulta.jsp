@@ -51,9 +51,9 @@
                                 <tbody>
                                 <c:forEach items="${consultas}" var="c">
                                     <tr>
-                                        <td>${c.diaHora}</td>
+                                        <td><fmt:formatDate pattern="dd/MM/yyyy HH:mm:ss" value="${c.diaHora}"></fmt:formatDate></td>
                                         <td>${c.cliente.nome}</td>
-                                        <td>${c.cliente.dataNasc}</td>
+                                        <td><fmt:formatDate pattern="dd/MM/yyyy" value="${c.cliente.dataNasc}"></fmt:formatDate></td>
                                         <td>${c.cliente.idade}</td>
                                         <td>${c.observacoes}</td>
                                         <td>${c.cliente.telefone}</td>

@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import model.AgendaConsulta;
 import model.Cliente;
@@ -112,7 +113,8 @@ public class AgendaConsultaDAO {
             sql = "INSERT INTO agendaconsulta (dia_hora,observacoes,confirmacao,idCliente) "
                     + "VALUES (?, ?, ?, ?)";
             ps = con.prepareStatement(sql);
-            ps.setDate(1, new Date(c.getDiaHora().getTime()));
+            
+            ps.setTimestamp(1, new Timestamp(c.getDiaHora().getTime()));
             ps.setString(2, c.getObservacoes());
             ps.setString(3, c.getConfirmacao());
             ps.setInt(4, c.getCliente().getIdCliente());
