@@ -40,11 +40,12 @@
 
                             String[] dataSeparadaInicial = dataInicial.split("-");
                             String[] dataSeparadaFinal = dataFinal.split("-");
-                            
-                            dataInicial = "";dataFinal = "";
-                            
-                            dataInicial = dataSeparadaInicial[2]+"/"+dataSeparadaInicial[1]+"/"+dataSeparadaInicial[0];
-                            dataFinal = dataSeparadaFinal[2]+"/"+dataSeparadaFinal[1]+"/"+dataSeparadaFinal[0];
+
+                            dataInicial = "";
+                            dataFinal = "";
+
+                            dataInicial = dataSeparadaInicial[2] + "/" + dataSeparadaInicial[1] + "/" + dataSeparadaInicial[0];
+                            dataFinal = dataSeparadaFinal[2] + "/" + dataSeparadaFinal[1] + "/" + dataSeparadaFinal[0];
                         %>
                         <h3 class="text-center">Listagem de Consultas de <%=dataInicial%> até <%=dataFinal%></span> </h3>
                         <a href="cadastrarConsulta.jsp" class="btn-sm btn-primary mb-5" 
@@ -72,8 +73,26 @@
                                             <fmt:formatDate pattern="yyyy-MM-dd" value="${c.diaHora}"></fmt:formatDate>
                                             </td>
                                             <td>${c.cliente.nome}</td>
-                                        <td><fmt:formatDate pattern="dd/MM/yyyy" value="${c.cliente.dataNasc}"></fmt:formatDate></td>
-                                        <td>${c.cliente.idade}</td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${empty c.cliente.dataNasc}">
+                                                    Não registrado
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <fmt:formatDate pattern="dd/MM/yyyy" value="${c.cliente.dataNasc}"></fmt:formatDate>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            </td>
+                                            <td>
+                                            <c:choose>
+                                                <c:when test="${c.cliente.idade == 0}">
+                                                    Não registrado
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${c.cliente.idade}
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
                                         <td>${c.observacoes}</td>
                                         <td>${c.cliente.telefone}</td>
                                         <td>${c.confirmacao}</td>
