@@ -87,30 +87,34 @@
         <script src="datatables/dataTables.bootstrap4.min.js"></script>
         <!-- Configuracao da tabela com JQuery -->
         <script>
-                                                           $(document).ready(function () {
-                                                               $('#mytable').dataTable({
-                                                                   "bJQueryUI": true,
-                                                                   "lengthMenu": [[5, 10, 20, 25, -1], [5, 10, 20, 25, "Todos"]],
-                                                                   "oLanguage": {
-                                                                       "sProcessing": "Processando",
-                                                                       "sLenghtMenu": "Montrar _MENU_ registros",
-                                                                       "sZeroRecords": "Não foram encontrados resultados",
-                                                                       "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                                                                       "sInfoEmpty": "Monstrado de 0 até 0 de 0 registros",
-                                                                       "sInfoFiltered": "",
-                                                                       "sInfoPostFix": "",
-                                                                       "sSearch": "Pesquisar",
-                                                                       "sUrl": "",
-                                                                       "oPaginate": {
-                                                                           "sFirst": "Primeiro",
-                                                                           "sPrevious": "Anterior",
-                                                                           "sNext": "Próximo",
-                                                                           "sLast": "Último"
-                                                                       }
+            $(document).ready(function () {
+                $('#mytable').dataTable({
+                    "bJQueryUI": true,
+                    "lengthMenu": [[5, 10, 20, 25, -1], [5, 10, 20, 25, "Todos"]],
+                    "oLanguage": {
+                        "sProcessing": "Processando",
+                        "sLenghtMenu": "Montrar _MENU_ registros",
+                        "sZeroRecords": "Não foram encontrados resultados",
+                        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                        "sInfoEmpty": "Monstrado de 0 até 0 de 0 registros",
+                        "sInfoFiltered": "",
+                        "sInfoPostFix": "",
+                        "sSearch": "Pesquisar",
+                        "sUrl": "",
+                        "oPaginate": {
+                            "sFirst": "Primeiro",
+                            "sPrevious": "Anterior",
+                            "sNext": "Próximo",
+                            "sLast": "Último"
+                        }
 
-                                                                   }
-                                                               });
-                                                           });
+                    }
+                });
+            });
         </script>
     </body>
 </html>
+<script>
+    var uri = window.location.href;
+    sessionStorage.setItem("uri", uri);
+</script>

@@ -184,19 +184,5 @@
                                                            });
         </script>
     </body>
-    <script>
-        var statusEntrega = document.querySelectorAll("#statusEntrega");
-        var elementos = []
-        statusEntrega.forEach(function (elemento) {
-            if (elemento.innerText == "Atrasado") {
-                elemento.style.background = "#f17ea1";
-            } else if (elemento.innerText == "No prazo") {
-                elemento.style.background = "#fff000";
-            } else {
-                elemento.style.background = "#00ff00";
-            }
-
-        })
-    </script>
 
 </html>
