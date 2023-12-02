@@ -17,32 +17,35 @@
         </button>
 
         <c:if test="${ulogado != null && ulogado.perfil != null}">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-lg-auto">
-                <li class="nav-item">
-                    <a class="btn btn-outline-success btn-nav mr-xl-5" href="opcoes.jsp"
-                       >Menu</a>
-                </li>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-lg-auto">
+                    <li class="nav-item">
+                        <a class="btn btn-outline-success btn-nav mr-xl-5" href="opcoes.jsp"
+                           >Menu</a>
+                    </li>
 
-            </ul>
-        </div>
+                </ul>
+            </div>
         </c:if>
         <a href="gerenciarLogin?">
             <div class="circulo" id="circulo">
-                <p class="nickname" id="nomeLogin">${ulogado.login}</p>
+                <p class="nickname" id="nomeLogin"></p>
             </div>
         </a>
     </nav>
 </header>
-            
+
 <script>
-    
+    var uri = window.location.href;
+    var tokenLogin = sessionStorage.getItem("tokenLogin")
     var p = document.getElementById("nomeLogin");
-    var primeiraLetra = p.innerHTML.charAt(0).toUpperCase();
-    p.innerHTML = primeiraLetra;
-    
-    if (primeiraLetra == "") {
-    document.getElementById("circulo").style.display = 'none';
-}
+
+    if (uri != 'http://localhost:8080/projetoTCC/login.jsp') {
+        p.innerHTML = tokenLogin;
+        var primeiraLetra = p.innerHTML.charAt(0).toUpperCase();
+        p.innerHTML = primeiraLetra;
+    }else{
+        document.getElementById("circulo").style.display = 'none';
+    }
 
 </script>

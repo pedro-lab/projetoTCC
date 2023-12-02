@@ -31,3 +31,8 @@
         </c:if>
     </c:forEach>
 </c:if>
+
+<script>
+    //Criando um token para login
+    sessionStorage.setItem("tokenLogin","${ulogado.login}")
+</script>
