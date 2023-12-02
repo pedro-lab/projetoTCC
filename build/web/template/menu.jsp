@@ -29,7 +29,7 @@
         </c:if>
         <a href="gerenciarLogin?">
             <div class="circulo" id="circulo">
-                <p class="nickname" id="nomeLogin"></p>
+                <p class="nickname" id="nomeLogin">${ulogado.perfil}</p>
             </div>
         </a>
     </nav>
@@ -41,11 +41,11 @@
     var p = document.getElementById("nomeLogin");
 
     if (uri != 'http://localhost:8080/projetoTCC/login.jsp') {
-        p.innerHTML = tokenLogin;
         var primeiraLetra = p.innerHTML.charAt(0).toUpperCase();
         p.innerHTML = primeiraLetra;
     }else{
         document.getElementById("circulo").style.display = 'none';
+        location.href = 'http://localhost:8080/projetoTCC/login.jsp';
     }
 
 </script>

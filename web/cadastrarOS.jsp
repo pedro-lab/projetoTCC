@@ -83,7 +83,7 @@
                                     <select class="form-control-sm" name="idCliente">
                                         <option value="">Escolha uma opção</option>
                                         <jsp:useBean class="dao.ClienteDAO" id="cdao"/>
-                                        <c:forEach items="${cdao.lista}" var="c">
+                                        <c:forEach items="${cdao.listaAtivo}" var="c">
                                             <option value="${c.idCliente}"
                                                     <c:if test="${c.idCliente == ordemServico.cliente.idCliente}">
                                                         selected</c:if>>
@@ -99,7 +99,7 @@
                                     <select class="form-control-sm" name="idLente">
                                         <option value="">Escolha uma opção</option>
                                         <jsp:useBean class="dao.LenteDAO" id="ldao"/>
-                                        <c:forEach items="${ldao.lista}" var="l">
+                                        <c:forEach items="${ldao.listaAtivo}" var="l">
                                             <option value="${l.idLente}"
                                                     <c:if test="${l.idLente == ordemServico.lente.idLente}">
                                                         selected</c:if>>
@@ -115,7 +115,7 @@
                                     <select class="form-control-sm" name="idLaboratorio">
                                         <option value="">Escolha uma opção</option>
                                         <jsp:useBean class="dao.LaboratorioDAO" id="labdao"/>
-                                        <c:forEach items="${labdao.lista}" var="lab">
+                                        <c:forEach items="${labdao.listaAtivo}" var="lab">
                                             <option value="${lab.idLaboratorio}"
                                                     <c:if test="${lab.idLaboratorio == ordemServico.laboratorio.idLaboratorio}">
                                                         selected</c:if>>

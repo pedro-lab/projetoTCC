@@ -52,7 +52,7 @@
                             <input type="hidden" name="idConsulta" value="${consulta.idConsulta}">
                             <input type="hidden" id="filtro" name="filtro" value="value">
                             <div class="form-group row offset-md-2">
-                                <label class="col-md-3">Dia e hora</label>
+                                <label class="col-md-3">Dia e hora<sup class="text-danger">*</sup></label>
                                 <div class="col-md-5">
                                     <input type="datetime-local" name="diaHora" 
                                            class="form-control" value="<fmt:formatDate pattern="yyyy-MM-dd'T'hh:mm" value="${consulta.diaHora}"></fmt:formatDate>">
@@ -89,7 +89,7 @@
                                     <select class="form-control-sm" name="idCliente">
                                         <option value="">Escolha uma opção</option>
                                         <jsp:useBean class="dao.ClienteDAO" id="cdao"/>
-                                        <c:forEach items="${cdao.lista}" var="c">
+                                        <c:forEach items="${cdao.listaAtivo}" var="c">
                                             <option value="${c.idCliente}"
                                                     <c:if test="${c.idCliente == consulta.cliente.idCliente}">
                                                         selected</c:if>>

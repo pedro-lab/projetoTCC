@@ -44,11 +44,38 @@ public class LaboratorioDAO {
         return laboratorios;
     }
 
+    public ArrayList<Laboratorio> getListaAtivo() throws SQLException {
+
+        sql = "SELECT idLaboratorio, nome, endereco, telefone, email, status "
+                + "FROM laboratorio WHERE status = 1";
+
+        con = ConexaoFactory.conectar();
+        ps = con.prepareStatement(sql);
+        rs = ps.executeQuery();
+
+        while (rs.next()) {
+
+            Laboratorio lab = new Laboratorio();
+
+            lab.setIdLaboratorio(rs.getInt("idLaboratorio"));
+            lab.setNome(rs.getString("nome"));
+            lab.setEndereco(rs.getString("endereco"));
+            lab.setTelefone(rs.getString("telefone"));
+            lab.setEmail(rs.getString("email"));
+            lab.setStatus(rs.getInt("status"));
+
+            laboratorios.add(lab);
+        }
+
+        ConexaoFactory.close(con);
+        return laboratorios;
+    }
+
     public boolean gravar(Laboratorio lab) throws SQLException {
 
         con = ConexaoFactory.conectar();
 
-        if (lab.getIdLaboratorio()== 0) {
+        if (lab.getIdLaboratorio() == 0) {
             sql = "INSERT INTO laboratorio(nome, endereco, telefone, email, status) "
                     + "VALUES(?,?,?,?,?)";
             ps = con.prepareStatement(sql);

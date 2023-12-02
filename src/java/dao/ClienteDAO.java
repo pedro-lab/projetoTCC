@@ -44,6 +44,34 @@ public class ClienteDAO {
         ConexaoFactory.close(con);
         return clientes;
     }
+    
+        public ArrayList<Cliente> getListaAtivo() throws SQLException {
+
+        sql = "SELECT idCliente, nome, cpf, telefone, status, idade, dataNasc "
+                + "FROM cliente WHERE status = 1";
+
+        con = ConexaoFactory.conectar();
+        ps = con.prepareStatement(sql);
+        rs = ps.executeQuery();
+
+        while (rs.next()) {
+
+            Cliente c = new Cliente();
+
+            c.setIdCliente(rs.getInt("idCliente"));
+            c.setNome(rs.getString("nome"));
+            c.setCpf(rs.getString("cpf"));
+            c.setTelefone(rs.getString("telefone"));
+            c.setIdade(rs.getInt("idade"));
+            c.setDataNasc(rs.getDate("dataNasc"));
+            c.setStatus(rs.getInt("status"));
+
+            clientes.add(c);
+        }
+
+        ConexaoFactory.close(con);
+        return clientes;
+    }
 
     public boolean gravar(Cliente c) throws SQLException {
 
