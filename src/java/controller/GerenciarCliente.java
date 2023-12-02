@@ -77,6 +77,13 @@ public class GerenciarCliente extends HttpServlet {
             e.printStackTrace();
         }
 
+        out.println(
+                "<script type='text/javascript'>"
+                + "alert('" + mensagem + "');"
+                + "location.href='gerenciarCliente?acao=listar';"
+                + "</script>"
+        );
+
     }
 
     @Override
